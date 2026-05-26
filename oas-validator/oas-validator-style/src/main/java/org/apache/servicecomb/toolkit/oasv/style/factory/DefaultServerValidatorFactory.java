@@ -14,23 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.factory;
 
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
 import org.apache.servicecomb.toolkit.oasv.validation.api.ServerValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.factory.ServerValidatorFactory;
 import org.springframework.stereotype.Component;
-
 import java.util.Collections;
 import java.util.List;
 
 @Component
 public class DefaultServerValidatorFactory implements ServerValidatorFactory {
 
-  @Override
-  public List<ServerValidator> create(FactoryOptions options) {
-    return Collections.emptyList();
-  }
-
+    @Override
+    public List<ServerValidator> create(FactoryOptions options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

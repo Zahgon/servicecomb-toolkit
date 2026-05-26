@@ -14,71 +14,64 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.web.api.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.commons.collections4.CollectionUtils;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.OasDiffViolation;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasViolation;
 
 public class ImportError {
 
-  private final List<String> parseErrors = new ArrayList<>();
+    private final List<String> parseErrors = new ArrayList<>();
 
-  private final List<OasViolation> violations = new ArrayList<>();
+    private final List<OasViolation> violations = new ArrayList<>();
 
-  private final List<OasDiffViolation> diffViolations = new ArrayList<>();
+    private final List<OasDiffViolation> diffViolations = new ArrayList<>();
 
-  @JsonIgnore
-  public boolean isNotEmpty() {
-    return CollectionUtils.isNotEmpty(parseErrors)
-        || CollectionUtils.isNotEmpty(violations)
-        || CollectionUtils.isNotEmpty(diffViolations);
-  }
+    @JsonIgnore
+    public boolean isNotEmpty() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  /**
-   * OAS Spec Yaml parse error
-   *
-   * @return
-   */
-  public List<String> getParseErrors() {
-    return parseErrors;
-  }
+    /**
+     * OAS Spec Yaml parse error
+     *
+     * @return
+     */
+    public List<String> getParseErrors() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  /**
-   * check style violations
-   *
-   * @return
-   */
-  public List<OasViolation> getViolations() {
-    return violations;
-  }
+    /**
+     * check style violations
+     *
+     * @return
+     */
+    public List<OasViolation> getViolations() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  /**
-   * compatibility violations
-   *
-   * @return
-   */
-  public List<OasDiffViolation> getDiffViolations() {
-    return diffViolations;
-  }
+    /**
+     * compatibility violations
+     *
+     * @return
+     */
+    public List<OasDiffViolation> getDiffViolations() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void addParseErrors(List<String> syntaxErrors) {
-    this.parseErrors.addAll(syntaxErrors);
-  }
+    public void addParseErrors(List<String> syntaxErrors) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void addViolations(List<OasViolation> violations) {
-    this.violations.addAll(violations);
-  }
+    public void addViolations(List<OasViolation> violations) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void addDiffViolations(List<OasDiffViolation> diffViolations) {
-    this.diffViolations.addAll(diffViolations);
-  }
-
-
+    public void addDiffViolations(List<OasDiffViolation> diffViolations) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

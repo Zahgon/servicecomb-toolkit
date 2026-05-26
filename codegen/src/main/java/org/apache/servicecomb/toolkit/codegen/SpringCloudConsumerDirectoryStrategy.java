@@ -14,65 +14,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.codegen;
 
 import java.util.List;
 import java.util.Map;
-
 import org.apache.commons.lang3.StringUtils;
 import org.openapitools.codegen.SupportingFile;
 
 public class SpringCloudConsumerDirectoryStrategy extends AbstractConsumerDirectoryStrategy {
 
-  private String consumerTemplateFolder = "consumer/openfeign";
+    private String consumerTemplateFolder = "consumer/openfeign";
 
-  private String apiConsumerTemplate = consumerTemplateFolder + "/apiConsumer.mustache";
+    private String apiConsumerTemplate = consumerTemplateFolder + "/apiConsumer.mustache";
 
-  @Override
-  public String modelDirectory() {
-    return consumerDirectory();
-  }
+    @Override
+    public String modelDirectory() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String providerDirectory() {
-    throw new UnsupportedOperationException();
-  }
+    @Override
+    public String providerDirectory() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String consumerDirectory() {
-    return (String) propertiesMap.get("artifactId");
-  }
+    @Override
+    public String consumerDirectory() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void processSupportingFile(List<SupportingFile> supportingFiles) {
-
-    super.processSupportingFile(supportingFiles);
-
-    supportingFiles.add(new SupportingFile(consumerTemplateFolder + "/applicationYml.mustache",
-        resourcesFolder(consumerDirectory()),
-        "application.yml"));
-
-    supportingFiles.add(new SupportingFile(consumerTemplateFolder + "/pom.mustache",
-        consumerDirectory(),
-        "pom.xml")
-    );
-
-    supportingFiles.add(new SupportingFile(consumerTemplateFolder + "/Application.mustache",
-        mainClassFolder(consumerDirectory()),
-        "Application.java")
-    );
-
-    propertiesMap.computeIfAbsent(GeneratorExternalConfigConstant.CONSUMER_ARTIFACT_ID,
-        k -> consumerDirectory());
-
-    propertiesMap
-        .put(GeneratorExternalConfigConstant.CONSUMER_PROJECT_NAME, consumerDirectory());
-
-    propertiesMap.put(apiConsumerTemplate, ServiceType.CONSUMER.getValue());
-
-    Map<String, String> apiTemplateFiles = ((Map<String, String>) propertiesMap.get("apiTemplateFiles"));
-    apiTemplateFiles.remove("api.mustache");
-    apiTemplateFiles.put(apiConsumerTemplate, ".java");
-  }
+    @Override
+    public void processSupportingFile(List<SupportingFile> supportingFiles) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

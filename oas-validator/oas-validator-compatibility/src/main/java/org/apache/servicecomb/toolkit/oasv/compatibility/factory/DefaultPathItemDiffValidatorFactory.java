@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.pathitem.PathItemDeleteNotAllowedDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.PathItemDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.factory.OperationDiffValidatorFactory;
@@ -34,28 +32,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultPathItemDiffValidatorFactory implements PathItemDiffValidatorFactory {
 
-  private final OperationDiffValidatorFactory operationDiffValidatorFactory;
-  private final ParameterDiffValidatorFactory parameterDiffValidatorFactory;
+    private final OperationDiffValidatorFactory operationDiffValidatorFactory;
 
-  public DefaultPathItemDiffValidatorFactory(
-      OperationDiffValidatorFactory operationDiffValidatorFactory,
-      ParameterDiffValidatorFactory parameterDiffValidatorFactory) {
-    this.operationDiffValidatorFactory = operationDiffValidatorFactory;
-    this.parameterDiffValidatorFactory = parameterDiffValidatorFactory;
-  }
+    private final ParameterDiffValidatorFactory parameterDiffValidatorFactory;
 
-  @Override
-  public List<PathItemDiffValidator> create() {
+    public DefaultPathItemDiffValidatorFactory(OperationDiffValidatorFactory operationDiffValidatorFactory, ParameterDiffValidatorFactory parameterDiffValidatorFactory) {
+        this.operationDiffValidatorFactory = operationDiffValidatorFactory;
+        this.parameterDiffValidatorFactory = parameterDiffValidatorFactory;
+    }
 
-    List<PathItemDiffValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new PathItemOperationsDiffValidator(operationDiffValidatorFactory.create()));
-    validators.add(new PathItemParametersDiffValidator(parameterDiffValidatorFactory.create()));
-
-    // concretes
-    validators.add(new PathItemDeleteNotAllowedDiffValidator());
-
-    return Collections.unmodifiableList(validators);
-  }
+    @Override
+    public List<PathItemDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

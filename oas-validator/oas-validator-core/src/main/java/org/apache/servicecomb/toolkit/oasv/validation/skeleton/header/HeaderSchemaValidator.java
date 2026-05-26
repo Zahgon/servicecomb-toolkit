@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.header;
 
 import org.apache.servicecomb.toolkit.oasv.validation.api.SchemaValidator;
@@ -23,9 +22,7 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import org.apache.servicecomb.toolkit.oasv.validation.api.HeaderValidator;
 import io.swagger.v3.oas.models.headers.Header;
 import io.swagger.v3.oas.models.media.Schema;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.SCHEMA;
 
 /**
@@ -34,27 +31,27 @@ import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.SCHEMA;
  */
 public class HeaderSchemaValidator extends ObjectPropertyValidator<Header, Schema> implements HeaderValidator {
 
-  public HeaderSchemaValidator(List<SchemaValidator> oasObjectValidators) {
-    super(oasObjectValidators);
-  }
+    public HeaderSchemaValidator(List<SchemaValidator> oasObjectValidators) {
+        super(oasObjectValidators);
+    }
 
-  @Override
-  protected String get$ref(Header oasObject) {
-    return oasObject.get$ref();
-  }
+    @Override
+    protected String get$ref(Header oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected Schema getPropertyObject(Header oasObject) {
-    return oasObject.getSchema();
-  }
+    @Override
+    protected Schema getPropertyObject(Header oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "schema";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getPropertyType() {
-    return SCHEMA;
-  }
+    @Override
+    protected OasObjectType getPropertyType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema.request;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.DiffViolationMessages;
@@ -22,37 +21,34 @@ import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.OasDiffValidationC
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.util.ChangeRangeCheckUtils;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema.SchemaPropertyChangeValidator;
 import io.swagger.v3.oas.models.media.Schema;
-
 import static org.apache.servicecomb.toolkit.oasv.diffvalidation.util.OasDiffValidationContextUtils.isInParameter;
 import static org.apache.servicecomb.toolkit.oasv.diffvalidation.util.OasDiffValidationContextUtils.isInRequestBody;
 import static java.util.Collections.singletonList;
 
 public class SchemaUniqueItemsChangeInRequestValidator extends SchemaPropertyChangeValidator<Boolean> {
 
-  @Override
-  protected Boolean getProperty(Schema schema) {
-    return schema.getUniqueItems();
-  }
+    @Override
+    protected Boolean getProperty(Schema schema) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "uniqueItems";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected boolean isAllowed(Boolean leftProperty, Boolean rightProperty) {
-    return ChangeRangeCheckUtils
-      .isNotViolated(leftProperty, rightProperty, singletonList(new Object[] { true, false }));
-  }
+    @Override
+    protected boolean isAllowed(Boolean leftProperty, Boolean rightProperty) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getMessage(Boolean leftProperty, Boolean rightProperty) {
-    return DiffViolationMessages.TRUE_TO_FALSE;
-  }
+    @Override
+    protected String getMessage(Boolean leftProperty, Boolean rightProperty) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected boolean needValidate(OasDiffValidationContext context) {
-    return isInParameter(context) || isInRequestBody(context);
-  }
-
+    @Override
+    protected boolean needValidate(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

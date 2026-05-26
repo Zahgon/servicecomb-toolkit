@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
@@ -23,50 +22,18 @@ import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.OasDiffViolation;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.SchemaCompareValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.util.ChangeRangeCheckUtils;
 import io.swagger.v3.oas.models.media.Schema;
-
 import java.util.List;
-
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
 public abstract class SchemaTypeFormatChangeValidator implements SchemaCompareValidator {
 
-  @Override
-  public final List<OasDiffViolation> validate(OasDiffValidationContext context, OasObjectPropertyLocation leftLocation,
-    Schema leftOasObject, OasObjectPropertyLocation rightLocation, Schema rightOasObject) {
-
-    if (!needValidate(context)) {
-      return emptyList();
+    @Override
+    public final List<OasDiffViolation> validate(OasDiffValidationContext context, OasObjectPropertyLocation leftLocation, Schema leftOasObject, OasObjectPropertyLocation rightLocation, Schema rightOasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    TypeFormat leftTypeFormat = new TypeFormat(leftOasObject);
-    TypeFormat rightTypeFormat = new TypeFormat(rightOasObject);
+    protected abstract List<Object[]> getAllowedChangedList();
 
-    if (ChangeRangeCheckUtils.isNotViolated(leftTypeFormat, rightTypeFormat, getAllowedChangedList())) {
-      return emptyList();
-    }
-
-    StringBuilder message = new StringBuilder("the change ");
-    message
-      .append("(type=")
-      .append(leftTypeFormat.getType())
-      .append(",format=")
-      .append(leftTypeFormat.getFormat())
-      .append(')')
-      .append("->")
-      .append("(type=")
-      .append(rightTypeFormat.getType())
-      .append(",format=")
-      .append(rightTypeFormat.getFormat())
-      .append(')')
-      .append(" is not allowed");
-
-    return singletonList(new OasDiffViolation(leftLocation, rightLocation, message.toString()));
-
-  }
-
-  protected abstract List<Object[]> getAllowedChangedList();
-
-  protected abstract boolean needValidate(OasDiffValidationContext context);
-
+    protected abstract boolean needValidate(OasDiffValidationContext context);
 }

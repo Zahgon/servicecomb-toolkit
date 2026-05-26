@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.validators.requestbody;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
@@ -26,37 +25,17 @@ import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.RequestBodyDiffVal
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.util.ChangeRangeCheckUtils;
 import io.swagger.v3.oas.models.parameters.RequestBody;
 import org.apache.commons.lang3.ObjectUtils;
-
 import java.util.List;
-
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
 /**
  * RequestBody.required only allow change true-&gt;false
  */
-public class RequestBodyRequiredChangeDiffValidator
-  extends OasObjectDiffValidatorTemplate<RequestBody>
-  implements RequestBodyDiffValidator {
+public class RequestBodyRequiredChangeDiffValidator extends OasObjectDiffValidatorTemplate<RequestBody> implements RequestBodyDiffValidator {
 
-  @Override
-  protected List<OasDiffViolation> validateCompare(OasDiffValidationContext context,
-    OasObjectPropertyLocation leftLocation, RequestBody leftOasObject, OasObjectPropertyLocation rightLocation,
-    RequestBody rightOasObject) {
-
-    if (ChangeRangeCheckUtils.isNotViolated(
-      ObjectUtils.defaultIfNull(leftOasObject.getRequired(), Boolean.FALSE),
-      ObjectUtils.defaultIfNull(rightOasObject.getRequired(), Boolean.FALSE),
-      singletonList(new Object[] { true, false }))) {
-      return emptyList();
+    @Override
+    protected List<OasDiffViolation> validateCompare(OasDiffValidationContext context, OasObjectPropertyLocation leftLocation, RequestBody leftOasObject, OasObjectPropertyLocation rightLocation, RequestBody rightOasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
-    return singletonList(new OasDiffViolation(
-      leftLocation.property("required"),
-      rightLocation.property("required"),
-      DiffViolationMessages.TRUE_TO_FALSE
-    ));
-
-  }
-
 }

@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.encoding;
 
 import io.swagger.v3.oas.models.media.Encoding;
 import org.apache.servicecomb.toolkit.oasv.validation.api.EncodingValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.api.MapPropertyKeysValidator;
-
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -29,27 +27,24 @@ import java.util.function.Predicate;
  * <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#encodingObject">Encoding Object</a>
  * .headers property key validator
  */
-public class EncodingHeadersKeysValidator extends MapPropertyKeysValidator<Encoding>
-  implements EncodingValidator {
+public class EncodingHeadersKeysValidator extends MapPropertyKeysValidator<Encoding> implements EncodingValidator {
 
-  public EncodingHeadersKeysValidator(Predicate<String> keyPredicate,
-      Function<String, String> errorFunction) {
-    super(keyPredicate, errorFunction);
-  }
+    public EncodingHeadersKeysValidator(Predicate<String> keyPredicate, Function<String, String> errorFunction) {
+        super(keyPredicate, errorFunction);
+    }
 
-  @Override
-  protected String get$ref(Encoding oasObject) {
-    return null;
-  }
+    @Override
+    protected String get$ref(Encoding oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected Map<String, ?> getMapProperty(Encoding oasObject) {
-    return oasObject.getHeaders();
-  }
+    @Override
+    protected Map<String, ?> getMapProperty(Encoding oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getMapPropertyName() {
-    return "headers";
-  }
-
+    @Override
+    protected String getMapPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

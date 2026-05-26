@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.openapi;
 
 import org.apache.servicecomb.toolkit.oasv.validation.api.InfoValidator;
@@ -23,7 +22,6 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import org.apache.servicecomb.toolkit.oasv.validation.api.ObjectPropertyValidator;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-
 import java.util.List;
 
 /**
@@ -31,31 +29,29 @@ import java.util.List;
  * .info (<a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#infoObject">Info Object</a>)
  * validator
  */
-public class OpenApiInfoValidator extends ObjectPropertyValidator<OpenAPI, Info>
-  implements OpenApiValidator {
+public class OpenApiInfoValidator extends ObjectPropertyValidator<OpenAPI, Info> implements OpenApiValidator {
 
-  public OpenApiInfoValidator(List<InfoValidator> infoValidators) {
-    super(infoValidators);
-  }
+    public OpenApiInfoValidator(List<InfoValidator> infoValidators) {
+        super(infoValidators);
+    }
 
-  @Override
-  protected String get$ref(OpenAPI oasObject) {
-    return null;
-  }
+    @Override
+    protected String get$ref(OpenAPI oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected Info getPropertyObject(OpenAPI oasObject) {
-    return oasObject.getInfo();
-  }
+    @Override
+    protected Info getPropertyObject(OpenAPI oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "info";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getPropertyType() {
-    return OasObjectType.INFO;
-  }
-
+    @Override
+    protected OasObjectType getPropertyType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

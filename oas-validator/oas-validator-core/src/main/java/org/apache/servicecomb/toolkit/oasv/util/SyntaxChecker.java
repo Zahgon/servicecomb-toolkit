@@ -14,35 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.util;
 
 import static java.util.Collections.emptyList;
-
 import java.util.List;
-
 import io.swagger.v3.parser.OpenAPIV3Parser;
 import io.swagger.v3.parser.core.models.ParseOptions;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
 
 public class SyntaxChecker {
 
-  private SyntaxChecker() {
-    // singleton
-  }
+    private SyntaxChecker() {
+        // singleton
+    }
 
-  public static List<String> check(String oasSpecContent) {
-
-    ParseOptions parseOptions = new ParseOptions();
-    parseOptions.setResolve(false);
-    parseOptions.setResolveFully(false);
-    parseOptions.setResolveCombinators(false);
-    parseOptions.setFlatten(false);
-
-    OpenAPIV3Parser parser = new OpenAPIV3Parser();
-    SwaggerParseResult result = parser.readContents(oasSpecContent, null, parseOptions);
-    return result.getMessages() == null ? emptyList() : result.getMessages();
-
-  }
-
+    public static List<String> check(String oasSpecContent) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

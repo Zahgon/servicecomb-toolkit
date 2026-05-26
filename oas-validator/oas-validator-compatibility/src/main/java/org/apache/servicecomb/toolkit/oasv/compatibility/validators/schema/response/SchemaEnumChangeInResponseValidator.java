@@ -14,46 +14,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema.response;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.OasDiffValidationContext;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema.SchemaPropertyChangeValidator;
 import io.swagger.v3.oas.models.media.Schema;
 import org.apache.commons.lang3.ObjectUtils;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.diffvalidation.util.OasDiffValidationContextUtils.isInResponse;
 import static java.util.Collections.emptyList;
 
 public class SchemaEnumChangeInResponseValidator extends SchemaPropertyChangeValidator<List> {
 
-  public static final String VIOLATION_MESSAGE = "adding enum on right side is not allowed";
+    public static final String VIOLATION_MESSAGE = "adding enum on right side is not allowed";
 
-  @Override
-  protected List getProperty(Schema schema) {
-    return ObjectUtils.defaultIfNull(schema.getEnum(), emptyList());
-  }
+    @Override
+    protected List getProperty(Schema schema) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "enum";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected boolean isAllowed(List leftProperty, List rightProperty) {
-    return leftProperty.containsAll(rightProperty);
-  }
+    @Override
+    protected boolean isAllowed(List leftProperty, List rightProperty) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getMessage(List leftProperty, List rightProperty) {
-    return VIOLATION_MESSAGE;
-  }
+    @Override
+    protected String getMessage(List leftProperty, List rightProperty) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected boolean needValidate(OasDiffValidationContext context) {
-    return isInResponse(context);
-  }
-
+    @Override
+    protected boolean needValidate(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

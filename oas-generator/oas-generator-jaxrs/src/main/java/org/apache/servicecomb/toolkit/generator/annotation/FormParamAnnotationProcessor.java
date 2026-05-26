@@ -14,19 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import javax.ws.rs.FormParam;
-
 import org.apache.servicecomb.toolkit.generator.context.ParameterContext;
 import org.apache.servicecomb.toolkit.generator.context.ParameterContext.InType;
 
 public class FormParamAnnotationProcessor implements ParamAnnotationProcessor<FormParam, ParameterContext> {
-  @Override
-  public void process(FormParam formParam, ParameterContext parameterContext) {
 
-    parameterContext.setIn(InType.FORM);
-    parameterContext.setName(formParam.value());
-  }
+    @Override
+    public void process(FormParam formParam, ParameterContext parameterContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

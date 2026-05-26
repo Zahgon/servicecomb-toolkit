@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.DiffViolationMessages;
@@ -24,29 +23,28 @@ import org.apache.commons.lang3.ObjectUtils;
 
 public class SchemaReadOnlyChangeValidator extends SchemaPropertyChangeValidator<Boolean> {
 
-  @Override
-  protected Boolean getProperty(Schema schema) {
-    return ObjectUtils.defaultIfNull(schema.getReadOnly(), Boolean.FALSE);
-  }
+    @Override
+    protected Boolean getProperty(Schema schema) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "readOnly";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected boolean isAllowed(Boolean leftProperty, Boolean rightProperty) {
-    return leftProperty.equals(rightProperty);
-  }
+    @Override
+    protected boolean isAllowed(Boolean leftProperty, Boolean rightProperty) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getMessage(Boolean leftProperty, Boolean rightProperty) {
-    return DiffViolationMessages.NEW_NOT_EQ_OLD;
-  }
+    @Override
+    protected String getMessage(Boolean leftProperty, Boolean rightProperty) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected boolean needValidate(OasDiffValidationContext context) {
-    return true;
-  }
-
+    @Override
+    protected boolean needValidate(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

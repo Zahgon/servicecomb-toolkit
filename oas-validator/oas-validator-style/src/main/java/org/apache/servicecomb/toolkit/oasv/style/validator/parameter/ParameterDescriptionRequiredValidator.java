@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.validator.parameter;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
@@ -30,30 +29,27 @@ import io.swagger.v3.oas.models.parameters.Parameter;
  * <li>this field is required</li>
  * </ul>
  */
-public class ParameterDescriptionRequiredValidator
-  extends ObjectPropertyRequiredValidator<Parameter, String>
-  implements ParameterValidator {
+public class ParameterDescriptionRequiredValidator extends ObjectPropertyRequiredValidator<Parameter, String> implements ParameterValidator {
 
-  public static final String CONFIG_KEY = "parameter.description.required";
+    public static final String CONFIG_KEY = "parameter.description.required";
 
-  @Override
-  protected String get$ref(Parameter oasObject) {
-    return oasObject.get$ref();
-  }
+    @Override
+    protected String get$ref(Parameter oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyObject(Parameter oasObject) {
-    return oasObject.getDescription();
-  }
+    @Override
+    protected String getPropertyObject(Parameter oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "description";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getPropertyType() {
-    return null;
-  }
-
+    @Override
+    protected OasObjectType getPropertyType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

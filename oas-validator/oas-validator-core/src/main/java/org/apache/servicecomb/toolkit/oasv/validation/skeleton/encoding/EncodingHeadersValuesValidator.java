@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.encoding;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
@@ -23,37 +22,33 @@ import org.apache.servicecomb.toolkit.oasv.validation.api.HeaderValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.api.MapPropertyValuesValidator;
 import io.swagger.v3.oas.models.headers.Header;
 import io.swagger.v3.oas.models.media.Encoding;
-
 import java.util.List;
 import java.util.Map;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.HEADER;
 
-public class EncodingHeadersValuesValidator extends MapPropertyValuesValidator<Encoding, Header>
-  implements EncodingValidator {
+public class EncodingHeadersValuesValidator extends MapPropertyValuesValidator<Encoding, Header> implements EncodingValidator {
 
-  public EncodingHeadersValuesValidator(List<HeaderValidator> valueValidators) {
-    super(valueValidators);
-  }
+    public EncodingHeadersValuesValidator(List<HeaderValidator> valueValidators) {
+        super(valueValidators);
+    }
 
-  @Override
-  protected String get$ref(Encoding oasObject) {
-    return null;
-  }
+    @Override
+    protected String get$ref(Encoding oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected Map<String, Header> getMapProperty(Encoding oasObject) {
-    return oasObject.getHeaders();
-  }
+    @Override
+    protected Map<String, Header> getMapProperty(Encoding oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getMapPropertyName() {
-    return "headers";
-  }
+    @Override
+    protected String getMapPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getValueType() {
-    return HEADER;
-  }
-
+    @Override
+    protected OasObjectType getValueType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

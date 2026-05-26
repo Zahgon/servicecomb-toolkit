@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.web;
 
 import org.springframework.boot.SpringApplication;
@@ -27,22 +26,12 @@ import org.springframework.web.filter.CorsFilter;
 @SpringBootApplication
 public class Application {
 
-  public static void main(String[] args) {
-    SpringApplication.run(Application.class, args);
-  }
-  
-  @Bean
-  public CorsFilter corsFilter() {
-      final CorsConfiguration config = new CorsConfiguration();
-      //config.setAllowCredentials(true);
-      config.addAllowedOrigin("*");
-      config.addAllowedHeader("*");
-      config.addAllowedMethod("*");
+    public static void main(String[] args) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-      final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-      source.registerCorsConfiguration("/api/**", config);
-
-      return new CorsFilter(source);
-  }
-
+    @Bean
+    public CorsFilter corsFilter() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

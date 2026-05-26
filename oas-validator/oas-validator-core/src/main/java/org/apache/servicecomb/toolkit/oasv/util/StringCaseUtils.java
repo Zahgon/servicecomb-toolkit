@@ -14,56 +14,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.util;
 
 import org.apache.commons.lang3.StringUtils;
-
 import java.util.regex.Pattern;
 
 public abstract class StringCaseUtils {
 
-  private static final Pattern LOWER_CAMEL_CASE = Pattern.compile("^[a-z]+((\\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?$");
+    private static final Pattern LOWER_CAMEL_CASE = Pattern.compile("^[a-z]+((\\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?$");
 
-  private static final Pattern UPPER_CAMEL_CASE = Pattern.compile("^[A-Z]([a-z0-9]+[A-Z]?)*$");
+    private static final Pattern UPPER_CAMEL_CASE = Pattern.compile("^[A-Z]([a-z0-9]+[A-Z]?)*$");
 
-  private static final Pattern UPPER_HYPHEN_CASE = Pattern.compile("^([A-Z][a-z0-9]*-)*([A-Z][a-z0-9]*)$");
+    private static final Pattern UPPER_HYPHEN_CASE = Pattern.compile("^([A-Z][a-z0-9]*-)*([A-Z][a-z0-9]*)$");
 
-  private StringCaseUtils() {
-    // singleton
-  }
-
-  public static boolean isLowerCamelCase(String string) {
-    if (StringUtils.isBlank(string)) {
-      return false;
+    private StringCaseUtils() {
+        // singleton
     }
-    return LOWER_CAMEL_CASE.matcher(string).matches();
-  }
 
-  public static boolean isUpperCamelCase(String string) {
-    if (StringUtils.isBlank(string)) {
-      return false;
+    public static boolean isLowerCamelCase(String string) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    return UPPER_CAMEL_CASE.matcher(string).matches();
-  }
 
-  public static boolean isUpperHyphenCase(String string) {
-    if (StringUtils.isBlank(string)) {
-      return false;
+    public static boolean isUpperCamelCase(String string) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    return UPPER_HYPHEN_CASE.matcher(string).matches();
-  }
 
-  public static boolean isMatchCase(String expectedCase, String string) {
-    switch (expectedCase) {
-    case "upper-camel-case":
-      return isUpperCamelCase(string);
-    case "lower-camel-case":
-      return isLowerCamelCase(string);
-    case "upper-hyphen-case":
-      return isUpperHyphenCase(string);
-    default:
-      throw new IllegalArgumentException("Unrecognized case: " + expectedCase);
+    public static boolean isUpperHyphenCase(String string) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-  }
+
+    public static boolean isMatchCase(String expectedCase, String string) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

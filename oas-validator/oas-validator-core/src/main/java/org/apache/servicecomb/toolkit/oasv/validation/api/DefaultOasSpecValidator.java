@@ -14,34 +14,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.api;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import io.swagger.v3.oas.models.OpenAPI;
-
 import java.util.List;
-
 import static java.util.stream.Collectors.toList;
 
 public class DefaultOasSpecValidator implements OasSpecValidator {
 
-  private List<OpenApiValidator> openApiValidators;
+    private List<OpenApiValidator> openApiValidators;
 
-  public DefaultOasSpecValidator(List<OpenApiValidator> openApiValidators) {
-    this.openApiValidators = openApiValidators;
-  }
+    public DefaultOasSpecValidator(List<OpenApiValidator> openApiValidators) {
+        this.openApiValidators = openApiValidators;
+    }
 
-  @Override
-  public List<OasViolation> validate(OasValidationContext context, OpenAPI openAPI) {
-
-    OasObjectPropertyLocation location = OasObjectPropertyLocation.root();
-
-    return openApiValidators
-      .stream()
-      .map(validator -> validator.validate(context, location, openAPI))
-      .flatMap(list -> list.stream())
-      .collect(toList());
-
-  }
+    @Override
+    public List<OasViolation> validate(OasValidationContext context, OpenAPI openAPI) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,17 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.plugin;
 
 import org.apache.maven.project.MavenProject;
 
 public class MavenPluginUtil {
 
-  private static final String PARENT_PROJECT_PACKAGING = "pom";
+    private static final String PARENT_PROJECT_PACKAGING = "pom";
 
-  public static boolean isParentProject(MavenProject project){
-    return PARENT_PROJECT_PACKAGING.equals(project.getPackaging());
-  }
-
+    public static boolean isParentProject(MavenProject project) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.config;
 
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.encoding.*;
@@ -25,34 +24,33 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class EncodingDiffValidatorsConfiguration {
 
-  @Bean
-  public EncodingDiffValidator encodingAddNotAllowedDiffValidator() {
-    return new EncodingAddNotAllowedDiffValidator();
-  }
+    @Bean
+    public EncodingDiffValidator encodingAddNotAllowedDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public EncodingDiffValidator encodingDelNotAllowedDiffValidator() {
-    return new EncodingDelNotAllowedDiffValidator();
-  }
+    @Bean
+    public EncodingDiffValidator encodingDelNotAllowedDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public EncodingDiffValidator encodingAllowedReservedChangeDiffValidator() {
-    return new EncodingAllowedReservedChangeDiffValidator();
-  }
+    @Bean
+    public EncodingDiffValidator encodingAllowedReservedChangeDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public EncodingDiffValidator encodingContentTypeNotSameDiffValidator() {
-    return new EncodingContentTypeNotSameDiffValidator();
-  }
+    @Bean
+    public EncodingDiffValidator encodingContentTypeNotSameDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public EncodingDiffValidator encodingExplodeNotSameDiffValidator() {
-    return new EncodingExplodeNotSameDiffValidator();
-  }
+    @Bean
+    public EncodingDiffValidator encodingExplodeNotSameDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public EncodingDiffValidator encodingStyleNotSameDiffValidator() {
-    return new EncodingStyleNotSameDiffValidator();
-  }
-
+    @Bean
+    public EncodingDiffValidator encodingStyleNotSameDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

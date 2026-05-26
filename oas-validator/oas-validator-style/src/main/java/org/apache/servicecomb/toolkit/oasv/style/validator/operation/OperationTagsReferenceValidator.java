@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.validator.operation;
 
 import io.swagger.v3.oas.models.OpenAPI;
@@ -25,11 +24,9 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasValidationContext;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasViolation;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OperationValidator;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptySet;
 import static java.util.stream.Collectors.toSet;
@@ -44,38 +41,16 @@ import static java.util.stream.Collectors.toSet;
  */
 public class OperationTagsReferenceValidator implements OperationValidator {
 
-  public static final String CONFIG_KEY = "operation.tags.element.must_reference_root_tags";
+    public static final String CONFIG_KEY = "operation.tags.element.must_reference_root_tags";
 
-  public static final String ERROR = "is not defined in $.tags";
+    public static final String ERROR = "is not defined in $.tags";
 
-  @Override
-  public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location,
-    Operation oasObject) {
-
-    List<String> tags = oasObject.getTags();
-    if (CollectionUtils.isEmpty(tags)) {
-      return emptyList();
+    @Override
+    public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, Operation oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    List<OasViolation> violations = new ArrayList<>();
-
-    Set<String> globalTagNames = getGlobalTagNames(context.getOpenAPI());
-    for (int i = 0; i < tags.size(); i++) {
-      String tagName = tags.get(i);
-      if (!globalTagNames.contains(tagName)) {
-        violations.add(
-          new OasViolation(location.property("tags[" + i + "]"), ERROR));
-      }
+    public Set<String> getGlobalTagNames(OpenAPI openAPI) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
-    return violations;
-  }
-
-  public Set<String> getGlobalTagNames(OpenAPI openAPI) {
-    if (CollectionUtils.isEmpty(openAPI.getTags())) {
-      return emptySet();
-    }
-    return openAPI.getTags().stream().map(Tag::getName).collect(toSet());
-  }
-
 }

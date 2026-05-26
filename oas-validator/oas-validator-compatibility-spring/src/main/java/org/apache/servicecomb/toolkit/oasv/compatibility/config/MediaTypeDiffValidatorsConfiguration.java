@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.config;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.MediaTypeDiffValidator;
@@ -28,24 +27,23 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MediaTypeDiffValidatorsConfiguration {
 
-  @Bean
-  public MediaTypeDiffValidator mediaTypeAddInParameterNotAllowedDiffValidator() {
-    return new MediaTypeAddInParameterNotAllowedDiffValidator();
-  }
+    @Bean
+    public MediaTypeDiffValidator mediaTypeAddInParameterNotAllowedDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public MediaTypeDiffValidator mediaTypeDelInParameterNotAllowedDiffValidator() {
-    return new MediaTypeDelInParameterNotAllowedDiffValidator();
-  }
+    @Bean
+    public MediaTypeDiffValidator mediaTypeDelInParameterNotAllowedDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public MediaTypeDiffValidator mediaTypeDelInRequestBodyNotAllowedDiffValidator() {
-    return new MediaTypeDelInRequestBodyNotAllowedDiffValidator();
-  }
+    @Bean
+    public MediaTypeDiffValidator mediaTypeDelInRequestBodyNotAllowedDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public MediaTypeDiffValidator mediaTypeDelInResponseNotAllowedDiffValidator() {
-    return new MediaTypeDelInResponseNotAllowedDiffValidator();
-  }
-
+    @Bean
+    public MediaTypeDiffValidator mediaTypeDelInResponseNotAllowedDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

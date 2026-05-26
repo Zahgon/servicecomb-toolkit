@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.factory;
 
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
@@ -24,7 +23,6 @@ import org.apache.servicecomb.toolkit.oasv.validation.factory.HeaderValidatorFac
 import org.apache.servicecomb.toolkit.oasv.validation.factory.SchemaValidatorFactory;
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.header.HeaderSchemaValidator;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,31 +30,21 @@ import java.util.List;
 @Component
 public class DefaultHeaderValidatorFactory implements HeaderValidatorFactory {
 
-  private final SchemaValidatorFactory schemaValidatorFactory;
+    private final SchemaValidatorFactory schemaValidatorFactory;
 
-  public DefaultHeaderValidatorFactory(
-      SchemaValidatorFactory schemaValidatorFactory) {
-    this.schemaValidatorFactory = schemaValidatorFactory;
-  }
-
-  @Override
-  public List<HeaderValidator> create(FactoryOptions options) {
-
-    List<HeaderValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new HeaderSchemaValidator(schemaValidatorFactory.create(options)));
-
-    // concretes
-    addHeaderDescriptionRequiredValidator(validators, options);
-    return Collections.unmodifiableList(validators);
-  }
-
-  private void addHeaderDescriptionRequiredValidator(List<HeaderValidator> validators, FactoryOptions options) {
-    Boolean required = options.getBoolean(HeaderDescriptionRequiredValidator.CONFIG_KEY);
-    if (Boolean.TRUE.equals(required)) {
-      validators.add(new HeaderDescriptionRequiredValidator());
+    public DefaultHeaderValidatorFactory(SchemaValidatorFactory schemaValidatorFactory) {
+        this.schemaValidatorFactory = schemaValidatorFactory;
     }
-  }
 
+    @Override
+    public List<HeaderValidator> create(FactoryOptions options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    private void addHeaderDescriptionRequiredValidator(List<HeaderValidator> validators, FactoryOptions options) {
+        Boolean required = options.getBoolean(HeaderDescriptionRequiredValidator.CONFIG_KEY);
+        if (Boolean.TRUE.equals(required)) {
+            validators.add(new HeaderDescriptionRequiredValidator());
+        }
+    }
 }

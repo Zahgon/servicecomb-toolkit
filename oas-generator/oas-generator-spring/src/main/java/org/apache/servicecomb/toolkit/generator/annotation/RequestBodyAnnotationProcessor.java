@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import org.apache.servicecomb.toolkit.generator.context.ParameterContext;
@@ -23,9 +22,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 public class RequestBodyAnnotationProcessor implements ParamAnnotationProcessor<RequestBody, ParameterContext> {
 
-  @Override
-  public void process(RequestBody requestBody, ParameterContext parameterContext) {
-    parameterContext.setIn(InType.BODY);
-    parameterContext.setRequired(requestBody.required());
-  }
+    @Override
+    public void process(RequestBody requestBody, ParameterContext parameterContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

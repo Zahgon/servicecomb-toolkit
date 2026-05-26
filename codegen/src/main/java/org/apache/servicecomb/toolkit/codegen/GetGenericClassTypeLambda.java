@@ -14,24 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.codegen;
 
 import java.io.IOException;
 import java.io.Writer;
-
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template;
 
-
 public class GetGenericClassTypeLambda implements Mustache.Lambda {
-  @Override
-  public void execute(Template.Fragment fragment, Writer writer) throws IOException {
-    String text = fragment.execute();
-    if (text.contains("<")) {
-      String className = text.substring(0, text.indexOf("<"));
-      text = "(Class<" + text + ">)(Class)" + className;
+
+    @Override
+    public void execute(Template.Fragment fragment, Writer writer) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    writer.write(text);
-  }
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.web.page.controller;
 
 import org.springframework.stereotype.Controller;
@@ -24,13 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/editor")
 public class EditorController {
-  
-  @GetMapping()
-  public String index() {
-    
-    
-    
-    return "editor/index";
-  }
 
+    @GetMapping()
+    public String index() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

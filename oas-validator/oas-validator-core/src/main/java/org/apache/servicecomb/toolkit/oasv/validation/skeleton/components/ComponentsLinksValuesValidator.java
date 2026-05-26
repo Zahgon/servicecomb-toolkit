@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.components;
 
 import org.apache.servicecomb.toolkit.oasv.validation.api.ComponentsValidator;
@@ -23,37 +22,33 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import org.apache.servicecomb.toolkit.oasv.validation.api.MapPropertyValuesValidator;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.links.Link;
-
 import java.util.List;
 import java.util.Map;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.LINK;
 
-public class ComponentsLinksValuesValidator extends MapPropertyValuesValidator<Components, Link>
-  implements ComponentsValidator {
+public class ComponentsLinksValuesValidator extends MapPropertyValuesValidator<Components, Link> implements ComponentsValidator {
 
-  public ComponentsLinksValuesValidator(List<LinkValidator> valueValidators) {
-    super(valueValidators);
-  }
+    public ComponentsLinksValuesValidator(List<LinkValidator> valueValidators) {
+        super(valueValidators);
+    }
 
-  @Override
-  protected String get$ref(Components oasObject) {
-    return null;
-  }
+    @Override
+    protected String get$ref(Components oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected Map<String, Link> getMapProperty(Components components) {
-    return components.getLinks();
-  }
+    @Override
+    protected Map<String, Link> getMapProperty(Components components) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getMapPropertyName() {
-    return "links";
-  }
+    @Override
+    protected String getMapPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getValueType() {
-    return LINK;
-  }
-
+    @Override
+    protected OasObjectType getValueType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

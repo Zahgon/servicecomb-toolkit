@@ -14,27 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.codegen;
 
 public enum ServiceType {
 
-  /**
-   * both consumer and provider
-   */
-  ALL,
+    /**
+     * both consumer and provider
+     */
+    ALL,
+    /**
+     *  only consumer project
+     */
+    CONSUMER,
+    /**
+     *  only provider project
+     */
+    PROVIDER;
 
-  /**
-   *  only consumer project
-   */
-  CONSUMER,
-
-  /**
-   *  only provider project
-   */
-  PROVIDER;
-
-  public String getValue() {
-    return toString().toLowerCase();
-  }
+    public String getValue() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

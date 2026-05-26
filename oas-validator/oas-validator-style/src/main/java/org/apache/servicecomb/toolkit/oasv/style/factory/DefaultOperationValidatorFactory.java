@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.factory;
 
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
@@ -28,7 +27,6 @@ import org.apache.servicecomb.toolkit.oasv.validation.skeleton.operation.Operati
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.operation.OperationRequestBodyValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.operation.OperationResponsesValidator;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,74 +34,55 @@ import java.util.List;
 @Component
 public class DefaultOperationValidatorFactory implements OperationValidatorFactory {
 
+    private final ParameterValidatorFactory parameterValidatorFactory;
 
-  private final ParameterValidatorFactory parameterValidatorFactory;
+    private final ResponsesValidatorFactory responsesValidatorFactory;
 
-  private final ResponsesValidatorFactory responsesValidatorFactory;
+    private final RequestBodyValidatorFactory requestBodyValidatorFactory;
 
-  private final RequestBodyValidatorFactory requestBodyValidatorFactory;
-
-  public DefaultOperationValidatorFactory(
-      ParameterValidatorFactory parameterValidatorFactory,
-      ResponsesValidatorFactory responsesValidatorFactory,
-      RequestBodyValidatorFactory requestBodyValidatorFactory) {
-    this.parameterValidatorFactory = parameterValidatorFactory;
-    this.responsesValidatorFactory = responsesValidatorFactory;
-    this.requestBodyValidatorFactory = requestBodyValidatorFactory;
-  }
-
-  @Override
-  public List<OperationValidator> create(FactoryOptions options) {
-
-    List<OperationValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new OperationParametersValidator(parameterValidatorFactory.create(options)));
-    validators.add(new OperationResponsesValidator(responsesValidatorFactory.create(options)));
-    validators.add(new OperationRequestBodyValidator(requestBodyValidatorFactory.create(options)));
-
-    // concretes
-    addOperationSummaryRequiredValidator(validators, options);
-    addOperationIdCaseValidator(validators, options);
-    addOperationTagsSizeEqValidator(validators, options);
-    addOperationServersSizeEqValidator(validators, options);
-    addOperationTagsReferenceValidator(validators, options);
-
-    return Collections.unmodifiableList(validators);
-  }
-
-  private void addOperationSummaryRequiredValidator(List<OperationValidator> validators, FactoryOptions options) {
-    Boolean required = options.getBoolean(OperationSummaryRequiredValidator.CONFIG_KEY);
-    if (Boolean.TRUE.equals(required)) {
-      validators.add(new OperationSummaryRequiredValidator());
+    public DefaultOperationValidatorFactory(ParameterValidatorFactory parameterValidatorFactory, ResponsesValidatorFactory responsesValidatorFactory, RequestBodyValidatorFactory requestBodyValidatorFactory) {
+        this.parameterValidatorFactory = parameterValidatorFactory;
+        this.responsesValidatorFactory = responsesValidatorFactory;
+        this.requestBodyValidatorFactory = requestBodyValidatorFactory;
     }
-  }
 
-  private void addOperationIdCaseValidator(List<OperationValidator> validators, FactoryOptions options) {
-    String expectedCase = options.getString(OperationIdCaseValidator.CONFIG_KEY);
-    if (expectedCase != null) {
-      validators.add(new OperationIdCaseValidator(expectedCase));
+    @Override
+    public List<OperationValidator> create(FactoryOptions options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-  }
 
-  private void addOperationTagsSizeEqValidator(List<OperationValidator> validators, FactoryOptions options) {
-    Integer expectedSize = options.getInteger(OperationTagsSizeEqValidator.CONFIG_KEY);
-    if (expectedSize != null) {
-      validators.add(new OperationTagsSizeEqValidator(expectedSize));
+    private void addOperationSummaryRequiredValidator(List<OperationValidator> validators, FactoryOptions options) {
+        Boolean required = options.getBoolean(OperationSummaryRequiredValidator.CONFIG_KEY);
+        if (Boolean.TRUE.equals(required)) {
+            validators.add(new OperationSummaryRequiredValidator());
+        }
     }
-  }
 
-  private void addOperationServersSizeEqValidator(List<OperationValidator> validators, FactoryOptions options) {
-    Integer expectedSize = options.getInteger(OperationServersSizeEqValidator.CONFIG_KEY);
-    if (expectedSize != null) {
-      validators.add(new OperationServersSizeEqValidator(expectedSize));
+    private void addOperationIdCaseValidator(List<OperationValidator> validators, FactoryOptions options) {
+        String expectedCase = options.getString(OperationIdCaseValidator.CONFIG_KEY);
+        if (expectedCase != null) {
+            validators.add(new OperationIdCaseValidator(expectedCase));
+        }
     }
-  }
 
-  private void addOperationTagsReferenceValidator(List<OperationValidator> validators, FactoryOptions options) {
-    Boolean needCheck = options.getBoolean(OperationTagsReferenceValidator.CONFIG_KEY);
-    if (Boolean.TRUE.equals(needCheck)) {
-      validators.add(new OperationTagsReferenceValidator());
+    private void addOperationTagsSizeEqValidator(List<OperationValidator> validators, FactoryOptions options) {
+        Integer expectedSize = options.getInteger(OperationTagsSizeEqValidator.CONFIG_KEY);
+        if (expectedSize != null) {
+            validators.add(new OperationTagsSizeEqValidator(expectedSize));
+        }
     }
-  }
+
+    private void addOperationServersSizeEqValidator(List<OperationValidator> validators, FactoryOptions options) {
+        Integer expectedSize = options.getInteger(OperationServersSizeEqValidator.CONFIG_KEY);
+        if (expectedSize != null) {
+            validators.add(new OperationServersSizeEqValidator(expectedSize));
+        }
+    }
+
+    private void addOperationTagsReferenceValidator(List<OperationValidator> validators, FactoryOptions options) {
+        Boolean needCheck = options.getBoolean(OperationTagsReferenceValidator.CONFIG_KEY);
+        if (Boolean.TRUE.equals(needCheck)) {
+            validators.add(new OperationTagsReferenceValidator());
+        }
+    }
 }

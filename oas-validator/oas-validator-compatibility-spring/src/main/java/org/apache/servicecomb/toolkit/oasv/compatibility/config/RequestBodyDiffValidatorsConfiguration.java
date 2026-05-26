@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.config;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.RequestBodyDiffValidator;
@@ -25,9 +24,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RequestBodyDiffValidatorsConfiguration {
 
-  @Bean
-  public RequestBodyDiffValidator requestBodyRequiredChangeDiffValidator() {
-    return new RequestBodyRequiredChangeDiffValidator();
-  }
-
+    @Bean
+    public RequestBodyDiffValidator requestBodyRequiredChangeDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

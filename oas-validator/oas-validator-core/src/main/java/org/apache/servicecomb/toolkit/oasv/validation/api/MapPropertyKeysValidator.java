@@ -14,54 +14,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.api;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.commons.lang3.StringUtils;
-
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
-
 import static org.apache.servicecomb.toolkit.oasv.validation.util.OasObjectValidatorUtils.doValidateMapPropertyKeys;
 import static java.util.Collections.emptyList;
 
 public abstract class MapPropertyKeysValidator<T> implements OasObjectValidator<T> {
 
-  private final Predicate<String> keyPredicate;
+    private final Predicate<String> keyPredicate;
 
-  private final Function<String, String> errorFunction;
+    private final Function<String, String> errorFunction;
 
-  public MapPropertyKeysValidator(Predicate<String> keyPredicate,
-    Function<String, String> errorFunction) {
-    this.keyPredicate = keyPredicate;
-    this.errorFunction = errorFunction;
-  }
-
-  @Override
-  final public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location,
-    T oasObject) {
-
-    if (StringUtils.isNotBlank(get$ref(oasObject))) {
-      return emptyList();
+    public MapPropertyKeysValidator(Predicate<String> keyPredicate, Function<String, String> errorFunction) {
+        this.keyPredicate = keyPredicate;
+        this.errorFunction = errorFunction;
     }
 
-    return doValidateMapPropertyKeys(
-      location,
-      getMapPropertyName(),
-      getMapProperty(oasObject),
-      keyPredicate,
-      errorFunction
-    );
+    @Override
+    final public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, T oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  }
+    protected abstract String get$ref(T oasObject);
 
-  protected abstract String get$ref(T oasObject);
+    protected abstract Map<String, ?> getMapProperty(T oasObject);
 
-  protected abstract Map<String, ?> getMapProperty(T oasObject);
-
-  protected abstract String getMapPropertyName();
-
+    protected abstract String getMapPropertyName();
 }

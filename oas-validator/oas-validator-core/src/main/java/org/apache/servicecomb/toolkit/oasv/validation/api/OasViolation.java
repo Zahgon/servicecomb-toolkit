@@ -14,11 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.api;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
-
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -27,48 +25,41 @@ import java.util.StringJoiner;
  */
 public class OasViolation {
 
-  /**
-   * Object location
-   */
-  private final OasObjectPropertyLocation location;
+    /**
+     * Object location
+     */
+    private final OasObjectPropertyLocation location;
 
-  /**
-   * Error message
-   */
-  private final String error;
+    /**
+     * Error message
+     */
+    private final String error;
 
-  public OasViolation(OasObjectPropertyLocation location, String error) {
-    this.location = location;
-    this.error = error;
-  }
+    public OasViolation(OasObjectPropertyLocation location, String error) {
+        this.location = location;
+        this.error = error;
+    }
 
-  public OasObjectPropertyLocation getLocation() {
-    return location;
-  }
+    public OasObjectPropertyLocation getLocation() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String getError() {
-    return error;
-  }
+    public String getError() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String toString() {
-    return new StringJoiner(", ", OasViolation.class.getSimpleName() + "[", "]")
-      .add("location=" + location)
-      .add("error='" + error + "'")
-      .toString();
-  }
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    OasViolation that = (OasViolation) o;
-    return Objects.equals(location, that.location) &&
-      Objects.equals(error, that.error);
-  }
+    @Override
+    public boolean equals(Object o) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(location, error);
-  }
+    @Override
+    public int hashCode() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

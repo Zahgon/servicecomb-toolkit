@@ -14,16 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import javax.ws.rs.Consumes;
-
 import org.apache.servicecomb.toolkit.generator.context.OperationContext;
 
 public class ConsumesAnnotationProcessor implements MethodAnnotationProcessor<Consumes, OperationContext> {
-  @Override
-  public void process(Consumes consumes, OperationContext operationContext) {
-    operationContext.setConsumers(consumes.value());
-  }
+
+    @Override
+    public void process(Consumes consumes, OperationContext operationContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

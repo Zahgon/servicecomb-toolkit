@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import org.apache.commons.lang3.StringUtils;
@@ -26,21 +25,8 @@ import org.springframework.web.bind.annotation.ValueConstants;
 
 public class RequestHeaderAnnotationProcessor implements ParamAnnotationProcessor<RequestHeader, ParameterContext> {
 
-  @Override
-  public void process(RequestHeader requestHeader, ParameterContext parameterContext) {
-    parameterContext.setIn(InType.HEADER);
-    parameterContext.setRequired(requestHeader.required());
-
-    if (!ObjectUtils.isEmpty(requestHeader.defaultValue()) && !ValueConstants.DEFAULT_NONE
-        .equals(requestHeader.defaultValue())) {
-      parameterContext.setDefaultValue(requestHeader.defaultValue());
+    @Override
+    public void process(RequestHeader requestHeader, ParameterContext parameterContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
-    String name = requestHeader.name();
-    if (StringUtils.isEmpty(name)) {
-      name = requestHeader.value();
-    }
-
-    parameterContext.setName(name);
-  }
 }

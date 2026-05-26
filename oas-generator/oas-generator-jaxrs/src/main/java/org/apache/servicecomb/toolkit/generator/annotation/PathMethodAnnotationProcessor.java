@@ -14,16 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import javax.ws.rs.Path;
-
 import org.apache.servicecomb.toolkit.generator.context.OperationContext;
 
 public class PathMethodAnnotationProcessor implements MethodAnnotationProcessor<Path, OperationContext> {
-  @Override
-  public void process(Path path, OperationContext context) {
-    context.setPath(path.value());
-  }
+
+    @Override
+    public void process(Path path, OperationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

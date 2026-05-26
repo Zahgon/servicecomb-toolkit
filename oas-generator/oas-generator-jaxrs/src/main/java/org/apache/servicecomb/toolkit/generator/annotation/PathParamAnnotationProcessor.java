@@ -14,18 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import javax.ws.rs.PathParam;
-
 import org.apache.servicecomb.toolkit.generator.context.ParameterContext;
 import org.apache.servicecomb.toolkit.generator.context.ParameterContext.InType;
 
 public class PathParamAnnotationProcessor implements ParamAnnotationProcessor<PathParam, ParameterContext> {
-  @Override
-  public void process(PathParam pathParam, ParameterContext context) {
-    context.setIn(InType.PATH);
-    context.setName(pathParam.value());
-  }
+
+    @Override
+    public void process(PathParam pathParam, ParameterContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

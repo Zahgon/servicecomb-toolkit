@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.paths;
 
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasValidationContext;
@@ -25,11 +24,9 @@ import org.apache.servicecomb.toolkit.oasv.validation.api.PathItemValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.api.PathsValidator;
 import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.Paths;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import static org.apache.servicecomb.toolkit.oasv.validation.util.OasObjectValidatorUtils.doValidateProperty;
 
 /**
@@ -39,24 +36,14 @@ import static org.apache.servicecomb.toolkit.oasv.validation.util.OasObjectValid
  */
 public class PathsPathItemsValidator implements PathsValidator {
 
-  private final List<PathItemValidator> pathItemValidators;
+    private final List<PathItemValidator> pathItemValidators;
 
-  public PathsPathItemsValidator(List<PathItemValidator> pathItemValidators) {
-    this.pathItemValidators = pathItemValidators;
-  }
-
-  @Override
-  public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, Paths oasObject) {
-    List<OasViolation> violations = new ArrayList<>();
-
-    for (Map.Entry<String, PathItem> entry : oasObject.entrySet()) {
-      String path = entry.getKey();
-      PathItem pathItem = entry.getValue();
-      OasObjectPropertyLocation pathItemLocation = location.property(path, OasObjectType.PATH_ITEM);
-      violations.addAll(doValidateProperty(context, pathItemLocation, pathItem, pathItemValidators));
+    public PathsPathItemsValidator(List<PathItemValidator> pathItemValidators) {
+        this.pathItemValidators = pathItemValidators;
     }
 
-    return violations;
-  }
-
+    @Override
+    public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, Paths oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

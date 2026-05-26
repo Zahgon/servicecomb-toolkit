@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.requestbody.RequestBodyRequiredChangeDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.RequestBodyDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.factory.MediaTypeDiffValidatorFactory;
@@ -31,24 +29,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultRequestBodyDiffValidatorFactory implements RequestBodyDiffValidatorFactory {
 
-  private final MediaTypeDiffValidatorFactory mediaTypeDiffValidatorFactory;
+    private final MediaTypeDiffValidatorFactory mediaTypeDiffValidatorFactory;
 
-  public DefaultRequestBodyDiffValidatorFactory(
-      MediaTypeDiffValidatorFactory mediaTypeDiffValidatorFactory) {
-    this.mediaTypeDiffValidatorFactory = mediaTypeDiffValidatorFactory;
-  }
+    public DefaultRequestBodyDiffValidatorFactory(MediaTypeDiffValidatorFactory mediaTypeDiffValidatorFactory) {
+        this.mediaTypeDiffValidatorFactory = mediaTypeDiffValidatorFactory;
+    }
 
-  @Override
-  public List<RequestBodyDiffValidator> create() {
-
-    List<RequestBodyDiffValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new RequestBodyContentDiffValidator(mediaTypeDiffValidatorFactory.create()));
-
-    // concretes
-    validators.add(new RequestBodyRequiredChangeDiffValidator());
-
-    return Collections.unmodifiableList(validators);
-  }
+    @Override
+    public List<RequestBodyDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

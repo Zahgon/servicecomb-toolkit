@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.skeleton.openapi;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.ListPropertyDiffValidator;
@@ -23,31 +22,27 @@ import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.TagDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.tags.Tag;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.TAG;
 
-public class OpenApiTagsDiffValidator
-  extends ListPropertyDiffValidator<OpenAPI, Tag>
-  implements OpenApiDiffValidator {
+public class OpenApiTagsDiffValidator extends ListPropertyDiffValidator<OpenAPI, Tag> implements OpenApiDiffValidator {
 
-  public OpenApiTagsDiffValidator(List<TagDiffValidator> diffValidators) {
-    super(diffValidators, tag -> tag.getName());
-  }
+    public OpenApiTagsDiffValidator(List<TagDiffValidator> diffValidators) {
+        super(diffValidators, tag -> tag.getName());
+    }
 
-  @Override
-  protected List<Tag> getListProperty(OpenAPI oasObject) {
-    return oasObject.getTags();
-  }
+    @Override
+    protected List<Tag> getListProperty(OpenAPI oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getListPropertyName() {
-    return "tags";
-  }
+    @Override
+    protected String getListPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getElementType() {
-    return TAG;
-  }
+    @Override
+    protected OasObjectType getElementType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

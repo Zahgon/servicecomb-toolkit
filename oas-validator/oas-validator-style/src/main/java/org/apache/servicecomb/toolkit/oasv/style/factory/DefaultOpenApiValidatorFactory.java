@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.factory;
 
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
@@ -25,7 +24,6 @@ import org.apache.servicecomb.toolkit.oasv.validation.api.OpenApiValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.factory.*;
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.openapi.*;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,68 +31,47 @@ import java.util.List;
 @Component
 public class DefaultOpenApiValidatorFactory implements OpenApiValidatorFactory {
 
-  private final TagValidatorFactory tagValidatorFactory;
+    private final TagValidatorFactory tagValidatorFactory;
 
-  private final InfoValidatorFactory infoValidatorFactory;
+    private final InfoValidatorFactory infoValidatorFactory;
 
-  private final PathsValidatorFactory pathsValidatorFactory;
+    private final PathsValidatorFactory pathsValidatorFactory;
 
-  private final ComponentsValidatorFactory componentsValidatorFactory;
+    private final ComponentsValidatorFactory componentsValidatorFactory;
 
-  private final ServerValidatorFactory serverValidatorFactory;
+    private final ServerValidatorFactory serverValidatorFactory;
 
-  public DefaultOpenApiValidatorFactory(
-      TagValidatorFactory tagValidatorFactory,
-      InfoValidatorFactory infoValidatorFactory,
-      PathsValidatorFactory pathsValidatorFactory,
-      ComponentsValidatorFactory componentsValidatorFactory,
-      ServerValidatorFactory serverValidatorFactory) {
-    this.tagValidatorFactory = tagValidatorFactory;
-    this.infoValidatorFactory = infoValidatorFactory;
-    this.pathsValidatorFactory = pathsValidatorFactory;
-    this.componentsValidatorFactory = componentsValidatorFactory;
-    this.serverValidatorFactory = serverValidatorFactory;
-  }
-
-  @Override
-  public List<OpenApiValidator> create(FactoryOptions options) {
-
-    List<OpenApiValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new OpenApiTagsValidator(tagValidatorFactory.create(options)));
-    validators.add(new OpenApiInfoValidator(infoValidatorFactory.create(options)));
-    validators.add(new OpenApiPathsValidator(pathsValidatorFactory.create(options)));
-    validators.add(new OpenApiComponentsValidator(componentsValidatorFactory.create(options)));
-    validators.add(new OpenApiServersValidator(serverValidatorFactory.create(options)));
-
-    // concretes
-    addOpenApiSecuritySizeValidator(validators, options);
-    addOpenApiTagsSizeValidator(validators, options);
-    addOpenApiVersionGteValidator(validators, options);
-
-    return Collections.unmodifiableList(validators);
-  }
-
-  private void addOpenApiSecuritySizeValidator(List<OpenApiValidator> validators, FactoryOptions options) {
-    Integer size = options.getInteger(OpenApiSecuritySizeEqValidator.CONFIG_KEY);
-    if (size != null) {
-      validators.add(new OpenApiSecuritySizeEqValidator(size));
+    public DefaultOpenApiValidatorFactory(TagValidatorFactory tagValidatorFactory, InfoValidatorFactory infoValidatorFactory, PathsValidatorFactory pathsValidatorFactory, ComponentsValidatorFactory componentsValidatorFactory, ServerValidatorFactory serverValidatorFactory) {
+        this.tagValidatorFactory = tagValidatorFactory;
+        this.infoValidatorFactory = infoValidatorFactory;
+        this.pathsValidatorFactory = pathsValidatorFactory;
+        this.componentsValidatorFactory = componentsValidatorFactory;
+        this.serverValidatorFactory = serverValidatorFactory;
     }
-  }
 
-  private void addOpenApiTagsSizeValidator(List<OpenApiValidator> validators, FactoryOptions options) {
-    Integer size = options.getInteger(OpenApiTagsSizeGteValidator.CONFIG_KEY);
-    if (size != null) {
-      validators.add(new OpenApiTagsSizeGteValidator(size));
+    @Override
+    public List<OpenApiValidator> create(FactoryOptions options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-  }
 
-  private void addOpenApiVersionGteValidator(List<OpenApiValidator> validators, FactoryOptions options) {
-    String versionGte = options.getString(OpenApiVersionGteValidator.CONFIG_KEY);
-    if (versionGte != null) {
-      validators.add(new OpenApiVersionGteValidator(versionGte));
+    private void addOpenApiSecuritySizeValidator(List<OpenApiValidator> validators, FactoryOptions options) {
+        Integer size = options.getInteger(OpenApiSecuritySizeEqValidator.CONFIG_KEY);
+        if (size != null) {
+            validators.add(new OpenApiSecuritySizeEqValidator(size));
+        }
     }
-  }
 
+    private void addOpenApiTagsSizeValidator(List<OpenApiValidator> validators, FactoryOptions options) {
+        Integer size = options.getInteger(OpenApiTagsSizeGteValidator.CONFIG_KEY);
+        if (size != null) {
+            validators.add(new OpenApiTagsSizeGteValidator(size));
+        }
+    }
+
+    private void addOpenApiVersionGteValidator(List<OpenApiValidator> validators, FactoryOptions options) {
+        String versionGte = options.getString(OpenApiVersionGteValidator.CONFIG_KEY);
+        if (versionGte != null) {
+            validators.add(new OpenApiVersionGteValidator(versionGte));
+        }
+    }
 }

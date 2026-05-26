@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.DiffViolationMessages;
@@ -24,29 +23,28 @@ import io.swagger.v3.oas.models.media.Schema;
 
 public class SchemaDiscriminatorChangeValidator extends SchemaPropertyChangeValidator<Discriminator> {
 
-  @Override
-  protected Discriminator getProperty(Schema schema) {
-    return schema.getDiscriminator();
-  }
+    @Override
+    protected Discriminator getProperty(Schema schema) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "discriminator";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected boolean isAllowed(Discriminator leftProperty, Discriminator rightProperty) {
-    return leftProperty.equals(rightProperty);
-  }
+    @Override
+    protected boolean isAllowed(Discriminator leftProperty, Discriminator rightProperty) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getMessage(Discriminator leftProperty, Discriminator rightProperty) {
-    return DiffViolationMessages.NEW_NOT_EQ_OLD;
-  }
+    @Override
+    protected String getMessage(Discriminator leftProperty, Discriminator rightProperty) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected boolean needValidate(OasDiffValidationContext context) {
-    return true;
-  }
-
+    @Override
+    protected boolean needValidate(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,20 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.util;
 
 import io.swagger.v3.oas.models.parameters.Parameter;
 
 public abstract class ParameterUtils {
 
-  public static String getKeyString(Parameter parameter) {
-    return new StringBuilder()
-      .append("[name=")
-      .append(parameter.getName())
-      .append(",in=")
-      .append(parameter.getIn())
-      .append("]")
-      .toString();
-  }
+    public static String getKeyString(Parameter parameter) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

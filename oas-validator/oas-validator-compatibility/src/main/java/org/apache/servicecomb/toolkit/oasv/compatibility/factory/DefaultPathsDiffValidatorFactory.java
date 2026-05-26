@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.PathsDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.factory.PathItemDiffValidatorFactory;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.factory.PathsDiffValidatorFactory;
@@ -30,22 +28,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultPathsDiffValidatorFactory implements PathsDiffValidatorFactory {
 
-  private final PathItemDiffValidatorFactory pathItemDiffValidatorFactory;
+    private final PathItemDiffValidatorFactory pathItemDiffValidatorFactory;
 
-  public DefaultPathsDiffValidatorFactory(
-      PathItemDiffValidatorFactory pathItemDiffValidatorFactory) {
-    this.pathItemDiffValidatorFactory = pathItemDiffValidatorFactory;
-  }
+    public DefaultPathsDiffValidatorFactory(PathItemDiffValidatorFactory pathItemDiffValidatorFactory) {
+        this.pathItemDiffValidatorFactory = pathItemDiffValidatorFactory;
+    }
 
-  @Override
-  public List<PathsDiffValidator> create() {
-
-    List<PathsDiffValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new PathsPathItemsDiffValidator(pathItemDiffValidatorFactory.create()));
-
-    // concretes
-    return Collections.unmodifiableList(validators);
-  }
+    @Override
+    public List<PathsDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

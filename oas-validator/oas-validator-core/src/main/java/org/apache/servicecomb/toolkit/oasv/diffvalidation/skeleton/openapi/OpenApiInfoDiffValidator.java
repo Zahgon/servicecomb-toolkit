@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.skeleton.openapi;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.InfoDiffValidator;
@@ -23,32 +22,27 @@ import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.OpenApiDiffValidat
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.INFO;
 
-public class OpenApiInfoDiffValidator
-  extends ObjectPropertyDiffValidator<OpenAPI, Info>
-  implements OpenApiDiffValidator {
+public class OpenApiInfoDiffValidator extends ObjectPropertyDiffValidator<OpenAPI, Info> implements OpenApiDiffValidator {
 
-  public OpenApiInfoDiffValidator(List<InfoDiffValidator> pathsDiffValidators) {
-    super(pathsDiffValidators);
-  }
+    public OpenApiInfoDiffValidator(List<InfoDiffValidator> pathsDiffValidators) {
+        super(pathsDiffValidators);
+    }
 
-  @Override
-  protected Info getPropertyObject(OpenAPI oasObject) {
-    return oasObject.getInfo();
-  }
+    @Override
+    protected Info getPropertyObject(OpenAPI oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "info";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getPropertyType() {
-    return INFO;
-  }
-
+    @Override
+    protected OasObjectType getPropertyType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

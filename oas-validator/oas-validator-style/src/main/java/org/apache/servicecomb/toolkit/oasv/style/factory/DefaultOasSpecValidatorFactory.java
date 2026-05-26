@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.factory;
 
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
@@ -27,16 +26,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultOasSpecValidatorFactory implements OasSpecValidatorFactory {
 
-  private final OpenApiValidatorFactory openApiValidatorFactory;
+    private final OpenApiValidatorFactory openApiValidatorFactory;
 
-  public DefaultOasSpecValidatorFactory(
-      OpenApiValidatorFactory openApiValidatorFactory) {
-    this.openApiValidatorFactory = openApiValidatorFactory;
-  }
+    public DefaultOasSpecValidatorFactory(OpenApiValidatorFactory openApiValidatorFactory) {
+        this.openApiValidatorFactory = openApiValidatorFactory;
+    }
 
-  @Override
-  public OasSpecValidator create(FactoryOptions options) {
-    return new DefaultOasSpecValidator(openApiValidatorFactory.create(options));
-  }
-
+    @Override
+    public OasSpecValidator create(FactoryOptions options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

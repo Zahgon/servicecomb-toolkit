@@ -14,19 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import java.lang.annotation.Annotation;
-
 import javax.ws.rs.HttpMethod;
-
 import org.apache.servicecomb.toolkit.generator.context.OperationContext;
 
 public class HttpMethodAnnotationProcessor implements MethodAnnotationProcessor<Annotation, OperationContext> {
-  @Override
-  public void process(Annotation annotation, OperationContext operationContext) {
-    HttpMethod httpMethod = annotation.annotationType().getAnnotation(HttpMethod.class);
-    operationContext.setHttpMethod(httpMethod.value());
-  }
+
+    @Override
+    public void process(Annotation annotation, OperationContext operationContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

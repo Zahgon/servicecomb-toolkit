@@ -14,35 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.codegen;
 
 import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.openapitools.codegen.SupportingFile;
 
 public abstract class AbstractMultiDirectoryStrategy extends AbstractDirectoryStrategy {
 
-  @Override
-  public void processSupportingFile(List<SupportingFile> supportingFiles) {
-    correctServiceId();
-  }
+    @Override
+    public void processSupportingFile(List<SupportingFile> supportingFiles) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  private void correctServiceId() {
-
-    String serviceId = (String) propertiesMap.get(ProjectMetaConstant.SERVICE_ID);
-    propertiesMap.computeIfAbsent(GeneratorExternalConfigConstant.CONSUMER_SERVICE_ID, key -> {
-      if (StringUtils.isNotEmpty(serviceId)) {
-        return String.format("%s-consumer", serviceId);
-      }
-      return consumerDirectory();
-    });
-    propertiesMap.computeIfAbsent(GeneratorExternalConfigConstant.PROVIDER_SERVICE_ID, key -> {
-      if (StringUtils.isNotEmpty(serviceId)) {
-        return serviceId;
-      }
-      return providerDirectory();
-    });
-  }
+    private void correctServiceId() {
+        String serviceId = (String) propertiesMap.get(ProjectMetaConstant.SERVICE_ID);
+        propertiesMap.computeIfAbsent(GeneratorExternalConfigConstant.CONSUMER_SERVICE_ID, key -> {
+            if (StringUtils.isNotEmpty(serviceId)) {
+                return String.format("%s-consumer", serviceId);
+            }
+            return consumerDirectory();
+        });
+        propertiesMap.computeIfAbsent(GeneratorExternalConfigConstant.PROVIDER_SERVICE_ID, key -> {
+            if (StringUtils.isNotEmpty(serviceId)) {
+                return serviceId;
+            }
+            return providerDirectory();
+        });
+    }
 }

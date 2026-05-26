@@ -14,14 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.util;
 
 import java.util.Iterator;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-
 import io.swagger.v3.core.converter.AnnotatedType;
 import io.swagger.v3.core.converter.ModelConverter;
 import io.swagger.v3.core.converter.ModelConverterContext;
@@ -31,25 +28,12 @@ import io.swagger.v3.oas.models.media.Schema;
 
 public class ArrayModelConverter extends AbstractModelConverter {
 
-  protected ArrayModelConverter(ObjectMapper mapper) {
-    super(mapper);
-  }
-
-  @Override
-  public Schema resolve(AnnotatedType type, ModelConverterContext context, Iterator<ModelConverter> chain) {
-
-    String typeName = _typeName(TypeFactory.defaultInstance().constructType(type.getType()));
-
-    ArraySchema schema;
-    if ("Array".equals(typeName)) {
-      schema = new ArraySchema();
-      if (!(type.getType() instanceof Class)) {
-        return null;
-      }
-      Schema itemSchema = context.resolve(new AnnotatedType(((Class) type.getType()).getComponentType()));
-      schema.setItems(itemSchema);
-      return schema;
+    protected ArrayModelConverter(ObjectMapper mapper) {
+        super(mapper);
     }
-    return super.resolve(type, context, chain);
-  }
+
+    @Override
+    public Schema resolve(AnnotatedType type, ModelConverterContext context, Iterator<ModelConverter> chain) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

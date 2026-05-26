@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.parser;
 
 import javax.ws.rs.Consumes;
@@ -30,7 +29,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
-
 import org.apache.servicecomb.toolkit.generator.annotation.ConsumesAnnotationProcessor;
 import org.apache.servicecomb.toolkit.generator.annotation.CookieParamAnnotationProcessor;
 import org.apache.servicecomb.toolkit.generator.annotation.FormParamAnnotationProcessor;
@@ -40,55 +38,32 @@ import org.apache.servicecomb.toolkit.generator.annotation.PathClassAnnotationPr
 import org.apache.servicecomb.toolkit.generator.annotation.PathMethodAnnotationProcessor;
 import org.apache.servicecomb.toolkit.generator.annotation.PathParamAnnotationProcessor;
 import org.apache.servicecomb.toolkit.generator.annotation.QueryParamAnnotationProcessor;
-
 import io.swagger.v3.oas.annotations.headers.Header;
 
 public class JaxRsAnnotationParser extends AbstractAnnotationParser {
 
-  @Override
-  public void initClassAnnotationProcessor() {
-    super.initClassAnnotationProcessor();
-    classAnnotationMap.put(Path.class, new PathClassAnnotationProcessor());
-  }
-
-  @Override
-  public void initMethodAnnotationProcessor() {
-    super.initMethodAnnotationProcessor();
-    methodAnnotationMap.put(Path.class, new PathMethodAnnotationProcessor());
-
-    HttpMethodAnnotationProcessor httpMethodAnnotationProcessor = new HttpMethodAnnotationProcessor();
-    methodAnnotationMap.put(GET.class, httpMethodAnnotationProcessor);
-    methodAnnotationMap.put(POST.class, httpMethodAnnotationProcessor);
-    methodAnnotationMap.put(DELETE.class, httpMethodAnnotationProcessor);
-    methodAnnotationMap.put(PATCH.class, httpMethodAnnotationProcessor);
-    methodAnnotationMap.put(PUT.class, httpMethodAnnotationProcessor);
-    methodAnnotationMap.put(OPTIONS.class, httpMethodAnnotationProcessor);
-    methodAnnotationMap.put(HEAD.class, httpMethodAnnotationProcessor);
-    methodAnnotationMap.put(Consumes.class, new ConsumesAnnotationProcessor());
-  }
-
-  @Override
-  public void initParameterAnnotationProcessor() {
-    super.initParameterAnnotationProcessor();
-
-    parameterAnnotationMap.put(QueryParam.class, new QueryParamAnnotationProcessor());
-    parameterAnnotationMap.put(CookieParam.class, new CookieParamAnnotationProcessor());
-    parameterAnnotationMap.put(FormParam.class, new FormParamAnnotationProcessor());
-    parameterAnnotationMap.put(PathParam.class, new PathParamAnnotationProcessor());
-    parameterAnnotationMap.put(Header.class, new HeaderParamAnnotationProcessor());
-  }
-
-  @Override
-  public int getOrder() {
-    return 100;
-  }
-
-  @Override
-  public boolean canProcess(Class<?> cls) {
-
-    if (cls.getAnnotation(Path.class) != null) {
-      return true;
+    @Override
+    public void initClassAnnotationProcessor() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    return false;
-  }
+
+    @Override
+    public void initMethodAnnotationProcessor() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public void initParameterAnnotationProcessor() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public int getOrder() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public boolean canProcess(Class<?> cls) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

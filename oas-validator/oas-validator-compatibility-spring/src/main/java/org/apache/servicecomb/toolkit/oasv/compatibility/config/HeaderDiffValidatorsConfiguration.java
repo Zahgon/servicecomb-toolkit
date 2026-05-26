@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.config;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.HeaderDiffValidator;
@@ -26,14 +25,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class HeaderDiffValidatorsConfiguration {
 
-  @Bean
-  public HeaderDiffValidator headerAddInRequestBodyNotAllowedDiffValidator() {
-    return new HeaderAddInRequestBodyNotAllowedDiffValidator();
-  }
+    @Bean
+    public HeaderDiffValidator headerAddInRequestBodyNotAllowedDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public HeaderDiffValidator headerDelInResponseNotAllowedDiffValidator() {
-    return new HeaderDelInResponseNotAllowedDiffValidator();
-  }
-
+    @Bean
+    public HeaderDiffValidator headerDelInResponseNotAllowedDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

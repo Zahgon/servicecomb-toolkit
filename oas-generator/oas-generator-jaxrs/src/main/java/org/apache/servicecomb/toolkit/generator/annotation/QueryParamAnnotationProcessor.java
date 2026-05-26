@@ -14,18 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import javax.ws.rs.QueryParam;
-
 import org.apache.servicecomb.toolkit.generator.context.ParameterContext;
 import org.apache.servicecomb.toolkit.generator.context.ParameterContext.InType;
 
 public class QueryParamAnnotationProcessor implements ParamAnnotationProcessor<QueryParam, ParameterContext> {
-  @Override
-  public void process(QueryParam queryParam, ParameterContext parameterContext) {
-    parameterContext.setIn(InType.QUERY);
-    parameterContext.setName(queryParam.value());
-  }
+
+    @Override
+    public void process(QueryParam queryParam, ParameterContext parameterContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

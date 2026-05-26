@@ -14,37 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import org.apache.servicecomb.toolkit.generator.context.OperationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-public class RequestMappingMethodAnnotationProcessor extends
-    AbstractHttpMethodMappingAnnotationProcessor<RequestMapping, OperationContext> {
+public class RequestMappingMethodAnnotationProcessor extends AbstractHttpMethodMappingAnnotationProcessor<RequestMapping, OperationContext> {
 
-  @Override
-  public void process(RequestMapping requestMapping, OperationContext operationContext) {
-
-    this.processPath(requestMapping.path(), operationContext);
-    this.processPath(requestMapping.value(), operationContext);
-    this.processMethod(requestMapping.method(), operationContext);
-    this.processConsumes(requestMapping.consumes(), operationContext);
-    this.processProduces(requestMapping.produces(), operationContext);
-    this.processHeaders(requestMapping.headers(), operationContext);
-  }
-
-  protected void processMethod(RequestMethod[] requestMethods, OperationContext operationContext) {
-    if (null == requestMethods || requestMethods.length == 0) {
-      return;
+    @Override
+    public void process(RequestMapping requestMapping, OperationContext operationContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    if (requestMethods.length > 1) {
-      throw new Error(
-          "not allowed multi http method for " + operationContext.getMethod().getName());
+    protected void processMethod(RequestMethod[] requestMethods, OperationContext operationContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
-    this.processMethod(requestMethods[0], operationContext);
-  }
 }

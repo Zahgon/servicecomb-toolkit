@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.components;
 
 import org.apache.servicecomb.toolkit.oasv.validation.api.ComponentsValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.api.MapPropertyKeysValidator;
 import io.swagger.v3.oas.models.Components;
-
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -29,27 +27,24 @@ import java.util.function.Predicate;
  * <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#componentsObject">Components Object</a>
  * .callbacks property key validator
  */
-public class ComponentsCallbacksKeysValidator extends MapPropertyKeysValidator<Components>
-  implements ComponentsValidator {
+public class ComponentsCallbacksKeysValidator extends MapPropertyKeysValidator<Components> implements ComponentsValidator {
 
-  public ComponentsCallbacksKeysValidator(Predicate<String> keyPredicate,
-    Function<String, String> errorFunction) {
-    super(keyPredicate, errorFunction);
-  }
+    public ComponentsCallbacksKeysValidator(Predicate<String> keyPredicate, Function<String, String> errorFunction) {
+        super(keyPredicate, errorFunction);
+    }
 
-  @Override
-  protected String get$ref(Components oasObject) {
-    return null;
-  }
+    @Override
+    protected String get$ref(Components oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected Map<String, ?> getMapProperty(Components components) {
-    return components.getCallbacks();
-  }
+    @Override
+    protected Map<String, ?> getMapProperty(Components components) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getMapPropertyName() {
-    return "callbacks";
-  }
-
+    @Override
+    protected String getMapPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

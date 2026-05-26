@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.openapi;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
@@ -23,9 +22,7 @@ import org.apache.servicecomb.toolkit.oasv.validation.api.OpenApiValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.api.ObjectPropertyValidator;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.COMPONENTS;
 
 /**
@@ -33,33 +30,29 @@ import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.COMPONENT
  * .components(<a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#componentsObject">Components Object</a>)
  * validator
  */
-public class OpenApiComponentsValidator extends ObjectPropertyValidator<OpenAPI, Components>
-  implements OpenApiValidator {
+public class OpenApiComponentsValidator extends ObjectPropertyValidator<OpenAPI, Components> implements OpenApiValidator {
 
+    public OpenApiComponentsValidator(List<ComponentsValidator> componentsValidators) {
+        super(componentsValidators);
+    }
 
-  public OpenApiComponentsValidator(
-    List<ComponentsValidator> componentsValidators) {
-    super(componentsValidators);
-  }
+    @Override
+    protected String get$ref(OpenAPI oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String get$ref(OpenAPI oasObject) {
-    return null;
-  }
+    @Override
+    protected Components getPropertyObject(OpenAPI oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected Components getPropertyObject(OpenAPI oasObject) {
-    return oasObject.getComponents();
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "components";
-  }
-
-  @Override
-  protected OasObjectType getPropertyType() {
-    return COMPONENTS;
-  }
-
+    @Override
+    protected OasObjectType getPropertyType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

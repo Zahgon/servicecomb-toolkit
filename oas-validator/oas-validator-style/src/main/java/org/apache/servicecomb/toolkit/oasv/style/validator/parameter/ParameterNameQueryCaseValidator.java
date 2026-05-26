@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.validator.parameter;
 
 import io.swagger.v3.oas.models.parameters.Parameter;
@@ -23,9 +22,7 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasValidationContext;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasViolation;
 import org.apache.servicecomb.toolkit.oasv.validation.api.ParameterValidator;
-
 import java.util.List;
-
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.apache.servicecomb.toolkit.oasv.util.StringCaseUtils.isMatchCase;
@@ -40,31 +37,18 @@ import static org.apache.servicecomb.toolkit.oasv.util.StringCaseUtils.isMatchCa
  */
 public class ParameterNameQueryCaseValidator implements ParameterValidator {
 
-  public static final String CONFIG_KEY = "parameter.name.query.case";
-  public static final String ERROR = "Must be ";
+    public static final String CONFIG_KEY = "parameter.name.query.case";
 
-  private final String expectedCase;
+    public static final String ERROR = "Must be ";
 
-  public ParameterNameQueryCaseValidator(String expectedCase) {
-    this.expectedCase = expectedCase;
-  }
+    private final String expectedCase;
 
-  @Override
-  public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location,
-    Parameter oasObject) {
-
-    if (StringUtils.isNotBlank(oasObject.get$ref())) {
-      return emptyList();
+    public ParameterNameQueryCaseValidator(String expectedCase) {
+        this.expectedCase = expectedCase;
     }
 
-    if (!"query".equalsIgnoreCase(oasObject.getIn())) {
-      return emptyList();
+    @Override
+    public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, Parameter oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
-    if (!isMatchCase(expectedCase, oasObject.getName())) {
-      return singletonList(new OasViolation(location.property("name"), ERROR + expectedCase));
-    }
-
-    return emptyList();
-  }
 }

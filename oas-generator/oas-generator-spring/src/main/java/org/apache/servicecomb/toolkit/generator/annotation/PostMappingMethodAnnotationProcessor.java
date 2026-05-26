@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import org.apache.servicecomb.toolkit.generator.context.OperationContext;
@@ -23,13 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 public class PostMappingMethodAnnotationProcessor extends AbstractHttpMethodMappingAnnotationProcessor<PostMapping, OperationContext> {
 
-  @Override
-  public void process(PostMapping postMapping, OperationContext operationContext) {
-
-    this.processPath(postMapping.path(), operationContext);
-    this.processPath(postMapping.value(), operationContext);
-    this.processMethod(RequestMethod.POST, operationContext);
-    this.processConsumes(postMapping.consumes(), operationContext);
-    this.processProduces(postMapping.produces(), operationContext);
-  }
+    @Override
+    public void process(PostMapping postMapping, OperationContext operationContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

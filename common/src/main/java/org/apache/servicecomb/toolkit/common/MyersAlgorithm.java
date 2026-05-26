@@ -14,12 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.common;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.eclipse.jgit.diff.EditList;
 import org.eclipse.jgit.diff.MyersDiff;
 import org.eclipse.jgit.diff.RawText;
@@ -29,41 +27,10 @@ import org.slf4j.LoggerFactory;
 
 public class MyersAlgorithm implements CompareAlgorithm {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(MyersAlgorithm.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MyersAlgorithm.class);
 
-  @Override
-  public List<Comparison> compare(String source, String dest) {
-
-    if ((source == null) || (dest == null)) {
-      LOGGER.error("Source is {} and dest is {}", source, dest);
-      throw new RuntimeException("Source and dest must not be null");
+    @Override
+    public List<Comparison> compare(String source, String dest) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
-    EditList diffList = new EditList();
-    diffList.addAll(MyersDiff.INSTANCE.diff(RawTextComparator.DEFAULT,
-        new RawText(source.getBytes()), new RawText(dest.getBytes())));
-
-    List<Comparison> comparisonList = new ArrayList<>();
-
-    diffList.stream().forEachOrdered(edit -> {
-      ComparisionType comparisionType;
-      switch (edit.getType()) {
-        case INSERT:
-          comparisionType = ComparisionType.INSERT;
-          break;
-        case DELETE:
-          comparisionType = ComparisionType.DELETE;
-          break;
-        case REPLACE:
-          comparisionType = ComparisionType.REPLACE;
-          break;
-        default:
-          comparisionType = ComparisionType.EQUAL;
-          break;
-      }
-      comparisonList
-          .add(new Comparison(comparisionType, edit.getBeginA(), edit.getEndA(), edit.getBeginB(), edit.getEndB()));
-    });
-    return comparisonList;
-  }
 }

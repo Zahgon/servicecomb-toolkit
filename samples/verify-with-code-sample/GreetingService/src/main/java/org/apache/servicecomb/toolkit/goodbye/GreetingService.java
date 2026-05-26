@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.goodbye;
 
 import org.springframework.boot.SpringApplication;
@@ -23,8 +22,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GreetingService {
 
-  public static void main(String[] args) {
-    SpringApplication.run(GreetingService.class,args);
-  }
-
+    public static void main(String[] args) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.parser;
 
 import org.apache.servicecomb.provider.rest.common.RestSchema;
@@ -22,12 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 public class ServicecombSpringmvcParser extends SpringmvcAnnotationParser {
 
-  @Override
-  public boolean canProcess(Class<?> cls) {
-    if (cls.getAnnotation(RestSchema.class) != null && cls.getAnnotation(RequestMapping.class) != null) {
-      return true;
+    @Override
+    public boolean canProcess(Class<?> cls) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
-    return false;
-  }
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.parameter;
 
 import org.apache.servicecomb.toolkit.oasv.validation.api.MediaTypeValidator;
@@ -23,41 +22,37 @@ import org.apache.servicecomb.toolkit.oasv.validation.api.ParameterValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.api.MapPropertyValuesValidator;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.parameters.Parameter;
-
 import java.util.List;
 import java.util.Map;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.MEDIA_TYPE;
 
 /**
  * <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#parameterObject">Parameter Object</a>属性校验器
  * .content property validator
  */
-public class ParameterContentValidator extends MapPropertyValuesValidator<Parameter, MediaType>
-  implements ParameterValidator {
+public class ParameterContentValidator extends MapPropertyValuesValidator<Parameter, MediaType> implements ParameterValidator {
 
-  public ParameterContentValidator(List<MediaTypeValidator> mediaTypeValidators) {
-    super(mediaTypeValidators);
-  }
+    public ParameterContentValidator(List<MediaTypeValidator> mediaTypeValidators) {
+        super(mediaTypeValidators);
+    }
 
-  @Override
-  protected String get$ref(Parameter oasObject) {
-    return oasObject.get$ref();
-  }
+    @Override
+    protected String get$ref(Parameter oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected Map<String, MediaType> getMapProperty(Parameter oasObject) {
-    return oasObject.getContent();
-  }
+    @Override
+    protected Map<String, MediaType> getMapProperty(Parameter oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getMapPropertyName() {
-    return "content";
-  }
+    @Override
+    protected String getMapPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getValueType() {
-    return MEDIA_TYPE;
-  }
-
+    @Override
+    protected OasObjectType getValueType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

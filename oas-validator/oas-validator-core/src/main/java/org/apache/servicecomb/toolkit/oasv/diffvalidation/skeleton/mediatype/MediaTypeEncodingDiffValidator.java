@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.skeleton.mediatype;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
@@ -22,43 +21,33 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.*;
 import io.swagger.v3.oas.models.media.Encoding;
 import io.swagger.v3.oas.models.media.MediaType;
-
 import java.util.List;
 import java.util.Map;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.ENCODING;
 
-public class MediaTypeEncodingDiffValidator
-  extends MapPropertyDiffValidator<MediaType, Encoding>
-  implements MediaTypeDiffValidator {
+public class MediaTypeEncodingDiffValidator extends MapPropertyDiffValidator<MediaType, Encoding> implements MediaTypeDiffValidator {
 
-  public MediaTypeEncodingDiffValidator(List<EncodingDiffValidator> diffValidators) {
-    super(diffValidators);
-  }
+    public MediaTypeEncodingDiffValidator(List<EncodingDiffValidator> diffValidators) {
+        super(diffValidators);
+    }
 
-  @Override
-  public List<OasDiffViolation> validate(OasDiffValidationContext context, OasObjectPropertyLocation leftLocation,
-    MediaType leftOasObject, OasObjectPropertyLocation rightLocation, MediaType rightOasObject) {
+    @Override
+    public List<OasDiffViolation> validate(OasDiffValidationContext context, OasObjectPropertyLocation leftLocation, MediaType leftOasObject, OasObjectPropertyLocation rightLocation, MediaType rightOasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-    List<OasDiffViolation> violations = super
-      .validate(context, leftLocation, leftOasObject, rightLocation, rightOasObject);
+    @Override
+    protected Map<String, Encoding> getMapProperty(MediaType oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-    return violations;
-  }
+    @Override
+    protected String getMapPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected Map<String, Encoding> getMapProperty(MediaType oasObject) {
-    return oasObject.getEncoding();
-  }
-
-  @Override
-  protected String getMapPropertyName() {
-    return "encoding";
-  }
-
-  @Override
-  protected OasObjectType getValueType() {
-    return ENCODING;
-  }
-
+    @Override
+    protected OasObjectType getValueType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

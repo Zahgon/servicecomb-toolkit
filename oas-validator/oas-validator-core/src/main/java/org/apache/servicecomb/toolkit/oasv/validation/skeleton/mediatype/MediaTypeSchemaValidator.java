@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.mediatype;
 
 import org.apache.servicecomb.toolkit.oasv.validation.api.MediaTypeValidator;
@@ -23,40 +22,36 @@ import org.apache.servicecomb.toolkit.oasv.validation.api.ObjectPropertyValidato
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.media.Schema;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.SCHEMA;
 
 /**
  * <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#media-type-object">Media Type Object</a>
  * .schema property validator
  */
-public class MediaTypeSchemaValidator extends ObjectPropertyValidator<MediaType, Schema>
-  implements MediaTypeValidator {
+public class MediaTypeSchemaValidator extends ObjectPropertyValidator<MediaType, Schema> implements MediaTypeValidator {
 
-  public MediaTypeSchemaValidator(List<SchemaValidator> schemaValidators) {
-    super(schemaValidators);
-  }
+    public MediaTypeSchemaValidator(List<SchemaValidator> schemaValidators) {
+        super(schemaValidators);
+    }
 
-  @Override
-  protected String get$ref(MediaType oasObject) {
-    return null;
-  }
+    @Override
+    protected String get$ref(MediaType oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected Schema getPropertyObject(MediaType oasObject) {
-    return oasObject.getSchema();
-  }
+    @Override
+    protected Schema getPropertyObject(MediaType oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "schema";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getPropertyType() {
-    return SCHEMA;
-  }
-
+    @Override
+    protected OasObjectType getPropertyType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.response.ResponseAddNotAllowedDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.ResponseDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.factory.HeaderDiffValidatorFactory;
@@ -33,29 +31,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultResponseDiffValidatorFactory implements ResponseDiffValidatorFactory {
 
-  private final MediaTypeDiffValidatorFactory mediaTypeDiffValidatorFactory;
+    private final MediaTypeDiffValidatorFactory mediaTypeDiffValidatorFactory;
 
-  private final HeaderDiffValidatorFactory headerDiffValidatorFactory;
+    private final HeaderDiffValidatorFactory headerDiffValidatorFactory;
 
-  public DefaultResponseDiffValidatorFactory(
-      MediaTypeDiffValidatorFactory mediaTypeDiffValidatorFactory,
-      HeaderDiffValidatorFactory headerDiffValidatorFactory) {
-    this.mediaTypeDiffValidatorFactory = mediaTypeDiffValidatorFactory;
-    this.headerDiffValidatorFactory = headerDiffValidatorFactory;
-  }
+    public DefaultResponseDiffValidatorFactory(MediaTypeDiffValidatorFactory mediaTypeDiffValidatorFactory, HeaderDiffValidatorFactory headerDiffValidatorFactory) {
+        this.mediaTypeDiffValidatorFactory = mediaTypeDiffValidatorFactory;
+        this.headerDiffValidatorFactory = headerDiffValidatorFactory;
+    }
 
-  @Override
-  public List<ResponseDiffValidator> create() {
-
-    List<ResponseDiffValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new ResponseContentDiffValidator(mediaTypeDiffValidatorFactory.create()));
-    validators.add(new ResponseHeadersDiffValidator(headerDiffValidatorFactory.create()));
-
-    // concretes
-    validators.add(new ResponseAddNotAllowedDiffValidator());
-
-    return Collections.unmodifiableList(validators);
-  }
+    @Override
+    public List<ResponseDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

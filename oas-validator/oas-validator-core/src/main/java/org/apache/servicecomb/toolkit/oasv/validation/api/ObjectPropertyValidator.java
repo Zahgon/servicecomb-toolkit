@@ -14,15 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.api;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import org.apache.commons.lang3.StringUtils;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.validation.util.OasObjectValidatorUtils.doValidateProperty;
 import static java.util.Collections.emptyList;
 
@@ -34,34 +31,22 @@ import static java.util.Collections.emptyList;
  */
 public abstract class ObjectPropertyValidator<T, P> implements OasObjectValidator<T> {
 
-  private final List<? extends OasObjectValidator<P>> oasObjectValidators;
+    private final List<? extends OasObjectValidator<P>> oasObjectValidators;
 
-  protected ObjectPropertyValidator(List<? extends OasObjectValidator<P>> oasObjectValidators) {
-    this.oasObjectValidators = oasObjectValidators;
-  }
-
-  @Override
-  final public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location,
-    T oasObject) {
-    if (StringUtils.isNotBlank(get$ref(oasObject))) {
-      return emptyList();
+    protected ObjectPropertyValidator(List<? extends OasObjectValidator<P>> oasObjectValidators) {
+        this.oasObjectValidators = oasObjectValidators;
     }
 
-    P propertyObject = getPropertyObject(oasObject);
-    if (propertyObject == null) {
-      return emptyList();
+    @Override
+    final public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, T oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    OasObjectPropertyLocation propertyLoc = location.property(getPropertyName(), getPropertyType());
-    return doValidateProperty(context, propertyLoc, propertyObject, oasObjectValidators);
 
-  }
+    protected abstract String get$ref(T oasObject);
 
-  protected abstract String get$ref(T oasObject);
+    protected abstract P getPropertyObject(T oasObject);
 
-  protected abstract P getPropertyObject(T oasObject);
+    protected abstract String getPropertyName();
 
-  protected abstract String getPropertyName();
-
-  protected abstract OasObjectType getPropertyType();
-
+    protected abstract OasObjectType getPropertyType();
 }

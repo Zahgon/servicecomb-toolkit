@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.web.api.controller;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.servicecomb.toolkit.oasv.compatibility.CompatibilityCheckParser;
@@ -36,7 +34,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
 
@@ -44,67 +41,47 @@ import io.swagger.v3.parser.core.models.SwaggerParseResult;
 @RequestMapping("/api/compatibility")
 public class CompatibilityController {
 
-  @Autowired
-  private OasSpecDiffValidator oasSpecDiffValidator;
+    @Autowired
+    private OasSpecDiffValidator oasSpecDiffValidator;
 
-  @PostMapping(consumes = MimeTypeUtils.TEXT_PLAIN_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-  @ResponseStatus(value = HttpStatus.OK)
-  public Map<String, Object> validateOpenAPI(@RequestBody String yaml) {
-    
-    Map<String, Object> json = new HashMap<>();
-    
-    json.put("acknowleged", true);
-    json.put("data", doValidate(yaml));
-    
-    return json;
-  }
-
-
-  private ImportError2 doValidate(String yaml) {
-
-    ImportError2 importError = new ImportError2();
-
-    String leftYaml = yaml.split("---\n")[0];
-    String rightYaml = yaml.split("---\n")[1];
-
-    importError.addLeftParseErrors(SyntaxChecker.check(leftYaml));
-    importError.addRightParseErrors(SyntaxChecker.check(rightYaml));
-
-    if (importError.isNotEmpty()) {
-      return importError;
+    @PostMapping(consumes = MimeTypeUtils.TEXT_PLAIN_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public Map<String, Object> validateOpenAPI(@RequestBody String yaml) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    OpenAPI leftOpenAPI = loadByYaml(leftYaml);
-    OpenAPI rightOpenAPI = loadByYaml(rightYaml);
-
-    List<OasDiffViolation> violations = oasSpecDiffValidator
-        .validate(createContext(leftOpenAPI, rightOpenAPI), leftOpenAPI, rightOpenAPI);
-    if (CollectionUtils.isNotEmpty(violations)) {
-      importError.addViolations(violations);
+    private ImportError2 doValidate(String yaml) {
+        ImportError2 importError = new ImportError2();
+        String leftYaml = yaml.split("---\n")[0];
+        String rightYaml = yaml.split("---\n")[1];
+        importError.addLeftParseErrors(SyntaxChecker.check(leftYaml));
+        importError.addRightParseErrors(SyntaxChecker.check(rightYaml));
+        if (importError.isNotEmpty()) {
+            return importError;
+        }
+        OpenAPI leftOpenAPI = loadByYaml(leftYaml);
+        OpenAPI rightOpenAPI = loadByYaml(rightYaml);
+        List<OasDiffViolation> violations = oasSpecDiffValidator.validate(createContext(leftOpenAPI, rightOpenAPI), leftOpenAPI, rightOpenAPI);
+        if (CollectionUtils.isNotEmpty(violations)) {
+            importError.addViolations(violations);
+        }
+        return importError;
     }
-    return importError;
-  }
 
-  private OpenAPI loadByYaml(String yaml) {
-    SwaggerParseResult parseResult = CompatibilityCheckParser.parseYaml(yaml);
-    if (CollectionUtils.isNotEmpty(parseResult.getMessages())) {
-      throw new RuntimeException(StringUtils.join(parseResult.getMessages(), ","));
+    private OpenAPI loadByYaml(String yaml) {
+        SwaggerParseResult parseResult = CompatibilityCheckParser.parseYaml(yaml);
+        if (CollectionUtils.isNotEmpty(parseResult.getMessages())) {
+            throw new RuntimeException(StringUtils.join(parseResult.getMessages(), ","));
+        }
+        return parseResult.getOpenAPI();
     }
-    return parseResult.getOpenAPI();
-  }
 
+    private OasDiffValidationContext createContext(OpenAPI leftOpenAPI, OpenAPI rightOpenAPI) {
+        OasDiffValidationContext context = new OasDiffValidationContext(leftOpenAPI, rightOpenAPI);
+        initContext(context);
+        return context;
+    }
 
-  
-  private OasDiffValidationContext createContext(OpenAPI leftOpenAPI, OpenAPI rightOpenAPI) {
-
-    OasDiffValidationContext context = new OasDiffValidationContext(leftOpenAPI, rightOpenAPI);
-    initContext(context);
-    return context;
-
-  }
-  
-  
-  private void initContext(OasDiffValidationContext context) {
-  }
-
+    private void initContext(OasDiffValidationContext context) {
+    }
 }

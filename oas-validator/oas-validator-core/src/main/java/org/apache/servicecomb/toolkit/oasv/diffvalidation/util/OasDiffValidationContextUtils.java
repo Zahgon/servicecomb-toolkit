@@ -14,51 +14,51 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.util;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.OasDiffValidationContext;
 
 public class OasDiffValidationContextUtils {
 
-  private static final String IN_REQUEST_BODY = OasDiffValidationContextUtils.class.getName() + ".IN_REQUEST_BODY";
-  private static final String IN_PARAMETER = OasDiffValidationContextUtils.class.getName() + ".IN_PARAMETER";
-  private static final String IN_RESPONSE = OasDiffValidationContextUtils.class.getName() + ".IN_RESPONSE";
+    private static final String IN_REQUEST_BODY = OasDiffValidationContextUtils.class.getName() + ".IN_REQUEST_BODY";
 
-  public static void enterRequestBody(OasDiffValidationContext context) {
-    context.setAttribute(IN_REQUEST_BODY, true);
-  }
+    private static final String IN_PARAMETER = OasDiffValidationContextUtils.class.getName() + ".IN_PARAMETER";
 
-  public static void leaveRequestBody(OasDiffValidationContext context) {
-    context.removeAttribute(IN_REQUEST_BODY);
-  }
+    private static final String IN_RESPONSE = OasDiffValidationContextUtils.class.getName() + ".IN_RESPONSE";
 
-  public static void enterResponse(OasDiffValidationContext context) {
-    context.setAttribute(IN_RESPONSE, true);
-  }
+    public static void enterRequestBody(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public static void leaveResponse(OasDiffValidationContext context) {
-    context.removeAttribute(IN_RESPONSE);
-  }
+    public static void leaveRequestBody(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public static void enterParameter(OasDiffValidationContext context) {
-    context.setAttribute(IN_PARAMETER, true);
-  }
+    public static void enterResponse(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public static void leaveParameter(OasDiffValidationContext context) {
-    context.removeAttribute(IN_PARAMETER);
-  }
+    public static void leaveResponse(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public static boolean isInRequestBody(OasDiffValidationContext context) {
-    return Boolean.TRUE.equals(context.getAttribute(IN_REQUEST_BODY));
-  }
+    public static void enterParameter(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public static boolean isInResponse(OasDiffValidationContext context) {
-    return Boolean.TRUE.equals(context.getAttribute(IN_RESPONSE));
-  }
+    public static void leaveParameter(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public static boolean isInParameter(OasDiffValidationContext context) {
-    return Boolean.TRUE.equals(context.getAttribute(IN_PARAMETER));
-  }
+    public static boolean isInRequestBody(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
+    public static boolean isInResponse(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public static boolean isInParameter(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

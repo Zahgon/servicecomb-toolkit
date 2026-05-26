@@ -14,53 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.codegen;
 
 import java.util.List;
-
 import org.openapitools.codegen.SupportingFile;
 
 public class SpringCloudProviderDirectoryStrategy extends AbstractProviderDirectoryStrategy {
 
-  private String providerTemplateFolder = "provider/servlet";
+    private String providerTemplateFolder = "provider/servlet";
 
-  @Override
-  public String modelDirectory() {
-    return providerDirectory();
-  }
+    @Override
+    public String modelDirectory() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String providerDirectory() {
-    return (String) propertiesMap.get("artifactId");
-  }
+    @Override
+    public String providerDirectory() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String consumerDirectory() {
-    throw new UnsupportedOperationException();
-  }
+    @Override
+    public String consumerDirectory() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void processSupportingFile(List<SupportingFile> supportingFiles) {
-
-    super.processSupportingFile(supportingFiles);
-    supportingFiles.add(new SupportingFile(providerTemplateFolder + "/applicationYml.mustache",
-        resourcesFolder(providerDirectory()),
-        "application.yml"));
-
-    supportingFiles.add(new SupportingFile(providerTemplateFolder + "/pom.mustache",
-        providerDirectory(),
-        "pom.xml")
-    );
-
-    supportingFiles.add(new SupportingFile(providerTemplateFolder + "/Application.mustache",
-        mainClassFolder(providerDirectory()),
-        "Application.java")
-    );
-
-    propertiesMap.computeIfAbsent(GeneratorExternalConfigConstant.PROVIDER_ARTIFACT_ID,
-        k -> providerDirectory());
-    propertiesMap
-        .put(GeneratorExternalConfigConstant.PROVIDER_PROJECT_NAME, providerDirectory());
-  }
+    @Override
+    public void processSupportingFile(List<SupportingFile> supportingFiles) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

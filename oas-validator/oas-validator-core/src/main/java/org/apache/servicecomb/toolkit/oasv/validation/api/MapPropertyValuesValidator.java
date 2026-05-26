@@ -14,50 +14,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.api;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import org.apache.commons.lang3.StringUtils;
-
 import java.util.List;
 import java.util.Map;
-
 import static org.apache.servicecomb.toolkit.oasv.validation.util.OasObjectValidatorUtils.doValidateMapPropertyValues;
 import static java.util.Collections.emptyList;
 
 public abstract class MapPropertyValuesValidator<T, P> implements OasObjectValidator<T> {
 
-  private final List<? extends OasObjectValidator<P>> valueValidators;
+    private final List<? extends OasObjectValidator<P>> valueValidators;
 
-  protected MapPropertyValuesValidator(List<? extends OasObjectValidator<P>> valueValidators) {
-    this.valueValidators = valueValidators;
-  }
-
-  @Override
-  public final List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location,
-    T oasObject) {
-
-    if (StringUtils.isNotBlank(get$ref(oasObject))) {
-      return emptyList();
+    protected MapPropertyValuesValidator(List<? extends OasObjectValidator<P>> valueValidators) {
+        this.valueValidators = valueValidators;
     }
 
-    return doValidateMapPropertyValues(
-      context, location,
-      getMapPropertyName(),
-      getMapProperty(oasObject),
-      getValueType(),
-      valueValidators
-    );
+    @Override
+    public final List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, T oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  }
+    protected abstract String get$ref(T oasObject);
 
-  protected abstract String get$ref(T oasObject);
+    protected abstract Map<String, P> getMapProperty(T oasObject);
 
-  protected abstract Map<String, P> getMapProperty(T oasObject);
+    protected abstract String getMapPropertyName();
 
-  protected abstract String getMapPropertyName();
-
-  protected abstract OasObjectType getValueType();
+    protected abstract OasObjectType getValueType();
 }

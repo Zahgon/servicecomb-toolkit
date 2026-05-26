@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.factory;
 
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
@@ -24,7 +23,6 @@ import org.apache.servicecomb.toolkit.oasv.validation.factory.PathItemValidatorF
 import org.apache.servicecomb.toolkit.oasv.validation.factory.PathsValidatorFactory;
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.paths.PathsPathItemsValidator;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,30 +30,21 @@ import java.util.List;
 @Component
 public class DefaultPathsValidatorFactory implements PathsValidatorFactory {
 
-  private final PathItemValidatorFactory pathItemValidatorFactory;
+    private final PathItemValidatorFactory pathItemValidatorFactory;
 
-  public DefaultPathsValidatorFactory(
-      PathItemValidatorFactory pathItemValidatorFactory) {
-    this.pathItemValidatorFactory = pathItemValidatorFactory;
-  }
-
-  @Override
-  public List<PathsValidator> create(FactoryOptions options) {
-    List<PathsValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new PathsPathItemsValidator(pathItemValidatorFactory.create(options)));
-
-    // concretes
-    addPathsKeyCaseValidator(validators, options);
-    return Collections.unmodifiableList(validators);
-  }
-
-  private void addPathsKeyCaseValidator(List<PathsValidator> validators, FactoryOptions options) {
-    String expectedCase = options.getString(PathsKeyCaseValidator.CONFIG_KEY);
-    if (expectedCase != null) {
-      validators.add(new PathsKeyCaseValidator(expectedCase));
+    public DefaultPathsValidatorFactory(PathItemValidatorFactory pathItemValidatorFactory) {
+        this.pathItemValidatorFactory = pathItemValidatorFactory;
     }
-  }
 
+    @Override
+    public List<PathsValidator> create(FactoryOptions options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    private void addPathsKeyCaseValidator(List<PathsValidator> validators, FactoryOptions options) {
+        String expectedCase = options.getString(PathsKeyCaseValidator.CONFIG_KEY);
+        if (expectedCase != null) {
+            validators.add(new PathsKeyCaseValidator(expectedCase));
+        }
+    }
 }

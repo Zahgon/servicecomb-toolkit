@@ -14,25 +14,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 package org.apache.servicecomb.toolkit.codegen;
 
 import java.io.IOException;
 import java.io.Writer;
-
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template.Fragment;
 
 public class GetRelativeBasePathLambda implements Mustache.Lambda {
 
-  private static String HOST_PORT_PATTERN = "(\\w+://)([\\w\\.]+)?(:\\d*)?/?";
+    private static String HOST_PORT_PATTERN = "(\\w+://)([\\w\\.]+)?(:\\d*)?/?";
 
-  @Override
-  public void execute(Fragment fragment, Writer writer) throws IOException {
-
-    String text = fragment.execute();
-    String relativeBasePath = text.replaceAll(HOST_PORT_PATTERN, "/");
-    writer.write(relativeBasePath);
-  }
+    @Override
+    public void execute(Fragment fragment, Writer writer) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

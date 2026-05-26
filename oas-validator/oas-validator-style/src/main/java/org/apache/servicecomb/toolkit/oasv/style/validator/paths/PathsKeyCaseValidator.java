@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.validator.paths;
 
 import io.swagger.v3.oas.models.Paths;
@@ -24,13 +23,11 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasValidationContext;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasViolation;
 import org.apache.servicecomb.toolkit.oasv.validation.api.PathsValidator;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import static org.apache.servicecomb.toolkit.oasv.util.StringCaseUtils.isMatchCase;
 
 /**
@@ -47,64 +44,49 @@ import static org.apache.servicecomb.toolkit.oasv.util.StringCaseUtils.isMatchCa
  */
 public class PathsKeyCaseValidator implements PathsValidator {
 
-  public static final String CONFIG_KEY = "paths.key.case";
-  public static final String ERROR = "Must be ";
+    public static final String CONFIG_KEY = "paths.key.case";
 
-  private static final Pattern TEMPLATE_PATTERN = Pattern.compile("^\\{(.*)\\}$");
+    public static final String ERROR = "Must be ";
 
-  private final String expectedCase;
+    private static final Pattern TEMPLATE_PATTERN = Pattern.compile("^\\{(.*)\\}$");
 
+    private final String expectedCase;
 
-  public PathsKeyCaseValidator(String expectedCase) {
-    this.expectedCase = expectedCase;
-  }
-
-  @Override
-  public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, Paths oasObject) {
-    List<OasViolation> violations = new ArrayList<>();
-
-    Set<String> paths = oasObject.keySet();
-
-    for (String path : paths) {
-      if (!matchCamelCase(path)) {
-        OasObjectPropertyLocation pathLoc = location.property(path, OasObjectType.PATH_ITEM);
-        violations.add(new OasViolation(pathLoc, ERROR + expectedCase));
-      }
+    public PathsKeyCaseValidator(String expectedCase) {
+        this.expectedCase = expectedCase;
     }
 
-    return violations;
-  }
-
-  private boolean matchCamelCase(String path) {
-
-    String[] pathSegments = path.split("/");
-
-    for (String pathSegment : pathSegments) {
-      if (StringUtils.isEmpty(pathSegment)) {
-        continue;
-      }
-      String matchingPart = pathSegment;
-      if (isTemplate(pathSegment)) {
-        matchingPart = extractTemplateVariable(pathSegment);
-      }
-      if (!isMatchCase(expectedCase, matchingPart)) {
-        return false;
-      }
+    @Override
+    public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, Paths oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    return true;
 
-  }
-
-  private boolean isTemplate(String pathSegment) {
-    return TEMPLATE_PATTERN.matcher(pathSegment).matches();
-  }
-
-  private String extractTemplateVariable(String pathSegment) {
-    Matcher matcher = TEMPLATE_PATTERN.matcher(pathSegment);
-    if (matcher.matches()) {
-      return matcher.group(1);
+    private boolean matchCamelCase(String path) {
+        String[] pathSegments = path.split("/");
+        for (String pathSegment : pathSegments) {
+            if (StringUtils.isEmpty(pathSegment)) {
+                continue;
+            }
+            String matchingPart = pathSegment;
+            if (isTemplate(pathSegment)) {
+                matchingPart = extractTemplateVariable(pathSegment);
+            }
+            if (!isMatchCase(expectedCase, matchingPart)) {
+                return false;
+            }
+        }
+        return true;
     }
-    return "";
-  }
 
+    private boolean isTemplate(String pathSegment) {
+        return TEMPLATE_PATTERN.matcher(pathSegment).matches();
+    }
+
+    private String extractTemplateVariable(String pathSegment) {
+        Matcher matcher = TEMPLATE_PATTERN.matcher(pathSegment);
+        if (matcher.matches()) {
+            return matcher.group(1);
+        }
+        return "";
+    }
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit;
 
 import java.util.ArrayList;
@@ -25,37 +24,25 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class GeneratorFactory {
 
-  private final static Map<String, List> interfaceMap = new ConcurrentHashMap<>();
+    private final static Map<String, List> interfaceMap = new ConcurrentHashMap<>();
 
-  static {
-    addGeneratorType(CodeGenerator.class);
-    addGeneratorType(DocGenerator.class);
-    addGeneratorType(ContractsGenerator.class);
-  }
-
-  public static void addGeneratorType(Class<? extends Generator> generatorClass) {
-
-    if (interfaceMap.get(generatorClass.getName()) == null) {
-      interfaceMap.put(generatorClass.getName(), loadInitialCodeGenerators(generatorClass));
-    }
-  }
-
-  private static List<Generator> loadInitialCodeGenerators(Class<? extends Generator> generatorClass) {
-    List<Generator> registeredGenerators = new ArrayList<>();
-    ServiceLoader.load(generatorClass).forEach(registeredGenerators::add);
-    return registeredGenerators;
-  }
-
-  public static <T extends Generator> T getGenerator(Class<? extends T> generatorClass, String type) {
-
-    @SuppressWarnings("unchecked")
-    List<T> registeredList = (List<T>) interfaceMap.get(generatorClass.getName());
-    for (T generator : registeredList) {
-      if (generator.canProcess(type)) {
-        return generator;
-      }
+    static {
+        addGeneratorType(CodeGenerator.class);
+        addGeneratorType(DocGenerator.class);
+        addGeneratorType(ContractsGenerator.class);
     }
 
-    return null;
-  }
+    public static void addGeneratorType(Class<? extends Generator> generatorClass) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    private static List<Generator> loadInitialCodeGenerators(Class<? extends Generator> generatorClass) {
+        List<Generator> registeredGenerators = new ArrayList<>();
+        ServiceLoader.load(generatorClass).forEach(registeredGenerators::add);
+        return registeredGenerators;
+    }
+
+    public static <T extends Generator> T getGenerator(Class<? extends T> generatorClass, String type) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

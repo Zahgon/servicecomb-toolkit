@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.responses;
 
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasValidationContext;
@@ -26,7 +25,6 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -37,26 +35,14 @@ import java.util.Map;
  */
 public class ResponsesResponsesValidator implements ResponsesValidator {
 
-  private final List<ResponseValidator> responseValidators;
+    private final List<ResponseValidator> responseValidators;
 
-  public ResponsesResponsesValidator(List<ResponseValidator> responseValidators) {
-    this.responseValidators = responseValidators;
-  }
-
-  @Override
-  public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location,
-    ApiResponses oasObject) {
-
-    List<OasViolation> violations = new ArrayList<>();
-
-    for (Map.Entry<String, ApiResponse> entry : oasObject.entrySet()) {
-      String statusCode = entry.getKey();
-      ApiResponse response = entry.getValue();
-      OasObjectPropertyLocation responseLoc = location.property(statusCode, OasObjectType.RESPONSE);
-      violations.addAll(OasObjectValidatorUtils.doValidateProperty(context, responseLoc, response, responseValidators));
+    public ResponsesResponsesValidator(List<ResponseValidator> responseValidators) {
+        this.responseValidators = responseValidators;
     }
 
-    return violations;
-
-  }
+    @Override
+    public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, ApiResponses oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

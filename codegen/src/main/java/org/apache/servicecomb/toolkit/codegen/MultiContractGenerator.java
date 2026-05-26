@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.codegen;
 
 import java.io.File;
@@ -26,66 +25,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-
 import org.openapitools.codegen.ClientOptInput;
 import org.openapitools.codegen.DefaultGenerator;
 import org.openapitools.codegen.Generator;
 
 public class MultiContractGenerator extends DefaultGenerator {
 
-  private List<ClientOptInput> optsList = new ArrayList<>();
+    private List<ClientOptInput> optsList = new ArrayList<>();
 
-  public Generator addOpts(ClientOptInput opts) {
-    optsList.add(opts);
-    return this;
-  }
-
-  public void generateParentProject(List<File> files, List<Map<String, Object>> modules) {
-
-    this.config = optsList.get(0).getConfig();
-    String outputFilename = opts.getConfig().outputFolder() + File.separator + "pom.xml";
-
-    if (!config.shouldOverwrite(outputFilename)) {
-      LOGGER.info("Skipped overwriting " + outputFilename);
-    }
-    Map<String, Object> templateData = this.config.additionalProperties();
-    templateData.put("modules", modules);
-    try {
-      files.add(processTemplateToFile(templateData, "project/pom.mustache", outputFilename));
-    } catch (IOException e) {
-      throw new RuntimeException("Failed to generate parent project pom.xml", e);
-    }
-  }
-
-  @Override
-  public List<File> generate() {
-
-    if (optsList == null || optsList.size() == 0) {
-      return null;
+    public Generator addOpts(ClientOptInput opts) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    List<File> fileList = new ArrayList<>();
-    List<Map<String, Object>> modules = new ArrayList<>();
-
-    Set<Object> moduleSet = new HashSet<>();
-    for (ClientOptInput opts : optsList) {
-      moduleSet.add(opts.getConfig().additionalProperties().get(GeneratorExternalConfigConstant.PROVIDER_PROJECT_NAME));
-      moduleSet.add(opts.getConfig().additionalProperties().get(GeneratorExternalConfigConstant.CONSUMER_PROJECT_NAME));
-      moduleSet.add(opts.getConfig().additionalProperties().get(GeneratorExternalConfigConstant.MODEL_PROJECT_NAME));
-      this.opts(opts);
-      fileList.addAll(super.generate());
+    public void generateParentProject(List<File> files, List<Map<String, Object>> modules) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    moduleSet.forEach(module -> {
-      modules.add(Collections.singletonMap("module", module));
-    });
-
-    if (ServiceType.ALL.getValue().equals(
-        Optional.ofNullable(opts.getConfig().additionalProperties().get(ProjectMetaConstant.SERVICE_TYPE))
-            .orElse(ServiceType.ALL.getValue()))) {
-      generateParentProject(fileList, modules);
+    @Override
+    public List<File> generate() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
-    return fileList;
-  }
 }

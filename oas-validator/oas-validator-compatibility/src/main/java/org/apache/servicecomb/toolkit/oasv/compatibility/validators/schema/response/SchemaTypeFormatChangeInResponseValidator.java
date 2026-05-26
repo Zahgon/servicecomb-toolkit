@@ -14,52 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema.response;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.OasDiffValidationContext;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema.SchemaTypeFormatChangeValidator;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema.TypeFormat;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.diffvalidation.util.OasDiffValidationContextUtils.isInResponse;
 
 public class SchemaTypeFormatChangeInResponseValidator extends SchemaTypeFormatChangeValidator {
 
-  private static final List<Object[]> allowedChangedList;
+    private static final List<Object[]> allowedChangedList;
 
-  static {
-    Object[][] allowedChange = new Object[][] {
-      new Object[] { new TypeFormat("integer", null), new TypeFormat("integer", "int64") },
-      new Object[] { new TypeFormat("integer", null), new TypeFormat("integer", "int32") },
+    static {
+        Object[][] allowedChange = new Object[][] { new Object[] { new TypeFormat("integer", null), new TypeFormat("integer", "int64") }, new Object[] { new TypeFormat("integer", null), new TypeFormat("integer", "int32") }, new Object[] { new TypeFormat("integer", "int64"), new TypeFormat("integer", null) }, new Object[] { new TypeFormat("integer", "int64"), new TypeFormat("integer", "int32") }, new Object[] { new TypeFormat("number", null), new TypeFormat("number", "double") }, new Object[] { new TypeFormat("number", null), new TypeFormat("number", "float") }, new Object[] { new TypeFormat("number", "double"), new TypeFormat("number", null) }, new Object[] { new TypeFormat("number", "double"), new TypeFormat("number", "float") }, new Object[] { new TypeFormat("string", null), new TypeFormat("string", "password") }, new Object[] { new TypeFormat("string", "password"), new TypeFormat("string", null) } };
+        allowedChangedList = Collections.unmodifiableList(Arrays.asList(allowedChange));
+    }
 
-      new Object[] { new TypeFormat("integer", "int64"), new TypeFormat("integer", null) },
-      new Object[] { new TypeFormat("integer", "int64"), new TypeFormat("integer", "int32") },
+    @Override
+    protected List<Object[]> getAllowedChangedList() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-      new Object[] { new TypeFormat("number", null), new TypeFormat("number", "double") },
-      new Object[] { new TypeFormat("number", null), new TypeFormat("number", "float") },
-
-      new Object[] { new TypeFormat("number", "double"), new TypeFormat("number", null) },
-      new Object[] { new TypeFormat("number", "double"), new TypeFormat("number", "float") },
-
-      new Object[] { new TypeFormat("string", null), new TypeFormat("string", "password") },
-
-      new Object[] { new TypeFormat("string", "password"), new TypeFormat("string", null) },
-    };
-    allowedChangedList = Collections.unmodifiableList(Arrays.asList(allowedChange));
-  }
-
-  @Override
-  protected List<Object[]> getAllowedChangedList() {
-    return allowedChangedList;
-  }
-
-  @Override
-  protected boolean needValidate(OasDiffValidationContext context) {
-    return isInResponse(context);
-  }
-
+    @Override
+    protected boolean needValidate(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

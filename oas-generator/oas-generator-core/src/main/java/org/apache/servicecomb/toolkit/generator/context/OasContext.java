@@ -14,17 +14,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.context;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.servicecomb.toolkit.generator.parser.api.OpenApiAnnotationParser;
-
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.PathItem;
@@ -35,171 +32,137 @@ import io.swagger.v3.oas.models.servers.Server;
 
 public class OasContext implements IExtensionsContext {
 
-  private OpenAPI openAPI;
+    private OpenAPI openAPI;
 
-  private String basePath;
+    private String basePath;
 
-  private Class<?> cls;
+    private Class<?> cls;
 
-  private List<OperationContext> operationList = new ArrayList<>();
+    private List<OperationContext> operationList = new ArrayList<>();
 
-  private OpenApiAnnotationParser parser;
+    private OpenApiAnnotationParser parser;
 
-  private List<ISchemaContext> schemaCtxList = new ArrayList<>();
+    private List<ISchemaContext> schemaCtxList = new ArrayList<>();
 
-  private String httpMethod;
+    private String httpMethod;
 
-  private String[] consumes;
+    private String[] consumes;
 
-  private String[] produces;
+    private String[] produces;
 
-  private String[] headers;
+    private String[] headers;
 
-  public OasContext(OpenApiAnnotationParser parser) {
-    this(new OpenAPI(), parser);
-  }
-
-  public OasContext(OpenAPI openAPI, OpenApiAnnotationParser parser) {
-    this.openAPI = openAPI;
-    this.parser = parser;
-  }
-
-  public OpenAPI toOpenAPI() {
-    ensurePaths();
-    for (OperationContext operationCtx : operationList) {
-      if (!operationCtx.hasOperation()) {
-        continue;
-      }
-
-      if (openAPI.getPaths() == null) {
-        openAPI.setPaths(new Paths());
-      }
-
-      PathItem pathItem = openAPI.getPaths().get(operationCtx.getPath());
-      if (pathItem == null) {
-        pathItem = new PathItem();
-        openAPI.path(operationCtx.getPath(), pathItem);
-      }
-      pathItem.operation(HttpMethod.valueOf(operationCtx.getHttpMethod()), operationCtx.toOperation());
+    public OasContext(OpenApiAnnotationParser parser) {
+        this(new OpenAPI(), parser);
     }
 
-    // return null if there is no restful resource
-    if (openAPI.getPaths() == null || openAPI.getPaths().size() == 0) {
-      return null;
+    public OasContext(OpenAPI openAPI, OpenApiAnnotationParser parser) {
+        this.openAPI = openAPI;
+        this.parser = parser;
     }
 
-    openAPI.info(new Info().title("gen").version("1.0.0"));
-
-    correctBasepath();
-    correctComponents();
-
-    openAPI.servers(Collections.singletonList(new Server().url(basePath)));
-    schemaCtxList.forEach(schemaCtx -> openAPI.schema(schemaCtx.getSchema().getName(), schemaCtx.getSchema()));
-    return openAPI;
-  }
-
-  private void correctComponents() {
-    Components nullComponents = new Components();
-    if (nullComponents.equals(getComponents())) {
-      openAPI.setComponents(null);
-    }
-  }
-
-  private void correctBasepath() {
-    if (StringUtils.isEmpty(basePath)) {
-      basePath = "/";
+    public OpenAPI toOpenAPI() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    if (!basePath.startsWith("/")) {
-      basePath = "/" + basePath;
+    private void correctComponents() {
+        Components nullComponents = new Components();
+        if (nullComponents.equals(getComponents())) {
+            openAPI.setComponents(null);
+        }
     }
-  }
 
-  public Components getComponents() {
-    if (openAPI.getComponents() == null) {
-      openAPI.setComponents(new Components());
+    private void correctBasepath() {
+        if (StringUtils.isEmpty(basePath)) {
+            basePath = "/";
+        }
+        if (!basePath.startsWith("/")) {
+            basePath = "/" + basePath;
+        }
     }
-    return openAPI.getComponents();
-  }
 
-  private void ensurePaths() {
-    if (openAPI.getPaths() == null) {
-      openAPI.setPaths(new Paths());
+    public Components getComponents() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-  }
 
-  @Override
-  public OpenApiAnnotationParser getParser() {
-    return parser;
-  }
+    private void ensurePaths() {
+        if (openAPI.getPaths() == null) {
+            openAPI.setPaths(new Paths());
+        }
+    }
 
-  public void setParser(OpenApiAnnotationParser parser) {
-    this.parser = parser;
-  }
+    @Override
+    public OpenApiAnnotationParser getParser() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public OpenAPI getOpenAPI() {
-    return openAPI;
-  }
+    public void setParser(OpenApiAnnotationParser parser) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String getBasePath() {
-    return basePath;
-  }
+    public OpenAPI getOpenAPI() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public Class<?> getCls() {
-    return cls;
-  }
+    public String getBasePath() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setCls(Class<?> cls) {
-    this.cls = cls;
-  }
+    public Class<?> getCls() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setBasePath(String basePath) {
-    this.basePath = basePath;
-  }
+    public void setCls(Class<?> cls) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void addOperation(OperationContext operation) {
-    operationList.add(operation);
-  }
+    public void setBasePath(String basePath) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void addExtension(String name, Object value) {
-    openAPI.addExtension(name, value);
-  }
+    public void addOperation(OperationContext operation) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public Map<String, Object> getExtensions() {
-    return openAPI.getExtensions();
-  }
+    @Override
+    public void addExtension(String name, Object value) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String getHttpMethod() {
-    return httpMethod;
-  }
+    @Override
+    public Map<String, Object> getExtensions() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setHttpMethod(String httpMethod) {
-    this.httpMethod = httpMethod;
-  }
+    public String getHttpMethod() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String[] getConsumers() {
-    return consumes;
-  }
+    public void setHttpMethod(String httpMethod) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setConsumers(String[] consumes) {
-    this.consumes = consumes;
-  }
+    public String[] getConsumers() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String[] getProduces() {
-    return produces;
-  }
+    public void setConsumers(String[] consumes) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setProduces(String[] produces) {
-    this.produces = produces;
-  }
+    public String[] getProduces() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String[] getHeaders() {
-    return headers;
-  }
+    public void setProduces(String[] produces) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setHeaders(String[] headers) {
-    this.headers = headers;
-  }
+    public String[] getHeaders() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setHeaders(String[] headers) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

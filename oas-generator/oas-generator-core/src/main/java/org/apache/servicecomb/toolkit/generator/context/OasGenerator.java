@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.context;
 
 import java.util.ArrayList;
@@ -23,43 +22,23 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ServiceLoader;
 import java.util.Set;
-
 import org.apache.servicecomb.toolkit.generator.parser.api.OpenApiAnnotationParser;
-
 import io.swagger.v3.oas.models.OpenAPI;
 
 public class OasGenerator {
 
-  private static List<OpenApiAnnotationParser> parserList = new ArrayList<>();
+    private static List<OpenApiAnnotationParser> parserList = new ArrayList<>();
 
-  static {
-    ServiceLoader.load(OpenApiAnnotationParser.class).forEach(parserList::add);
-    parserList.sort(Comparator.comparingInt(OpenApiAnnotationParser::getOrder));
-  }
-
-  public OpenAPI generate(Class<?> cls) {
-
-    Optional<OpenApiAnnotationParser> parserOptional = parserList.stream().filter(parser -> parser.canProcess(cls))
-        .findFirst();
-
-    if (!parserOptional.isPresent()) {
-      return null;
-    }
-    OasContext context = new OasContext(parserOptional.get());
-    parserOptional.get().parser(cls, context);
-    return context.toOpenAPI();
-  }
-
-  public List<OpenAPI> generate(Set<Class> classes) {
-
-    List<OpenAPI> openApiList = new ArrayList<>();
-    for (Class cls : classes) {
-      OpenAPI openAPI = generate(cls);
-      if (openAPI != null) {
-        openApiList.add(openAPI);
-      }
+    static {
+        ServiceLoader.load(OpenApiAnnotationParser.class).forEach(parserList::add);
+        parserList.sort(Comparator.comparingInt(OpenApiAnnotationParser::getOrder));
     }
 
-    return openApiList;
-  }
+    public OpenAPI generate(Class<?> cls) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public List<OpenAPI> generate(Set<Class> classes) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

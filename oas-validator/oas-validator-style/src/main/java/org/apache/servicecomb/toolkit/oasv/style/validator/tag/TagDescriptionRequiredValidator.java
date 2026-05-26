@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.validator.tag;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
@@ -30,30 +29,27 @@ import io.swagger.v3.oas.models.tags.Tag;
  *   <li>this field is required</li>
  * </ul>
  */
-public class TagDescriptionRequiredValidator
-  extends ObjectPropertyRequiredValidator<Tag, String>
-  implements TagValidator {
+public class TagDescriptionRequiredValidator extends ObjectPropertyRequiredValidator<Tag, String> implements TagValidator {
 
-  public static final String CONFIG_KEY = "tag.description.required";
+    public static final String CONFIG_KEY = "tag.description.required";
 
-  @Override
-  protected String get$ref(Tag oasObject) {
-    return null;
-  }
+    @Override
+    protected String get$ref(Tag oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyObject(Tag oasObject) {
-    return oasObject.getDescription();
-  }
+    @Override
+    protected String getPropertyObject(Tag oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "description";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getPropertyType() {
-    return null;
-  }
-
+    @Override
+    protected OasObjectType getPropertyType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

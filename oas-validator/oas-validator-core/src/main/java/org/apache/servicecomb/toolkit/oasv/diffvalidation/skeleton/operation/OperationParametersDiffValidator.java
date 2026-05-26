@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.skeleton.operation;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
@@ -23,30 +22,25 @@ import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.OperationDiffValid
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.ParameterDiffValidator;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.parameters.Parameter;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.PARAMETER;
 
-public class OperationParametersDiffValidator
-  extends ListPropertyDiffValidator<Operation, Parameter>
-  implements OperationDiffValidator {
+public class OperationParametersDiffValidator extends ListPropertyDiffValidator<Operation, Parameter> implements OperationDiffValidator {
 
-  public OperationParametersDiffValidator(List<ParameterDiffValidator> parameterValidators) {
-    super(parameterValidators, parameter -> "in:" + parameter.getIn() + "/name:" + parameter.getName());
-  }
+    public OperationParametersDiffValidator(List<ParameterDiffValidator> parameterValidators) {
+        super(parameterValidators, parameter -> "in:" + parameter.getIn() + "/name:" + parameter.getName());
+    }
 
-  @Override
-  protected List<Parameter> getListProperty(Operation oasObject) {
-    return oasObject.getParameters();
-  }
+    @Override
+    protected List<Parameter> getListProperty(Operation oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  protected String getListPropertyName() {
-    return "parameters";
-  }
+    protected String getListPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  protected OasObjectType getElementType() {
-    return PARAMETER;
-  }
-
+    protected OasObjectType getElementType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

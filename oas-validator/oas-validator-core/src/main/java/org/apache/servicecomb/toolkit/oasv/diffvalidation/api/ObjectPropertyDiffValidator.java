@@ -14,14 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.api;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.diffvalidation.util.OasObjectDiffValidatorUtils.doDiffValidateProperty;
 
 /**
@@ -30,41 +27,26 @@ import static org.apache.servicecomb.toolkit.oasv.diffvalidation.util.OasObjectD
  * @param <T> Object defined in <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#table-of-contents">OpenAPI Specification</a>
  * @param <P> Property type
  */
-public abstract class ObjectPropertyDiffValidator<T, P>
-  extends OasObjectDiffValidatorTemplate<T> {
+public abstract class ObjectPropertyDiffValidator<T, P> extends OasObjectDiffValidatorTemplate<T> {
 
-  private final List<? extends OasObjectDiffValidator<P>> diffValidators;
+    private final List<? extends OasObjectDiffValidator<P>> diffValidators;
 
-  protected ObjectPropertyDiffValidator(List<? extends OasObjectDiffValidator<P>> diffValidators) {
-    this.diffValidators = diffValidators;
-  }
+    protected ObjectPropertyDiffValidator(List<? extends OasObjectDiffValidator<P>> diffValidators) {
+        this.diffValidators = diffValidators;
+    }
 
-  @Override
-  protected List<OasDiffViolation> validateCompare(OasDiffValidationContext context,
-    OasObjectPropertyLocation leftLocation, T leftOasObject, OasObjectPropertyLocation rightLocation,
-    T rightOasObject) {
+    @Override
+    protected List<OasDiffViolation> validateCompare(OasDiffValidationContext context, OasObjectPropertyLocation leftLocation, T leftOasObject, OasObjectPropertyLocation rightLocation, T rightOasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-    P leftProperty = getPropertyObject(leftOasObject);
-    P rightProperty = getPropertyObject(rightOasObject);
+    /**
+     * @param oasObject will never be null
+     * @return
+     */
+    protected abstract P getPropertyObject(T oasObject);
 
-    OasObjectPropertyLocation leftPropertyLoc =
-      leftProperty == null ? null : leftLocation.property(getPropertyName(), getPropertyType());
-    OasObjectPropertyLocation rightPropertyLoc =
-      rightProperty == null ? null : rightLocation.property(getPropertyName(), getPropertyType());
+    protected abstract String getPropertyName();
 
-    return doDiffValidateProperty(context, leftPropertyLoc, leftProperty, rightPropertyLoc, rightProperty,
-      diffValidators);
-
-  }
-
-  /**
-   * @param oasObject will never be null
-   * @return
-   */
-  protected abstract P getPropertyObject(T oasObject);
-
-  protected abstract String getPropertyName();
-
-  protected abstract OasObjectType getPropertyType();
-
+    protected abstract OasObjectType getPropertyType();
 }

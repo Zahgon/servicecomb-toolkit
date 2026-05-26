@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.validator.tag;
 
 import io.swagger.v3.oas.models.tags.Tag;
@@ -22,9 +21,7 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasValidationContext;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasViolation;
 import org.apache.servicecomb.toolkit.oasv.validation.api.TagValidator;
-
 import java.util.List;
-
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.apache.servicecomb.toolkit.oasv.util.StringCaseUtils.isMatchCase;
@@ -39,22 +36,18 @@ import static org.apache.servicecomb.toolkit.oasv.util.StringCaseUtils.isMatchCa
  */
 public class TagNameCaseValidator implements TagValidator {
 
-  public static final String CONFIG_KEY = "tag.name.case";
-  public static final String ERROR = "Must be ";
+    public static final String CONFIG_KEY = "tag.name.case";
 
-  private final String expectedCase;
+    public static final String ERROR = "Must be ";
 
-  public TagNameCaseValidator(String expectedCase) {
-    this.expectedCase = expectedCase;
-  }
+    private final String expectedCase;
 
-  @Override
-  public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, Tag tag) {
-
-    if (!isMatchCase(expectedCase, tag.getName())) {
-      return singletonList(new OasViolation(location.property("name"), ERROR + expectedCase));
+    public TagNameCaseValidator(String expectedCase) {
+        this.expectedCase = expectedCase;
     }
-    return emptyList();
-  }
 
+    @Override
+    public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, Tag tag) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

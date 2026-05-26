@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.ResponsesDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.factory.ResponseDiffValidatorFactory;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.factory.ResponsesDiffValidatorFactory;
@@ -30,23 +28,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultResponsesDiffValidatorFactory implements ResponsesDiffValidatorFactory {
 
-  private final ResponseDiffValidatorFactory responseDiffValidatorFactory;
+    private final ResponseDiffValidatorFactory responseDiffValidatorFactory;
 
-  public DefaultResponsesDiffValidatorFactory(
-      ResponseDiffValidatorFactory responseDiffValidatorFactory) {
-    this.responseDiffValidatorFactory = responseDiffValidatorFactory;
-  }
+    public DefaultResponsesDiffValidatorFactory(ResponseDiffValidatorFactory responseDiffValidatorFactory) {
+        this.responseDiffValidatorFactory = responseDiffValidatorFactory;
+    }
 
-  @Override
-  public List<ResponsesDiffValidator> create() {
-
-    List<ResponsesDiffValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new ResponsesResponsesDiffValidator(responseDiffValidatorFactory.create()));
-
-    // concretes
-
-    return Collections.unmodifiableList(validators);
-  }
+    @Override
+    public List<ResponsesDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,47 +14,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.api;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
-
 import java.util.List;
 import java.util.Map;
-
 import static org.apache.servicecomb.toolkit.oasv.diffvalidation.util.OasObjectDiffValidatorUtils.doDiffValidateMapProperty;
 
-public abstract class MapPropertyDiffValidator<T, P>
-  extends OasObjectDiffValidatorTemplate<T> {
+public abstract class MapPropertyDiffValidator<T, P> extends OasObjectDiffValidatorTemplate<T> {
 
-  private final List<? extends OasObjectDiffValidator<P>> valueDiffValidators;
+    private final List<? extends OasObjectDiffValidator<P>> valueDiffValidators;
 
-  protected MapPropertyDiffValidator(List<? extends OasObjectDiffValidator<P>> valueDiffValidators) {
-    this.valueDiffValidators = valueDiffValidators;
-  }
+    protected MapPropertyDiffValidator(List<? extends OasObjectDiffValidator<P>> valueDiffValidators) {
+        this.valueDiffValidators = valueDiffValidators;
+    }
 
-  @Override
-  protected List<OasDiffViolation> validateCompare(OasDiffValidationContext context,
-    OasObjectPropertyLocation leftLocation, T leftOasObject, OasObjectPropertyLocation rightLocation,
-    T rightOasObject) {
+    @Override
+    protected List<OasDiffViolation> validateCompare(OasDiffValidationContext context, OasObjectPropertyLocation leftLocation, T leftOasObject, OasObjectPropertyLocation rightLocation, T rightOasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-    return doDiffValidateMapProperty(
-      context,
-      getMapPropertyName(),
-      leftLocation,
-      getMapProperty(leftOasObject),
-      rightLocation,
-      getMapProperty(rightOasObject),
-      getValueType(),
-      valueDiffValidators
-    );
+    protected abstract Map<String, P> getMapProperty(T oasObject);
 
-  }
+    protected abstract String getMapPropertyName();
 
-  protected abstract Map<String, P> getMapProperty(T oasObject);
-
-  protected abstract String getMapPropertyName();
-
-  protected abstract OasObjectType getValueType();
+    protected abstract OasObjectType getValueType();
 }

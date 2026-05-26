@@ -14,35 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.codegen;
 
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-
 import org.openapitools.codegen.SupportingFile;
 
 public abstract class AbstractDirectoryStrategy implements DirectoryStrategy<List<SupportingFile>> {
 
-  protected Map<String, Object> propertiesMap = Collections.emptyMap();
+    protected Map<String, Object> propertiesMap = Collections.emptyMap();
 
-  protected String projectFolder = "src" + File.separator + "main";
+    protected String projectFolder = "src" + File.separator + "main";
 
-  protected String sourceFolder = projectFolder + File.separator + "java";
+    protected String sourceFolder = projectFolder + File.separator + "java";
 
-  @Override
-  public void addCustomProperties(Map<String, Object> propertiesMap) {
-    this.propertiesMap = propertiesMap;
-  }
+    @Override
+    public void addCustomProperties(Map<String, Object> propertiesMap) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  protected String mainClassFolder(String projectPath) {
-    return projectPath + File.separator + sourceFolder + File.separator + ((String) propertiesMap
-        .get("mainClassPackage")).replace(".", File.separator);
-  }
+    protected String mainClassFolder(String projectPath) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  protected String resourcesFolder(String projectPath) {
-    return projectPath + File.separator + projectFolder + File.separator + "resources";
-  }
+    protected String resourcesFolder(String projectPath) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.validator.schema;
 
 import io.swagger.v3.oas.models.media.Schema;
@@ -25,9 +24,7 @@ import org.apache.servicecomb.toolkit.oasv.validation.api.OasValidationContext;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasViolation;
 import org.apache.servicecomb.toolkit.oasv.validation.api.ViolationMessages;
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.schema.SchemaRecursiveValidatorTemplate;
-
 import java.util.List;
-
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.COMPONENTS;
@@ -49,32 +46,17 @@ import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.SCHEMA;
  */
 public class SchemaTitleRequiredValidator extends SchemaRecursiveValidatorTemplate {
 
-  public static final String CONFIG_KEY = "schema.title.required";
+    public static final String CONFIG_KEY = "schema.title.required";
 
-  @Override
-  protected List<OasViolation> validateCurrentSchemaObject(OasValidationContext context, Schema oasObject,
-    OasObjectPropertyLocation location) {
-
-    if (StringUtils.isNotBlank(oasObject.get$ref())) {
-      return emptyList();
+    @Override
+    protected List<OasViolation> validateCurrentSchemaObject(OasValidationContext context, Schema oasObject, OasObjectPropertyLocation location) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    OasObjectProperty parentProperty = location.getParent();
-
-    if (SCHEMA == parentProperty.getObjectType()
-        || COMPONENTS == parentProperty.getObjectType()
-    ) {
-      return check(oasObject, location);
+    private List<OasViolation> check(Schema oasObject, OasObjectPropertyLocation location) {
+        if (StringUtils.isNotBlank(oasObject.getTitle())) {
+            return emptyList();
+        }
+        return singletonList(new OasViolation(location.property("title", null), ViolationMessages.REQUIRED));
     }
-
-    return emptyList();
-  }
-
-  private List<OasViolation> check(Schema oasObject, OasObjectPropertyLocation location) {
-    if (StringUtils.isNotBlank(oasObject.getTitle())) {
-      return emptyList();
-    }
-    return singletonList(
-      new OasViolation(location.property("title", null), ViolationMessages.REQUIRED));
-  }
 }

@@ -14,11 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.config;
 
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.CallbackDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.ComponentsDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.DefaultOasSpecDiffValidator;
@@ -76,179 +74,148 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OasDiffValidatorsSkeletonConfiguration {
 
-  @Bean
-  public OasSpecDiffValidator oasSpecDiffValidator(List<OpenApiDiffValidator> openApiDiffValidators) {
-    return new DefaultOasSpecDiffValidator(openApiDiffValidators);
-  }
+    @Bean
+    public OasSpecDiffValidator oasSpecDiffValidator(List<OpenApiDiffValidator> openApiDiffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ComponentsDiffValidator componentsCallbacksDiffValidator(
-    List<CallbackDiffValidator> diffValidators) {
-    return new ComponentsCallbacksDiffValidator(diffValidators);
-  }
+    @Bean
+    public ComponentsDiffValidator componentsCallbacksDiffValidator(List<CallbackDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ComponentsDiffValidator componentsHeadersDiffValidator(
-    List<HeaderDiffValidator> diffValidators) {
-    return new ComponentsHeadersDiffValidator(diffValidators);
-  }
+    @Bean
+    public ComponentsDiffValidator componentsHeadersDiffValidator(List<HeaderDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ComponentsDiffValidator componentsLinksDiffValidator(
-    List<LinkDiffValidator> diffValidators) {
-    return new ComponentsLinksDiffValidator(diffValidators);
-  }
+    @Bean
+    public ComponentsDiffValidator componentsLinksDiffValidator(List<LinkDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ComponentsDiffValidator componentsParametersDiffValidator(
-    List<ParameterDiffValidator> diffValidators) {
-    return new ComponentsParametersDiffValidator(diffValidators);
-  }
+    @Bean
+    public ComponentsDiffValidator componentsParametersDiffValidator(List<ParameterDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ComponentsDiffValidator componentsRequestBodiesDiffValidator(
-    List<RequestBodyDiffValidator> diffValidators) {
-    return new ComponentsRequestBodiesDiffValidator(diffValidators);
-  }
+    @Bean
+    public ComponentsDiffValidator componentsRequestBodiesDiffValidator(List<RequestBodyDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ComponentsDiffValidator componentsResponsesDiffValidator(
-    List<ResponseDiffValidator> diffValidators) {
-    return new ComponentsResponsesDiffValidator(diffValidators);
-  }
+    @Bean
+    public ComponentsDiffValidator componentsResponsesDiffValidator(List<ResponseDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public EncodingDiffValidator encodingHeadersDiffValidator(
-    List<HeaderDiffValidator> diffValidators) {
-    return new EncodingHeadersDiffValidator(diffValidators);
-  }
+    @Bean
+    public EncodingDiffValidator encodingHeadersDiffValidator(List<HeaderDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public HeaderDiffValidator headerSchemaDiffValidator(
-    List<SchemaDiffValidator> diffValidators) {
-    return new HeaderSchemaDiffValidator(diffValidators);
-  }
+    @Bean
+    public HeaderDiffValidator headerSchemaDiffValidator(List<SchemaDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public MediaTypeDiffValidator mediaTypeEncodingDiffValidator(
-    List<EncodingDiffValidator> diffValidators) {
-    return new MediaTypeEncodingDiffValidator(diffValidators);
-  }
+    @Bean
+    public MediaTypeDiffValidator mediaTypeEncodingDiffValidator(List<EncodingDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public MediaTypeDiffValidator mediaTypeSchemaDiffValidator(
-    List<SchemaDiffValidator> diffValidators) {
-    return new MediaTypeSchemaDiffValidator(diffValidators);
-  }
+    @Bean
+    public MediaTypeDiffValidator mediaTypeSchemaDiffValidator(List<SchemaDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public OpenApiDiffValidator openApiComponentsDiffValidator(
-    List<ComponentsDiffValidator> diffValidators) {
-    return new OpenApiComponentsDiffValidator(diffValidators);
-  }
+    @Bean
+    public OpenApiDiffValidator openApiComponentsDiffValidator(List<ComponentsDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public OpenApiDiffValidator openApiInfoDiffValidator(
-    List<InfoDiffValidator> diffValidators) {
-    return new OpenApiInfoDiffValidator(diffValidators);
-  }
+    @Bean
+    public OpenApiDiffValidator openApiInfoDiffValidator(List<InfoDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public OpenApiDiffValidator openApiPathsDiffValidator(
-    List<PathsDiffValidator> diffValidators) {
-    return new OpenApiPathsDiffValidator(diffValidators);
-  }
+    @Bean
+    public OpenApiDiffValidator openApiPathsDiffValidator(List<PathsDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public OpenApiDiffValidator openApiServersDiffValidator(
-    List<ServerDiffValidator> diffValidators) {
-    return new OpenApiServersDiffValidator(diffValidators);
-  }
+    @Bean
+    public OpenApiDiffValidator openApiServersDiffValidator(List<ServerDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public OpenApiDiffValidator openApiTagsDiffValidator(
-    List<TagDiffValidator> diffValidators) {
-    return new OpenApiTagsDiffValidator(diffValidators);
-  }
+    @Bean
+    public OpenApiDiffValidator openApiTagsDiffValidator(List<TagDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public OperationDiffValidator operationParametersDiffValidator(
-    List<ParameterDiffValidator> diffValidators) {
-    return new OperationParametersDiffValidator(diffValidators);
-  }
+    @Bean
+    public OperationDiffValidator operationParametersDiffValidator(List<ParameterDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public OperationDiffValidator operationRequestBodyDiffValidator(
-    List<RequestBodyDiffValidator> diffValidators) {
-    return new OperationRequestBodyDiffValidator(diffValidators);
-  }
+    @Bean
+    public OperationDiffValidator operationRequestBodyDiffValidator(List<RequestBodyDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public OperationDiffValidator operationResponsesDiffValidator(
-    List<ResponsesDiffValidator> diffValidators) {
-    return new OperationResponsesDiffValidator(diffValidators);
-  }
+    @Bean
+    public OperationDiffValidator operationResponsesDiffValidator(List<ResponsesDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ParameterDiffValidator parameterContentDiffValidator(
-    List<MediaTypeDiffValidator> diffValidators) {
-    return new ParameterContentDiffValidator(diffValidators);
-  }
+    @Bean
+    public ParameterDiffValidator parameterContentDiffValidator(List<MediaTypeDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ParameterDiffValidator parameterSchemaDiffValidator(
-    List<SchemaDiffValidator> diffValidators) {
-    return new ParameterSchemaDiffValidator(diffValidators);
-  }
+    @Bean
+    public ParameterDiffValidator parameterSchemaDiffValidator(List<SchemaDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public PathItemDiffValidator pathItemOperationsDiffValidator(
-    List<OperationDiffValidator> diffValidators) {
-    return new PathItemOperationsDiffValidator(diffValidators);
-  }
+    @Bean
+    public PathItemDiffValidator pathItemOperationsDiffValidator(List<OperationDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public PathItemDiffValidator pathItemParametersDiffValidator(
-    List<ParameterDiffValidator> diffValidators) {
-    return new PathItemParametersDiffValidator(diffValidators);
-  }
+    @Bean
+    public PathItemDiffValidator pathItemParametersDiffValidator(List<ParameterDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public PathsDiffValidator pathsPathItemsDiffValidator(
-    List<PathItemDiffValidator> diffValidators) {
-    return new PathsPathItemsDiffValidator(diffValidators);
-  }
+    @Bean
+    public PathsDiffValidator pathsPathItemsDiffValidator(List<PathItemDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public RequestBodyDiffValidator requestBodyContentDiffValidator(
-    List<MediaTypeDiffValidator> diffValidators) {
-    return new RequestBodyContentDiffValidator(diffValidators);
-  }
+    @Bean
+    public RequestBodyDiffValidator requestBodyContentDiffValidator(List<MediaTypeDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ResponseDiffValidator responseContentDiffValidator(
-    List<MediaTypeDiffValidator> diffValidators) {
-    return new ResponseContentDiffValidator(diffValidators);
-  }
+    @Bean
+    public ResponseDiffValidator responseContentDiffValidator(List<MediaTypeDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ResponseDiffValidator responseHeadersDiffValidator(
-    List<HeaderDiffValidator> diffValidators) {
-    return new ResponseHeadersDiffValidator(diffValidators);
-  }
+    @Bean
+    public ResponseDiffValidator responseHeadersDiffValidator(List<HeaderDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ResponsesDiffValidator responsesResponsesDiffValidator(
-    List<ResponseDiffValidator> diffValidators) {
-    return new ResponsesResponsesDiffValidator(diffValidators);
-  }
+    @Bean
+    public ResponsesDiffValidator responsesResponsesDiffValidator(List<ResponseDiffValidator> diffValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public SchemaDiffValidator schemaDiffValidatorEngine(
-    List<SchemaAddValidator> schemaNewValidators,
-    List<SchemaDelValidator> schemaDelValidators,
-    List<SchemaCompareValidator> schemaCompareValidators) {
-    return new SchemaDiffValidatorEngine(schemaNewValidators, schemaDelValidators, schemaCompareValidators);
-  }
-
+    @Bean
+    public SchemaDiffValidator schemaDiffValidatorEngine(List<SchemaAddValidator> schemaNewValidators, List<SchemaDelValidator> schemaDelValidators, List<SchemaCompareValidator> schemaCompareValidators) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

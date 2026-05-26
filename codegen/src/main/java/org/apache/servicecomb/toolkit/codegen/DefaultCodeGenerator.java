@@ -14,40 +14,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.codegen;
 
 import java.util.List;
 import java.util.Map;
-
 import org.apache.servicecomb.toolkit.CodeGenerator;
 import org.openapitools.codegen.config.CodegenConfigurator;
 
 public class DefaultCodeGenerator implements CodeGenerator {
 
-  private MultiContractGenerator generator = new MultiContractGenerator();
+    private MultiContractGenerator generator = new MultiContractGenerator();
 
-  @Override
-  public boolean canProcess(String type) {
-    return "default".equals(type);
-  }
-
-  @Override
-  public void configure(Map<String, Object> config) {
-
-    generator.setGenerateMetadata(false);
-    List<CodegenConfigurator> optsList = (List<CodegenConfigurator>) config.get("configurators");
-    if (optsList == null) {
-      generator.addOpts(((CodegenConfigurator) config.get("configurator")).toClientOptInput());
-      return;
+    @Override
+    public boolean canProcess(String type) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    optsList.forEach(opts -> {
-      generator.addOpts(opts.toClientOptInput());
-    });
-  }
 
-  @Override
-  public void generate() {
-    generator.generate();
-  }
+    @Override
+    public void configure(Map<String, Object> config) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public void generate() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

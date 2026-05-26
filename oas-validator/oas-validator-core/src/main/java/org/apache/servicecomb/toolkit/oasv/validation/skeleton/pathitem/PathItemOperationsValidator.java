@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.pathitem;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
@@ -24,11 +23,9 @@ import org.apache.servicecomb.toolkit.oasv.validation.api.*;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
 import org.apache.commons.lang3.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import static java.util.Collections.emptyList;
 
 /**
@@ -39,30 +36,14 @@ import static java.util.Collections.emptyList;
  */
 public class PathItemOperationsValidator implements PathItemValidator {
 
-  private final List<OperationValidator> operationValidators;
+    private final List<OperationValidator> operationValidators;
 
-  public PathItemOperationsValidator(List<OperationValidator> operationValidators) {
-    this.operationValidators = operationValidators;
-  }
-
-  @Override
-  public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location,
-    PathItem oasObject) {
-    if (StringUtils.isNotBlank(oasObject.get$ref())) {
-      return emptyList();
+    public PathItemOperationsValidator(List<OperationValidator> operationValidators) {
+        this.operationValidators = operationValidators;
     }
 
-    List<OasViolation> violations = new ArrayList<>();
-
-    Map<PathItem.HttpMethod, Operation> operationMap = oasObject.readOperationsMap();
-
-    for (Map.Entry<PathItem.HttpMethod, Operation> entry : operationMap.entrySet()) {
-      PathItem.HttpMethod method = entry.getKey();
-      Operation operation = entry.getValue();
-      OasObjectPropertyLocation operationLocation = location.property(method.toString().toLowerCase(), OasObjectType.OPERATION);
-      violations.addAll(
-        OasObjectValidatorUtils.doValidateProperty(context, operationLocation, operation, operationValidators));
+    @Override
+    public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, PathItem oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    return violations;
-  }
 }

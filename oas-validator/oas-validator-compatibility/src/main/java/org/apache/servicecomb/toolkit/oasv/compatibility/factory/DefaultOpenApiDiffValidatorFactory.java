@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.OpenApiDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.factory.ComponentsDiffValidatorFactory;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.factory.InfoDiffValidatorFactory;
@@ -38,43 +36,26 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultOpenApiDiffValidatorFactory implements OpenApiDiffValidatorFactory {
 
-  private final ComponentsDiffValidatorFactory componentsDiffValidatorFactory;
+    private final ComponentsDiffValidatorFactory componentsDiffValidatorFactory;
 
-  private final InfoDiffValidatorFactory infoDiffValidatorFactory;
+    private final InfoDiffValidatorFactory infoDiffValidatorFactory;
 
-  private final PathsDiffValidatorFactory pathsDiffValidatorFactory;
+    private final PathsDiffValidatorFactory pathsDiffValidatorFactory;
 
-  private final ServerDiffValidatorFactory serverDiffValidatorFactory;
+    private final ServerDiffValidatorFactory serverDiffValidatorFactory;
 
-  private final TagDiffValidatorFactory tagDiffValidatorFactory;
+    private final TagDiffValidatorFactory tagDiffValidatorFactory;
 
-  public DefaultOpenApiDiffValidatorFactory(
-      ComponentsDiffValidatorFactory componentsDiffValidatorFactory,
-      InfoDiffValidatorFactory infoDiffValidatorFactory,
-      PathsDiffValidatorFactory pathsDiffValidatorFactory,
-      ServerDiffValidatorFactory serverDiffValidatorFactory,
-      TagDiffValidatorFactory tagDiffValidatorFactory) {
-    this.componentsDiffValidatorFactory = componentsDiffValidatorFactory;
-    this.infoDiffValidatorFactory = infoDiffValidatorFactory;
-    this.pathsDiffValidatorFactory = pathsDiffValidatorFactory;
-    this.serverDiffValidatorFactory = serverDiffValidatorFactory;
-    this.tagDiffValidatorFactory = tagDiffValidatorFactory;
-  }
+    public DefaultOpenApiDiffValidatorFactory(ComponentsDiffValidatorFactory componentsDiffValidatorFactory, InfoDiffValidatorFactory infoDiffValidatorFactory, PathsDiffValidatorFactory pathsDiffValidatorFactory, ServerDiffValidatorFactory serverDiffValidatorFactory, TagDiffValidatorFactory tagDiffValidatorFactory) {
+        this.componentsDiffValidatorFactory = componentsDiffValidatorFactory;
+        this.infoDiffValidatorFactory = infoDiffValidatorFactory;
+        this.pathsDiffValidatorFactory = pathsDiffValidatorFactory;
+        this.serverDiffValidatorFactory = serverDiffValidatorFactory;
+        this.tagDiffValidatorFactory = tagDiffValidatorFactory;
+    }
 
-  @Override
-  public List<OpenApiDiffValidator> create() {
-
-    List<OpenApiDiffValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new OpenApiComponentsDiffValidator(componentsDiffValidatorFactory.create()));
-    validators.add(new OpenApiInfoDiffValidator(infoDiffValidatorFactory.create()));
-    validators.add(new OpenApiPathsDiffValidator(pathsDiffValidatorFactory.create()));
-    validators.add(new OpenApiServersDiffValidator(serverDiffValidatorFactory.create()));
-    validators.add(new OpenApiTagsDiffValidator(tagDiffValidatorFactory.create()));
-
-    // concretes
-
-    return Collections.unmodifiableList(validators);
-  }
+    @Override
+    public List<OpenApiDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

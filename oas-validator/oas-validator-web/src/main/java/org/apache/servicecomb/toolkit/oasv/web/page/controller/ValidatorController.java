@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.web.page.controller;
 
 import org.springframework.stereotype.Controller;
@@ -25,28 +24,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/validator")
 public class ValidatorController {
 
-  @GetMapping()
-  public String index() {
-    
-    
-    
-    return "validator/index";
-  }
+    @GetMapping()
+    public String index() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @GetMapping(path = "/style")
-  public String complianceValidator() {
-    
-    
-    
-    return "validator/style";
-  }
+    @GetMapping(path = "/style")
+    public String complianceValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @GetMapping(path = "/compatibility")
-  public String compatibilityValidator() {
-    
-    
-    
-    return "validator/compatibility";
-  }
-
+    @GetMapping(path = "/compatibility")
+    public String compatibilityValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

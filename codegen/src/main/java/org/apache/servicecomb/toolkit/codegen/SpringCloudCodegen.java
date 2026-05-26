@@ -14,142 +14,90 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.codegen;
 
 import static org.openapitools.codegen.utils.StringUtils.camelize;
-
 import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 import org.apache.commons.lang3.StringUtils;
 import org.openapitools.codegen.CodegenType;
 import org.openapitools.codegen.templating.mustache.CamelCaseLambda;
 
 public class SpringCloudCodegen extends AbstractJavaCodegenExt {
 
-  private String applicationId = "defaultApp";
+    private String applicationId = "defaultApp";
 
-  private String serviceId = "defaultService";
+    private String serviceId = "defaultService";
 
-  private String consumerTemplateFolder = "consumer/openfeign";
+    private String consumerTemplateFolder = "consumer/openfeign";
 
-  private String providerTemplateFolder = "provider/servlet";
+    private String providerTemplateFolder = "provider/servlet";
 
-  private String modelTemplateFolder = "model";
+    private String modelTemplateFolder = "model";
 
-  private String apiConsumerTemplate = consumerTemplateFolder + "/apiConsumer.mustache";
+    private String apiConsumerTemplate = consumerTemplateFolder + "/apiConsumer.mustache";
 
-  public SpringCloudCodegen() {
-
-    super();
-    outputFolder = "generated-code/SpringCloud";
-    apiTemplateFiles.remove("api.mustache");
-    apiTemplateFiles.put(providerTemplateFolder + "/api.mustache", ".java");
-    embeddedTemplateDir = templateDir = "SpringCloud";
-    modelTemplateFiles.put(modelTemplateFolder + "/model.mustache", ".java");
-    modelTemplateFiles.remove("model.mustache");
-
-    addDirectoryStrategy(new SpringCloudProviderDirectoryStrategy(), ServiceType.PROVIDER.getValue());
-    addDirectoryStrategy(new SpringCloudConsumerDirectoryStrategy(), ServiceType.CONSUMER.getValue());
-    addDirectoryStrategy(new SpringCloudMultiDirectoryStrategy(), ServiceType.ALL.getValue());
-  }
-
-  @Override
-  public void processOpts() {
-
-    super.processOpts();
-
-    importMapping.put("OffsetDateTime", "java.time.OffsetDateTime");
-    additionalProperties.put("dateLibrary", "java8");
-    additionalProperties.put("camelcase", new CamelCaseLambda());
-    additionalProperties.put("apiTemplateFiles", apiTemplateFiles);
-    additionalProperties.put("getGenericClassType", new GetGenericClassTypeLambda());
-    additionalProperties.put("getRelativeBasePath", new GetRelativeBasePathLambda());
-    additionalProperties.put("showBasePath", new ShowBasePathLambda());
-    additionalProperties.put("applicationId", applicationId);
-
-    if (additionalProperties.get(ProjectMetaConstant.SERVICE_ID) != null) {
-      serviceId = (String) additionalProperties.get(ProjectMetaConstant.SERVICE_ID);
-    }
-    additionalProperties.put(ProjectMetaConstant.SERVICE_ID, serviceId);
-
-    currentDirectoryStrategy = getStrategyMap()
-        .get(Optional.ofNullable(additionalProperties.get(ProjectMetaConstant.SERVICE_TYPE))
-            .orElse(ServiceType.ALL.getValue()));
-
-    // when all additionalProperties are processed
-    currentDirectoryStrategy.addCustomProperties(additionalProperties);
-    currentDirectoryStrategy.processSupportingFile(supportingFiles);
-  }
-
-  @Override
-  public String toApiName(String name) {
-    if (name.length() == 0) {
-      return "DefaultApi";
+    public SpringCloudCodegen() {
+        super();
+        outputFolder = "generated-code/SpringCloud";
+        apiTemplateFiles.remove("api.mustache");
+        apiTemplateFiles.put(providerTemplateFolder + "/api.mustache", ".java");
+        embeddedTemplateDir = templateDir = "SpringCloud";
+        modelTemplateFiles.put(modelTemplateFolder + "/model.mustache", ".java");
+        modelTemplateFiles.remove("model.mustache");
+        addDirectoryStrategy(new SpringCloudProviderDirectoryStrategy(), ServiceType.PROVIDER.getValue());
+        addDirectoryStrategy(new SpringCloudConsumerDirectoryStrategy(), ServiceType.CONSUMER.getValue());
+        addDirectoryStrategy(new SpringCloudMultiDirectoryStrategy(), ServiceType.ALL.getValue());
     }
 
-    String apiName = (String) additionalProperties.get("apiName");
-    if (apiName != null) {
-      return apiName;
+    @Override
+    public void processOpts() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    return camelize(name) + "Api";
-  }
-
-  @Override
-  public String apiFileFolder() {
-    return outputFolder + "/" + currentDirectoryStrategy.providerDirectory() + "/" + sourceFolder + "/" + apiPackage()
-        .replace('.', '/');
-  }
-
-  @Override
-  public String apiFilename(String templateName, String tag) {
-    if (ServiceType.CONSUMER.getValue().equals(additionalProperties.get(ProjectMetaConstant.SERVICE_TYPE))
-        || ServiceType.CONSUMER.getValue().equals(additionalProperties.get(templateName))) {
-      String suffix = apiTemplateFiles().get(templateName);
-      return apiConsumerFolder() + File.separator + toApiFilename(tag) + suffix;
+    @Override
+    public String toApiName(String name) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    return super.apiFilename(templateName, tag);
-  }
+    @Override
+    public String apiFileFolder() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  private String apiConsumerFolder() {
-    return outputFolder + "/" + currentDirectoryStrategy.consumerDirectory() + "/" + sourceFolder + "/" + apiPackage()
-        .replace('.', '/');
-  }
+    @Override
+    public String apiFilename(String templateName, String tag) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String modelFileFolder() {
-    return outputFolder + "/" + currentDirectoryStrategy.modelDirectory() + "/" + sourceFolder + "/" + modelPackage()
-        .replace('.', '/');
-  }
+    private String apiConsumerFolder() {
+        return outputFolder + "/" + currentDirectoryStrategy.consumerDirectory() + "/" + sourceFolder + "/" + apiPackage().replace('.', '/');
+    }
 
-  @Override
-  public Map<String, Object> postProcessOperationsWithModels(Map<String, Object> objs,
-      List<Object> allModels) {
+    @Override
+    public String modelFileFolder() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-    Map operations = (Map) objs.get("operations");
-    String classnameImpl = (String) operations.get("classname") + "Impl";
-    operations.put("classnameImpl", classnameImpl);
-    additionalProperties.put("classnameImpl", classnameImpl);
-    return super.postProcessOperationsWithModels(objs, allModels);
-  }
+    @Override
+    public Map<String, Object> postProcessOperationsWithModels(Map<String, Object> objs, List<Object> allModels) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public CodegenType getTag() {
-    return CodegenType.SERVER;
-  }
+    @Override
+    public CodegenType getTag() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String getName() {
-    return "SpringCloud";
-  }
+    @Override
+    public String getName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String getHelp() {
-    return "Generates a SpringCloud server library.";
-  }
+    @Override
+    public String getHelp() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

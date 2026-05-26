@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.skeleton.parameter;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.*;
@@ -22,46 +21,33 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.parameters.Parameter;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.SCHEMA;
 import static org.apache.servicecomb.toolkit.oasv.diffvalidation.util.OasDiffValidationContextUtils.*;
 
-public class ParameterSchemaDiffValidator
-  extends ObjectPropertyDiffValidator<Parameter, Schema>
-  implements ParameterDiffValidator {
+public class ParameterSchemaDiffValidator extends ObjectPropertyDiffValidator<Parameter, Schema> implements ParameterDiffValidator {
 
-  public ParameterSchemaDiffValidator(List<SchemaDiffValidator> schemaDiffValidators) {
-    super(schemaDiffValidators);
-  }
+    public ParameterSchemaDiffValidator(List<SchemaDiffValidator> schemaDiffValidators) {
+        super(schemaDiffValidators);
+    }
 
-  @Override
-  public List<OasDiffViolation> validate(OasDiffValidationContext context, OasObjectPropertyLocation leftLocation,
-    Parameter leftOasObject, OasObjectPropertyLocation rightLocation, Parameter rightOasObject) {
+    @Override
+    public List<OasDiffViolation> validate(OasDiffValidationContext context, OasObjectPropertyLocation leftLocation, Parameter leftOasObject, OasObjectPropertyLocation rightLocation, Parameter rightOasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-    enterParameter(context);
+    @Override
+    protected Schema getPropertyObject(Parameter oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-    List<OasDiffViolation> violations = super
-      .validate(context, leftLocation, leftOasObject, rightLocation, rightOasObject);
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-    leaveParameter(context);
-    return violations;
-  }
-
-  @Override
-  protected Schema getPropertyObject(Parameter oasObject) {
-    return oasObject.getSchema();
-  }
-
-  @Override
-  protected String getPropertyName() {
-    return "schema";
-  }
-
-  @Override
-  protected OasObjectType getPropertyType() {
-    return SCHEMA;
-  }
-
+    @Override
+    protected OasObjectType getPropertyType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

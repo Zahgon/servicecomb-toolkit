@@ -14,53 +14,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.validator.openapi;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.servicecomb.toolkit.oasv.validation.api.*;
 import io.swagger.v3.oas.models.OpenAPI;
-
 import java.util.List;
-
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
 /**
  * <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#openapi-object">OpenAPI Object</a>
  * .openapi property validator
- <ul>
+ * <ul>
  *   <li>config item: openAPI.openapi.gte=expected</li>
  *   <li>version should be &gt;= *expected*</li>
  * </ul>
  */
 public class OpenApiVersionGteValidator implements OpenApiValidator {
 
-  public static final String CONFIG_KEY = "openAPI.openapi.gte";
-  public static final String ERROR = "Must be >= ";
+    public static final String CONFIG_KEY = "openAPI.openapi.gte";
 
-  private final String versionGte;
+    public static final String ERROR = "Must be >= ";
 
-  public OpenApiVersionGteValidator(String versionGte) {
-    this.versionGte = versionGte;
-  }
+    private final String versionGte;
 
-  @Override
-  public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, OpenAPI openAPI) {
-
-    if (openAPI.getOpenapi() == null) {
-      return singletonList(new OasViolation(location.property("openapi"), ViolationMessages.REQUIRED));
+    public OpenApiVersionGteValidator(String versionGte) {
+        this.versionGte = versionGte;
     }
 
-    String[] semver = openAPI.getOpenapi().split("\\.");
-    String[] expectedSemver = versionGte.split("\\.");
-    boolean ok = semver[0].equals(expectedSemver[0])
-        && semver[1].equals(expectedSemver[1])
-        && Integer.parseInt(semver[2]) >= Integer.valueOf(expectedSemver[2]);
-    if (ok) {
-      return emptyList();
+    @Override
+    public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, OpenAPI openAPI) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    return singletonList(new OasViolation(location.property("openapi"), ERROR + versionGte));
-  }
-
 }

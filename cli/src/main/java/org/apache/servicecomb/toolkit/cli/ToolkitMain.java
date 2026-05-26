@@ -14,63 +14,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.cli;
 
 import java.io.IOException;
 import java.util.Optional;
 import java.util.Properties;
-
 import org.apache.commons.lang3.StringUtils;
-
 import io.airlift.airline.Cli;
 import io.airlift.airline.Help;
 
 public class ToolkitMain {
 
-  private static String projectVersion;
+    private static String projectVersion;
 
-  @SuppressWarnings("unchecked")
-  public static void main(String[] args) {
-
-    initialProjectVersion();
-
-    String scriptName = System.getProperty("script.name");
-    Cli.CliBuilder<Runnable> builder = null;
-    if (StringUtils.isNotEmpty(scriptName)) {
-      builder = Cli.builder(scriptName);
-    } else {
-      builder = Cli.builder("java -jar cli-" + projectVersion + ".jar");
+    @SuppressWarnings("unchecked")
+    public static void main(String[] args) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    builder.withDescription("Microservice development toolkit(version " + projectVersion
-        + "). ");
-    builder.withDefaultCommand(Help.class);
-    builder.withCommands(
-        CodeGenerate.class, DocGenerate.class,
-        CheckStyle.class, CheckStyleAbbr.class,
-        CheckCompatibility.class, CheckCompatibilityAbbr.class,
-        Help.class
-    );
-    try {
-      Runnable cmd = builder.build().parse(args);
-
-      cmd.run();
-    } catch (ValidationFailedException ex) {
-      ex.printStackTrace(System.err);
-      System.exit(1);
+    private static void initialProjectVersion() {
+        Properties properties = new Properties();
+        try {
+            properties.load(ToolkitMain.class.getClassLoader().getResourceAsStream("application.properties"));
+            projectVersion = Optional.ofNullable(properties.getProperty("version")).orElse("unknown");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-  }
-
-  private static void initialProjectVersion() {
-
-    Properties properties = new Properties();
-    try {
-      properties.load(ToolkitMain.class.getClassLoader().getResourceAsStream("application.properties"));
-
-      projectVersion = Optional.ofNullable(properties.getProperty("version")).orElse("unknown");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
 }

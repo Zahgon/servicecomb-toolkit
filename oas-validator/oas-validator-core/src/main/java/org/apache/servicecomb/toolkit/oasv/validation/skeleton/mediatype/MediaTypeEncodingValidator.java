@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.mediatype;
 
 import org.apache.servicecomb.toolkit.oasv.validation.api.EncodingValidator;
@@ -23,41 +22,37 @@ import org.apache.servicecomb.toolkit.oasv.validation.api.MapPropertyValuesValid
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import io.swagger.v3.oas.models.media.Encoding;
 import io.swagger.v3.oas.models.media.MediaType;
-
 import java.util.List;
 import java.util.Map;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.ENCODING;
 
 /**
  * <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#media-type-object">Media Type Object</a>
  * .encoding property value validator
  */
-public class MediaTypeEncodingValidator extends MapPropertyValuesValidator<MediaType, Encoding>
-  implements MediaTypeValidator {
+public class MediaTypeEncodingValidator extends MapPropertyValuesValidator<MediaType, Encoding> implements MediaTypeValidator {
 
-  public MediaTypeEncodingValidator(List<EncodingValidator> encodingValidators) {
-    super(encodingValidators);
-  }
+    public MediaTypeEncodingValidator(List<EncodingValidator> encodingValidators) {
+        super(encodingValidators);
+    }
 
-  @Override
-  protected String get$ref(MediaType oasObject) {
-    return null;
-  }
+    @Override
+    protected String get$ref(MediaType oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected Map<String, Encoding> getMapProperty(MediaType oasObject) {
-    return oasObject.getEncoding();
-  }
+    @Override
+    protected Map<String, Encoding> getMapProperty(MediaType oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getMapPropertyName() {
-    return "encoding";
-  }
+    @Override
+    protected String getMapPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getValueType() {
-    return ENCODING;
-  }
-
+    @Override
+    protected OasObjectType getValueType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

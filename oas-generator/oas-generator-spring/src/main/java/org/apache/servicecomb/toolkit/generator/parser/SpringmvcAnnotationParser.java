@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.parser;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.generator.annotation.GetMappingMethodAnnotationProcessor;
 import org.apache.servicecomb.toolkit.generator.annotation.PathVariableAnnotationProcessor;
 import org.apache.servicecomb.toolkit.generator.annotation.PostMappingMethodAnnotationProcessor;
@@ -45,47 +43,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class SpringmvcAnnotationParser extends AbstractAnnotationParser {
 
-  @Override
-  public int getOrder() {
-    return 200;
-  }
-
-  @Override
-  public void parser(Class<?> cls, OasContext context) {
-    super.parser(cls, context);
-  }
-
-  @Override
-  public boolean canProcess(Class<?> cls) {
-    if (cls.getAnnotation(RestController.class) != null) {
-      return true;
+    @Override
+    public int getOrder() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    return false;
-  }
 
-  @Override
-  public void initClassAnnotationProcessor() {
-    super.initClassAnnotationProcessor();
-    classAnnotationMap.put(RequestMapping.class, new RequestMappingClassAnnotationProcessor());
-  }
+    @Override
+    public void parser(Class<?> cls, OasContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void initMethodAnnotationProcessor() {
-    super.initMethodAnnotationProcessor();
-    methodAnnotationMap.put(RequestMapping.class, new RequestMappingMethodAnnotationProcessor());
-    methodAnnotationMap.put(GetMapping.class, new GetMappingMethodAnnotationProcessor());
-    methodAnnotationMap.put(PutMapping.class, new PutMappingMethodAnnotationProcessor());
-    methodAnnotationMap.put(PostMapping.class, new PostMappingMethodAnnotationProcessor());
-  }
+    @Override
+    public boolean canProcess(Class<?> cls) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void initParameterAnnotationProcessor() {
-    super.initParameterAnnotationProcessor();
-    parameterAnnotationMap.put(PathVariable.class, new PathVariableAnnotationProcessor());
-    parameterAnnotationMap.put(RequestBody.class, new RequestBodyAnnotationProcessor());
-    parameterAnnotationMap.put(RequestPart.class, new RequestPartAnnotationProcessor());
-    parameterAnnotationMap.put(RequestParam.class, new RequestParamAnnotationProcessor());
-    parameterAnnotationMap.put(RequestHeader.class, new RequestHeaderAnnotationProcessor());
-  }
+    @Override
+    public void initClassAnnotationProcessor() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public void initMethodAnnotationProcessor() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public void initParameterAnnotationProcessor() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }
-

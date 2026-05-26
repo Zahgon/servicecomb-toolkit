@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.schema;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
@@ -25,10 +24,8 @@ import io.swagger.v3.oas.models.media.ArraySchema;
 import io.swagger.v3.oas.models.media.ComposedSchema;
 import io.swagger.v3.oas.models.media.Schema;
 import org.apache.commons.lang3.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.SCHEMA;
 import static org.apache.servicecomb.toolkit.oasv.validation.util.OasObjectValidatorUtils.doValidateListProperty;
 import static org.apache.servicecomb.toolkit.oasv.validation.util.OasObjectValidatorUtils.doValidateMapPropertyValues;
@@ -40,88 +37,29 @@ import static java.util.Collections.singletonList;
  */
 public abstract class SchemaRecursiveValidatorTemplate implements SchemaValidator {
 
-  @Override
-  public final List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location,
-    Schema oasObject) {
-
-    if (StringUtils.isNotBlank(oasObject.get$ref())) {
-      return emptyList();
+    @Override
+    public final List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, Schema oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    if (oasObject instanceof ComposedSchema) {
-      return validateComposedSchema(context, (ComposedSchema) oasObject, location);
+
+    private List<OasViolation> validateOrdinarySchema(OasValidationContext context, Schema oasObject, OasObjectPropertyLocation location) {
+        List<OasViolation> violations = new ArrayList<>();
+        violations.addAll(validateCurrentSchemaObject(context, oasObject, location));
+        violations.addAll(doValidateMapPropertyValues(context, location, "properties", oasObject.getProperties(), SCHEMA, singletonList(this)));
+        return violations;
     }
-    if (oasObject instanceof ArraySchema) {
-      return validateArraySchema(context, (ArraySchema) oasObject, location);
+
+    private List<OasViolation> validateArraySchema(OasValidationContext context, ArraySchema oasObject, OasObjectPropertyLocation location) {
+        return validate(context, location.property("items", SCHEMA), oasObject.getItems());
     }
-    return validateOrdinarySchema(context, oasObject, location);
 
-  }
+    private List<OasViolation> validateComposedSchema(OasValidationContext context, ComposedSchema oasObject, OasObjectPropertyLocation location) {
+        List<OasViolation> violations = new ArrayList<>();
+        violations.addAll(doValidateListProperty(context, location, "allOf", oasObject.getAllOf(), SCHEMA, singletonList(this)));
+        violations.addAll(doValidateListProperty(context, location, "anyOf", oasObject.getAnyOf(), SCHEMA, singletonList(this)));
+        violations.addAll(doValidateListProperty(context, location, "oneOf", oasObject.getOneOf(), SCHEMA, singletonList(this)));
+        return violations;
+    }
 
-  private List<OasViolation> validateOrdinarySchema(OasValidationContext context, Schema oasObject,
-    OasObjectPropertyLocation location) {
-
-    List<OasViolation> violations = new ArrayList<>();
-    violations.addAll(validateCurrentSchemaObject(context, oasObject, location));
-
-    violations.addAll(
-      doValidateMapPropertyValues(
-        context,
-        location,
-        "properties",
-        oasObject.getProperties(),
-        SCHEMA,
-        singletonList(this)
-      )
-    );
-
-    return violations;
-
-  }
-
-  private List<OasViolation> validateArraySchema(OasValidationContext context, ArraySchema oasObject,
-    OasObjectPropertyLocation location) {
-    return validate(context, location.property("items", SCHEMA), oasObject.getItems());
-  }
-
-  private List<OasViolation> validateComposedSchema(OasValidationContext context, ComposedSchema oasObject,
-    OasObjectPropertyLocation location) {
-
-    List<OasViolation> violations = new ArrayList<>();
-
-    violations.addAll(
-      doValidateListProperty(
-        context, location,
-        "allOf",
-        oasObject.getAllOf(),
-        SCHEMA,
-        singletonList(this)
-      )
-    );
-
-    violations.addAll(
-      doValidateListProperty(
-        context, location,
-        "anyOf",
-        oasObject.getAnyOf(),
-        SCHEMA,
-        singletonList(this)
-      )
-    );
-
-    violations.addAll(
-      doValidateListProperty(
-        context, location,
-        "oneOf",
-        oasObject.getOneOf(),
-        SCHEMA,
-        singletonList(this)
-      )
-    );
-
-    return violations;
-  }
-
-  protected abstract List<OasViolation> validateCurrentSchemaObject(OasValidationContext context, Schema oasObject,
-    OasObjectPropertyLocation location);
-
+    protected abstract List<OasViolation> validateCurrentSchemaObject(OasValidationContext context, Schema oasObject, OasObjectPropertyLocation location);
 }

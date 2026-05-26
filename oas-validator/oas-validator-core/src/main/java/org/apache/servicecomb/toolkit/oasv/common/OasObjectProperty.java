@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.common;
 
 import java.util.Objects;
@@ -25,52 +24,45 @@ import java.util.StringJoiner;
  */
 public class OasObjectProperty {
 
-  /**
-   * property name
-   */
-  private final String name;
+    /**
+     * property name
+     */
+    private final String name;
 
-  /**
-   * property object type, if null means primitive types, otherwise means OAS object
-   */
-  private final OasObjectType objectType;
+    /**
+     * property object type, if null means primitive types, otherwise means OAS object
+     */
+    private final OasObjectType objectType;
 
-  public OasObjectProperty(String name) {
-    this(null, name);
-  }
+    public OasObjectProperty(String name) {
+        this(null, name);
+    }
 
-  public OasObjectProperty(OasObjectType objectType, String name) {
-    this.objectType = objectType;
-    this.name = name;
-  }
+    public OasObjectProperty(OasObjectType objectType, String name) {
+        this.objectType = objectType;
+        this.name = name;
+    }
 
-  public OasObjectType getObjectType() {
-    return objectType;
-  }
+    public OasObjectType getObjectType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    OasObjectProperty that = (OasObjectProperty) o;
-    return objectType == that.objectType &&
-      Objects.equals(name, that.name);
-  }
+    @Override
+    public boolean equals(Object o) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(objectType, name);
-  }
+    @Override
+    public int hashCode() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String toString() {
-    return new StringJoiner(", ", OasObjectProperty.class.getSimpleName() + "[", "]")
-      .add("name='" + name + "'")
-      .add("objectType=" + objectType)
-      .toString();
-  }
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

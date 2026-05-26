@@ -14,44 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
-
 import org.apache.servicecomb.toolkit.generator.context.OperationContext;
 import org.apache.servicecomb.toolkit.generator.util.SwaggerAnnotationUtils;
-
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 public class OperationMethodAnnotationProcessor implements MethodAnnotationProcessor<Operation, OperationContext> {
 
-  @Override
-  public void process(Operation annotation, OperationContext context) {
-
-    context.setOperationId(annotation.operationId());
-    context.setDeprecated(annotation.deprecated());
-    context.setDescription(annotation.description());
-
-    Map<String, Object> extensionsFromAnnotation = SwaggerAnnotationUtils
-        .getExtensionsFromAnnotation(annotation.extensions());
-    Optional.ofNullable(extensionsFromAnnotation)
-        .ifPresent(extensions -> extensions.forEach(context::addExtension));
-
-    ApiResponse[] responses = annotation.responses();
-    MethodAnnotationProcessor apiResponseAnnotationProcessor = context.getParser()
-        .findMethodAnnotationProcessor(ApiResponse.class);
-
-    for (ApiResponse response : responses) {
-      Optional.ofNullable(apiResponseAnnotationProcessor)
-          .ifPresent(processor -> processor.process(response, context));
+    @Override
+    public void process(Operation annotation, OperationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
-    context.setHttpMethod(annotation.method());
-    context.setSummary(annotation.summary());
-    Arrays.stream(annotation.tags()).forEach(context::addTag);
-  }
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.common;
 
 import java.io.BufferedReader;
@@ -22,116 +21,66 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.concurrent.TimeoutException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ClassMaker {
 
-  public static void compile(String projectPath) throws IOException, TimeoutException, InterruptedException {
-    Runtime runtime = Runtime.getRuntime();
-
-    boolean isWindows = System.getProperty("os.name").toLowerCase().indexOf("win") >= 0;
-    String mvnCommand = (isWindows ? "mvn.cmd" : "mvn") + " clean package -f " + projectPath;
-    Process exec = runtime.exec(mvnCommand);
-
-    Worker worker = new Worker(exec);
-    worker.start();
-    ProcessStatus ps = worker.getProcessStatus();
-
-    try {
-      worker.join(30000);
-      if (ps.exitCode == ProcessStatus.CODE_FAIL) {
-        throw new RuntimeException("Command exec fail,command is: " + mvnCommand);
-      }
-      if (ps.exitCode == ProcessStatus.CODE_STARTED) {
-        // not finished
-        worker.interrupt();
-        throw new TimeoutException();
-      }
-    } catch (InterruptedException e) {
-      // canceled by other thread.
-      worker.interrupt();
-      throw e;
-    }
-  }
-
-  private static class Worker extends Thread {
-    private final Process process;
-
-    private ProcessStatus ps;
-
-    private Worker(Process process) {
-      this.process = process;
-      this.ps = new ProcessStatus();
+    public static void compile(String projectPath) throws IOException, TimeoutException, InterruptedException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    @Override
-    public void run() {
-      try {
-        new ExecReader(process.getInputStream(), "Command Exec Result Reader") {
-          @Override
-          public void afterReadLine(String line) {
-            LOGGER.info(line);
-          }
-        }.start();
+    private static class Worker extends Thread {
 
-        new ExecReader(process.getErrorStream(), "Command Exec Error Reader") {
-          @Override
-          public void afterReadLine(String line) {
-            LOGGER.error(line);
-          }
-        }.start();
+        private final Process process;
 
-        ps.exitCode = process.waitFor();
-      } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-      }
-    }
+        private ProcessStatus ps;
 
-    ProcessStatus getProcessStatus() {
-      return this.ps;
-    }
-  }
-
-  public static class ProcessStatus {
-    static final int CODE_STARTED = -257;
-
-    static final int CODE_FAIL = 1;
-
-    volatile int exitCode;
-
-    volatile String output;
-  }
-
-  private static abstract class ExecReader extends Thread {
-
-    public final Logger LOGGER;
-
-    private final InputStream is;
-
-    private final String readerName;
-
-    public ExecReader(InputStream is, String readerName) {
-      this.is = is;
-      this.readerName = readerName;
-      LOGGER = LoggerFactory.getLogger(ExecReader.class.getName() + "-" + readerName);
-    }
-
-    @Override
-    public void run() {
-      BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-      String line = null;
-      try {
-
-        while ((line = reader.readLine()) != null) {
-          afterReadLine(line);
+        private Worker(Process process) {
+            this.process = process;
+            this.ps = new ProcessStatus();
         }
-      } catch (IOException e) {
-        LOGGER.error(readerName, e);
-      }
+
+        @Override
+        public void run() {
+            throw new UnsupportedOperationException("STUB: not implemented");
+        }
+
+        ProcessStatus getProcessStatus() {
+            throw new UnsupportedOperationException("STUB: not implemented");
+        }
     }
 
-    public abstract void afterReadLine(String line);
-  }
+    public static class ProcessStatus {
+
+        static final int CODE_STARTED = -257;
+
+        static final int CODE_FAIL = 1;
+
+        volatile int exitCode;
+
+        volatile String output;
+    }
+
+    private static abstract class ExecReader extends Thread {
+
+        public final Logger LOGGER;
+
+        private final InputStream is;
+
+        private final String readerName;
+
+        public ExecReader(InputStream is, String readerName) {
+            this.is = is;
+            this.readerName = readerName;
+            LOGGER = LoggerFactory.getLogger(ExecReader.class.getName() + "-" + readerName);
+        }
+
+        @Override
+        public void run() {
+            throw new UnsupportedOperationException("STUB: not implemented");
+        }
+
+        public abstract void afterReadLine(String line);
+    }
 }

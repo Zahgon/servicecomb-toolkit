@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import org.apache.commons.lang3.StringUtils;
@@ -24,16 +23,9 @@ import org.apache.servicecomb.toolkit.generator.util.ParamUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 
 public class PathVariableAnnotationProcessor implements ParamAnnotationProcessor<PathVariable, ParameterContext> {
-  @Override
-  public void process(PathVariable pathVariable, ParameterContext parameterContext) {
-    String paramName = pathVariable.name();
-    if (StringUtils.isEmpty(paramName)) {
-      paramName = ParamUtils
-          .getParameterName(parameterContext.getOperationContext().getMethod(), parameterContext.getParameter());
-    }
 
-    parameterContext.setIn(InType.PATH);
-    parameterContext.setName(paramName);
-    parameterContext.setRequired(pathVariable.required());
-  }
+    @Override
+    public void process(PathVariable pathVariable, ParameterContext parameterContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

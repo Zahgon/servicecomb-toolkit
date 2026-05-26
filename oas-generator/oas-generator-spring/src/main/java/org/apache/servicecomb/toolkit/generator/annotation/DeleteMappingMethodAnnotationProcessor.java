@@ -14,22 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import org.apache.servicecomb.toolkit.generator.context.OperationContext;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-public class DeleteMappingMethodAnnotationProcessor extends
-    AbstractHttpMethodMappingAnnotationProcessor<DeleteMapping, OperationContext> {
+public class DeleteMappingMethodAnnotationProcessor extends AbstractHttpMethodMappingAnnotationProcessor<DeleteMapping, OperationContext> {
 
-  @Override
-  public void process(DeleteMapping deleteMapping, OperationContext operationContext) {
-    processPath(deleteMapping.path(), operationContext);
-    processPath(deleteMapping.value(), operationContext);
-    processMethod(RequestMethod.DELETE, operationContext);
-    processConsumes(deleteMapping.consumes(), operationContext);
-    processProduces(deleteMapping.produces(), operationContext);
-  }
+    @Override
+    public void process(DeleteMapping deleteMapping, OperationContext operationContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

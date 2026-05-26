@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.skeleton.components;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.CallbackDiffValidator;
@@ -23,32 +22,28 @@ import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.MapPropertyDiffVal
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.callbacks.Callback;
-
 import java.util.List;
 import java.util.Map;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.CALLBACK;
 
-public class ComponentsCallbacksDiffValidator
-  extends MapPropertyDiffValidator<Components, Callback>
-  implements ComponentsDiffValidator {
+public class ComponentsCallbacksDiffValidator extends MapPropertyDiffValidator<Components, Callback> implements ComponentsDiffValidator {
 
-  public ComponentsCallbacksDiffValidator(List<CallbackDiffValidator> diffValidators) {
-    super(diffValidators);
-  }
+    public ComponentsCallbacksDiffValidator(List<CallbackDiffValidator> diffValidators) {
+        super(diffValidators);
+    }
 
-  @Override
-  protected Map<String, Callback> getMapProperty(Components oasObject) {
-    return oasObject.getCallbacks();
-  }
+    @Override
+    protected Map<String, Callback> getMapProperty(Components oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getMapPropertyName() {
-    return "callbacks";
-  }
+    @Override
+    protected String getMapPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getValueType() {
-    return CALLBACK;
-  }
+    @Override
+    protected OasObjectType getValueType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

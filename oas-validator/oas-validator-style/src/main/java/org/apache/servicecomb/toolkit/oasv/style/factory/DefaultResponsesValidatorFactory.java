@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.factory;
 
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
@@ -23,7 +22,6 @@ import org.apache.servicecomb.toolkit.oasv.validation.factory.ResponseValidatorF
 import org.apache.servicecomb.toolkit.oasv.validation.factory.ResponsesValidatorFactory;
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.responses.ResponsesResponsesValidator;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,21 +29,14 @@ import java.util.List;
 @Component
 public class DefaultResponsesValidatorFactory implements ResponsesValidatorFactory {
 
-  private final ResponseValidatorFactory responseValidatorFactory;
+    private final ResponseValidatorFactory responseValidatorFactory;
 
-  public DefaultResponsesValidatorFactory(
-      ResponseValidatorFactory responseValidatorFactory) {
-    this.responseValidatorFactory = responseValidatorFactory;
-  }
+    public DefaultResponsesValidatorFactory(ResponseValidatorFactory responseValidatorFactory) {
+        this.responseValidatorFactory = responseValidatorFactory;
+    }
 
-  @Override
-  public List<ResponsesValidator> create(FactoryOptions options) {
-
-    List<ResponsesValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new ResponsesResponsesValidator(responseValidatorFactory.create(options)));
-
-    return Collections.unmodifiableList(validators);
-  }
+    @Override
+    public List<ResponsesValidator> create(FactoryOptions options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

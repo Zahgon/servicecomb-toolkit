@@ -14,22 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.factory;
 
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
 import org.apache.servicecomb.toolkit.oasv.validation.api.SecuritySchemeValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.factory.SecuritySchemeValidatorFactory;
 import org.springframework.stereotype.Component;
-
 import java.util.Collections;
 import java.util.List;
 
 @Component
 public class DefaultSecuritySchemeValidatorFactory implements SecuritySchemeValidatorFactory {
 
-  @Override
-  public List<SecuritySchemeValidator> create(FactoryOptions options) {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<SecuritySchemeValidator> create(FactoryOptions options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

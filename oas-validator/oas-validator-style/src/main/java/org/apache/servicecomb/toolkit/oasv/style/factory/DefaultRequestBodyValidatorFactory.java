@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.factory;
 
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
@@ -24,7 +23,6 @@ import org.apache.servicecomb.toolkit.oasv.validation.factory.MediaTypeValidator
 import org.apache.servicecomb.toolkit.oasv.validation.factory.RequestBodyValidatorFactory;
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.requestbody.RequestBodyContentValidator;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,32 +30,21 @@ import java.util.List;
 @Component
 public class DefaultRequestBodyValidatorFactory implements RequestBodyValidatorFactory {
 
-  private final MediaTypeValidatorFactory mediaTypeValidatorFactory;
+    private final MediaTypeValidatorFactory mediaTypeValidatorFactory;
 
-  public DefaultRequestBodyValidatorFactory(
-      MediaTypeValidatorFactory mediaTypeValidatorFactory) {
-    this.mediaTypeValidatorFactory = mediaTypeValidatorFactory;
-  }
-
-  @Override
-  public List<RequestBodyValidator> create(FactoryOptions options) {
-
-    List<RequestBodyValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new RequestBodyContentValidator(mediaTypeValidatorFactory.create(options)));
-
-    // concretes
-    addRequestBodyDescriptionRequiredValidator(validators, options);
-    return Collections.unmodifiableList(validators);
-  }
-
-  private void addRequestBodyDescriptionRequiredValidator(List<RequestBodyValidator> validators,
-      FactoryOptions options) {
-    Boolean required = options.getBoolean(RequestBodyDescriptionRequiredValidator.CONFIG_KEY);
-    if (Boolean.TRUE.equals(required)) {
-      validators.add(new RequestBodyDescriptionRequiredValidator());
+    public DefaultRequestBodyValidatorFactory(MediaTypeValidatorFactory mediaTypeValidatorFactory) {
+        this.mediaTypeValidatorFactory = mediaTypeValidatorFactory;
     }
-  }
 
+    @Override
+    public List<RequestBodyValidator> create(FactoryOptions options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    private void addRequestBodyDescriptionRequiredValidator(List<RequestBodyValidator> validators, FactoryOptions options) {
+        Boolean required = options.getBoolean(RequestBodyDescriptionRequiredValidator.CONFIG_KEY);
+        if (Boolean.TRUE.equals(required)) {
+            validators.add(new RequestBodyDescriptionRequiredValidator());
+        }
+    }
 }

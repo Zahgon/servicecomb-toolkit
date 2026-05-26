@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.skeleton.mediatype;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.MediaTypeDiffValidator;
@@ -23,31 +22,27 @@ import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.SchemaDiffValidato
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.media.Schema;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.SCHEMA;
 
-public class MediaTypeSchemaDiffValidator
-  extends ObjectPropertyDiffValidator<MediaType, Schema> implements
-  MediaTypeDiffValidator {
+public class MediaTypeSchemaDiffValidator extends ObjectPropertyDiffValidator<MediaType, Schema> implements MediaTypeDiffValidator {
 
-  public MediaTypeSchemaDiffValidator(List<SchemaDiffValidator> oasObjectValidators) {
-    super(oasObjectValidators);
-  }
+    public MediaTypeSchemaDiffValidator(List<SchemaDiffValidator> oasObjectValidators) {
+        super(oasObjectValidators);
+    }
 
-  @Override
-  protected Schema getPropertyObject(MediaType oasObject) {
-    return oasObject.getSchema();
-  }
+    @Override
+    protected Schema getPropertyObject(MediaType oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "schema";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getPropertyType() {
-    return SCHEMA;
-  }
+    @Override
+    protected OasObjectType getPropertyType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

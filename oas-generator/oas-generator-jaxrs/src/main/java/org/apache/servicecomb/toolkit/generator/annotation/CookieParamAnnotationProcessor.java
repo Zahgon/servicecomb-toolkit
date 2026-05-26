@@ -14,18 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import javax.ws.rs.CookieParam;
-
 import org.apache.servicecomb.toolkit.generator.context.ParameterContext;
 import org.apache.servicecomb.toolkit.generator.context.ParameterContext.InType;
 
 public class CookieParamAnnotationProcessor implements ParamAnnotationProcessor<CookieParam, ParameterContext> {
-  @Override
-  public void process(CookieParam cookieParam, ParameterContext parameterContext) {
-    parameterContext.setIn(InType.COOKIE);
-    parameterContext.setName(cookieParam.value());
-  }
+
+    @Override
+    public void process(CookieParam cookieParam, ParameterContext parameterContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

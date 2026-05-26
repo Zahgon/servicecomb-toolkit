@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.common;
 
 import java.io.File;
@@ -31,70 +30,19 @@ import java.util.Objects;
 
 public class FileUtils {
 
-  public static void createDirectory(String pathName) throws IOException {
-
-    if (pathName == null) {
-      throw new IOException("Path is null");
+    public static void createDirectory(String pathName) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    File path = new File(pathName);
-    if (path.exists()) {
-      return;
+    public static Path createTempDirectory(String pathName) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    if (!path.mkdirs()) {
-      throw new IOException("Failed to create directory");
-    }
-  }
-
-  public static Path createTempDirectory(String pathName) throws IOException {
-
-    createDirectory((pathName));
-
-    return Files.createTempDirectory(Paths.get(new File(pathName).toURI()), "");
-  }
-
-  public static Map<String, byte[]> getFilesGroupByFilename(String pathName) throws IOException {
-
-    if (pathName == null) {
-      throw new IOException("Path is null");
+    public static Map<String, byte[]> getFilesGroupByFilename(String pathName) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    if (!new File(pathName).exists()) {
-      throw new IOException("Path " + pathName + " is not exists");
+    public static void deleteDirectory(String pathName) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
-    Map<String, byte[]> filesGroup = new HashMap<>();
-    File path = new File(pathName);
-
-    Files.walkFileTree(Paths.get(path.toURI()), new SimpleFileVisitor<Path>() {
-      @Override
-      public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        filesGroup.put(file.toFile().getName(), Files.readAllBytes(file));
-        return super.visitFile(file, attrs);
-      }
-    });
-
-    return filesGroup;
-  }
-
-  public static void deleteDirectory(String pathName) throws IOException {
-
-    File path = new File(pathName);
-
-    if (!path.isDirectory()) {
-      if(path.exists()){
-        Files.delete(Paths.get(pathName));
-      }
-      return;
-    }
-
-    File[] files = path.listFiles();
-
-    for (File file : Objects.requireNonNull(files)) {
-      deleteDirectory(file.getCanonicalPath());
-    }
-
-    Files.delete(Paths.get(pathName));
-  }
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.validator.header;
 
 import org.apache.servicecomb.toolkit.oasv.validation.api.HeaderValidator;
@@ -30,31 +29,27 @@ import io.swagger.v3.oas.models.headers.Header;
  *   <li>description must not be null</li>
  * </ul>
  */
-public class HeaderDescriptionRequiredValidator
-  extends ObjectPropertyRequiredValidator<Header, String>
-  implements HeaderValidator {
+public class HeaderDescriptionRequiredValidator extends ObjectPropertyRequiredValidator<Header, String> implements HeaderValidator {
 
-  public static final String CONFIG_KEY = "header.description.required";
+    public static final String CONFIG_KEY = "header.description.required";
 
+    @Override
+    protected String get$ref(Header oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String get$ref(Header oasObject) {
-    return oasObject.get$ref();
-  }
+    @Override
+    protected String getPropertyObject(Header oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyObject(Header oasObject) {
-    return oasObject.getDescription();
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "description";
-  }
-
-  @Override
-  protected OasObjectType getPropertyType() {
-    return null;
-  }
-
+    @Override
+    protected OasObjectType getPropertyType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

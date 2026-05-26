@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.pathitem;
 
 import org.apache.servicecomb.toolkit.oasv.validation.api.ParameterValidator;
@@ -23,9 +22,7 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import org.apache.servicecomb.toolkit.oasv.validation.api.PathItemValidator;
 import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.parameters.Parameter;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.PARAMETER;
 
 /**
@@ -33,31 +30,29 @@ import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.PARAMETER
  * .parameters (List of <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#parameterObject">Parameter Object</a>)
  * validator
  */
-public class PathItemParametersValidator extends ListPropertyValidator<PathItem, Parameter>
-  implements PathItemValidator {
+public class PathItemParametersValidator extends ListPropertyValidator<PathItem, Parameter> implements PathItemValidator {
 
-  public PathItemParametersValidator(List<ParameterValidator> parameterValidators) {
-    super(parameterValidators);
-  }
+    public PathItemParametersValidator(List<ParameterValidator> parameterValidators) {
+        super(parameterValidators);
+    }
 
-  @Override
-  protected String get$ref(PathItem oasObject) {
-    return oasObject.get$ref();
-  }
+    @Override
+    protected String get$ref(PathItem oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected List<Parameter> getListProperty(PathItem oasObject) {
-    return oasObject.getParameters();
-  }
+    @Override
+    protected List<Parameter> getListProperty(PathItem oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getListPropertyName() {
-    return "parameters";
-  }
+    @Override
+    protected String getListPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getElementType() {
-    return PARAMETER;
-  }
-
+    @Override
+    protected OasObjectType getElementType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,45 +14,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.api;
 
 import io.swagger.v3.oas.models.OpenAPI;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class OasDiffValidationContext {
 
-  private final OpenAPI leftOpenAPI;
+    private final OpenAPI leftOpenAPI;
 
-  private final OpenAPI rightOpenAPI;
+    private final OpenAPI rightOpenAPI;
 
-  private final Map<String, Object> attributes = new HashMap<>();
+    private final Map<String, Object> attributes = new HashMap<>();
 
-  public OasDiffValidationContext(OpenAPI leftOpenAPI, OpenAPI rightOpenAPI) {
-    this.leftOpenAPI = leftOpenAPI;
-    this.rightOpenAPI = rightOpenAPI;
-  }
+    public OasDiffValidationContext(OpenAPI leftOpenAPI, OpenAPI rightOpenAPI) {
+        this.leftOpenAPI = leftOpenAPI;
+        this.rightOpenAPI = rightOpenAPI;
+    }
 
-  public OpenAPI getLeftOpenAPI() {
-    return leftOpenAPI;
-  }
+    public OpenAPI getLeftOpenAPI() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public OpenAPI getRightOpenAPI() {
-    return rightOpenAPI;
-  }
+    public OpenAPI getRightOpenAPI() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public <T> T getAttribute(String name) {
-    return (T) attributes.get(name);
-  }
+    public <T> T getAttribute(String name) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public <T> void setAttribute(String name, T attr) {
-    this.attributes.put(name, attr);
-  }
+    public <T> void setAttribute(String name, T attr) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void removeAttribute(String name) {
-    this.attributes.remove(name);
-  }
-
+    public void removeAttribute(String name) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

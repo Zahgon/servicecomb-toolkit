@@ -14,43 +14,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema.response;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.DiffViolationMessages;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.OasDiffValidationContext;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema.SchemaPropertyChangeValidator;
 import io.swagger.v3.oas.models.media.Schema;
-
 import java.math.BigDecimal;
-
 import static org.apache.servicecomb.toolkit.oasv.diffvalidation.util.OasDiffValidationContextUtils.*;
 
 public class SchemaMinimumChangeInResponseValidator extends SchemaPropertyChangeValidator<BigDecimal> {
 
-  @Override
-  protected BigDecimal getProperty(Schema schema) {
-    return schema.getMinimum();
-  }
+    @Override
+    protected BigDecimal getProperty(Schema schema) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "minimum";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected boolean isAllowed(BigDecimal leftProperty, BigDecimal rightProperty) {
-    return rightProperty.compareTo(leftProperty) >= 0;
-  }
+    @Override
+    protected boolean isAllowed(BigDecimal leftProperty, BigDecimal rightProperty) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getMessage(BigDecimal leftProperty, BigDecimal rightProperty) {
-    return DiffViolationMessages.NEW_NOT_GTE_OLD;
-  }
+    @Override
+    protected String getMessage(BigDecimal leftProperty, BigDecimal rightProperty) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected boolean needValidate(OasDiffValidationContext context) {
-    return isInResponse(context);
-  }
-
+    @Override
+    protected boolean needValidate(OasDiffValidationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

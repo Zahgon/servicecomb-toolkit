@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.config;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.PathItemDiffValidator;
@@ -25,9 +24,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PathItemDiffValidatorsConfiguration {
 
-  @Bean
-  public PathItemDiffValidator pathItemDeleteNotAllowedValidator() {
-    return new PathItemDeleteNotAllowedDiffValidator();
-  }
-
+    @Bean
+    public PathItemDiffValidator pathItemDeleteNotAllowedValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
@@ -22,63 +21,25 @@ import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.OasDiffValidationC
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.OasDiffViolation;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.SchemaCompareValidator;
 import io.swagger.v3.oas.models.media.Schema;
-
 import java.util.List;
 import java.util.Objects;
-
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
 public abstract class SchemaPropertyChangeValidator<T> implements SchemaCompareValidator {
 
-  @Override
-  public final List<OasDiffViolation> validate(OasDiffValidationContext context, OasObjectPropertyLocation leftLocation,
-    Schema leftOasObject, OasObjectPropertyLocation rightLocation, Schema rightOasObject) {
-
-    if (!needValidate(context)) {
-      return emptyList();
+    @Override
+    public final List<OasDiffViolation> validate(OasDiffValidationContext context, OasObjectPropertyLocation leftLocation, Schema leftOasObject, OasObjectPropertyLocation rightLocation, Schema rightOasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    T leftNumber = getProperty(leftOasObject);
-    T rightNumber = getProperty(rightOasObject);
+    protected abstract T getProperty(Schema schema);
 
-    if (Objects.equals(leftNumber, rightNumber)) {
-      return emptyList();
-    }
+    protected abstract String getPropertyName();
 
-    String propertyName = getPropertyName();
+    protected abstract String getMessage(T leftProperty, T rightProperty);
 
-    if (leftNumber == null || rightNumber == null) {
-      return singletonList(new OasDiffViolation(
-          leftLocation.property(propertyName),
-          rightLocation.property(propertyName),
-          getMessage(leftNumber, rightNumber)
-        )
-      );
-    }
+    protected abstract boolean isAllowed(T leftProperty, T rightProperty);
 
-    if (!isAllowed(leftNumber, rightNumber)) {
-      return singletonList(new OasDiffViolation(
-          leftLocation.property(propertyName),
-          rightLocation.property(propertyName),
-          getMessage(leftNumber, rightNumber)
-        )
-      );
-    }
-
-    return emptyList();
-
-  }
-
-
-  protected abstract T getProperty(Schema schema);
-
-  protected abstract String getPropertyName();
-
-  protected abstract String getMessage(T leftProperty, T rightProperty);
-
-  protected abstract boolean isAllowed(T leftProperty, T rightProperty);
-
-  protected abstract boolean needValidate(OasDiffValidationContext context);
-
+    protected abstract boolean needValidate(OasDiffValidationContext context);
 }

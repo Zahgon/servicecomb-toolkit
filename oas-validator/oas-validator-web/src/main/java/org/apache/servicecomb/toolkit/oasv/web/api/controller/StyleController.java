@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.web.api.controller;
 
 import java.io.InputStream;
@@ -22,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
@@ -42,7 +40,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
 
@@ -50,76 +47,55 @@ import io.swagger.v3.parser.core.models.SwaggerParseResult;
 @RequestMapping("/api/style")
 public class StyleController implements InitializingBean {
 
-  @Autowired
-  private OasSpecValidatorFactory oasSpecValidatorFactory;
+    @Autowired
+    private OasSpecValidatorFactory oasSpecValidatorFactory;
 
-  private FactoryOptions factoryOptions;
+    private FactoryOptions factoryOptions;
 
-  @PostMapping(consumes = MimeTypeUtils.TEXT_PLAIN_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-  @ResponseStatus(value = HttpStatus.OK)
-  public Map<String, Object> validateOpenAPI(@RequestBody String yaml) {
-
-    ImportError importError = doValidate(yaml);
-    Map<String, Object> json = new HashMap<>();
-    
-    json.put("acknowleged", true);
-    json.put("data", importError);
-    
-    return json;
-  }
-
-
-  private ImportError doValidate(String yaml) {
-
-    ImportError importError = new ImportError();
-    importError.addParseErrors(SyntaxChecker.check(yaml));
-    if (importError.isNotEmpty()) {
-      return importError;
+    @PostMapping(consumes = MimeTypeUtils.TEXT_PLAIN_VALUE, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public Map<String, Object> validateOpenAPI(@RequestBody String yaml) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    SwaggerParseResult parseResult = StyleCheckParser.parseYaml(yaml);
-    if (CollectionUtils.isNotEmpty(parseResult.getMessages())) {
-      throw new RuntimeException(StringUtils.join(parseResult.getMessages(), ","));
+    private ImportError doValidate(String yaml) {
+        ImportError importError = new ImportError();
+        importError.addParseErrors(SyntaxChecker.check(yaml));
+        if (importError.isNotEmpty()) {
+            return importError;
+        }
+        SwaggerParseResult parseResult = StyleCheckParser.parseYaml(yaml);
+        if (CollectionUtils.isNotEmpty(parseResult.getMessages())) {
+            throw new RuntimeException(StringUtils.join(parseResult.getMessages(), ","));
+        }
+        OpenAPI openAPI = loadByYaml(yaml);
+        OasSpecValidator oasSpecValidator = oasSpecValidatorFactory.create(factoryOptions);
+        List<OasViolation> violations = oasSpecValidator.validate(createContext(openAPI), openAPI);
+        if (CollectionUtils.isNotEmpty(violations)) {
+            importError.addViolations(violations);
+        }
+        return importError;
     }
 
-    OpenAPI openAPI = loadByYaml(yaml);
-    OasSpecValidator oasSpecValidator = oasSpecValidatorFactory.create(factoryOptions);
-    List<OasViolation> violations = oasSpecValidator.validate(createContext(openAPI), openAPI);
-    if (CollectionUtils.isNotEmpty(violations)) {
-      importError.addViolations(violations);
+    private OpenAPI loadByYaml(String yaml) {
+        SwaggerParseResult parseResult = StyleCheckParser.parseYaml(yaml);
+        if (CollectionUtils.isNotEmpty(parseResult.getMessages())) {
+            throw new RuntimeException(StringUtils.join(parseResult.getMessages(), ","));
+        }
+        return parseResult.getOpenAPI();
     }
 
-    return importError;
-  }
-
-  private OpenAPI loadByYaml(String yaml) {
-    SwaggerParseResult parseResult = StyleCheckParser.parseYaml(yaml);
-    if (CollectionUtils.isNotEmpty(parseResult.getMessages())) {
-      throw new RuntimeException(StringUtils.join(parseResult.getMessages(), ","));
+    private OasValidationContext createContext(OpenAPI openAPI) {
+        OasValidationContext oasValidationContext = new OasValidationContext(openAPI);
+        initContext(oasValidationContext);
+        return oasValidationContext;
     }
-    return parseResult.getOpenAPI();
-  }
-  
-  private OasValidationContext createContext(OpenAPI openAPI) {
 
-    OasValidationContext oasValidationContext = new OasValidationContext(openAPI);
-    initContext(oasValidationContext);
-    return oasValidationContext;
-
-  }
-  
-  
-  private void initContext(OasValidationContext context) {
-  }
-
-  @Override
-  public void afterPropertiesSet() throws Exception {
-    PathMatchingResourcePatternResolver resourceResolver = new PathMatchingResourcePatternResolver();
-    try (InputStream inputStream
-        = resourceResolver.getResource("classpath:style-check-rules.properties").getInputStream()) {
-      Properties properties = new Properties();
-      properties.load(inputStream);
-      this.factoryOptions = new FactoryOptions(properties);
+    private void initContext(OasValidationContext context) {
     }
-  }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

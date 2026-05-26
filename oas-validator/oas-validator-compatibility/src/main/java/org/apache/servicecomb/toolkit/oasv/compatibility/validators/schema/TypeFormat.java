@@ -14,55 +14,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema;
 
 import io.swagger.v3.oas.models.media.Schema;
-
 import java.util.Objects;
 import java.util.StringJoiner;
 
 public class TypeFormat {
-  private final String type;
-  private final String format;
 
-  public TypeFormat(String type, String format) {
-    this.type = type;
-    this.format = format;
-  }
+    private final String type;
 
-  public TypeFormat(Schema schema) {
-    this.type = schema.getType();
-    this.format = schema.getFormat();
-  }
+    private final String format;
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    TypeFormat that = (TypeFormat) o;
-    return Objects.equals(type, that.type) &&
-      Objects.equals(format, that.format);
-  }
+    public TypeFormat(String type, String format) {
+        this.type = type;
+        this.format = format;
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(type, format);
-  }
+    public TypeFormat(Schema schema) {
+        this.type = schema.getType();
+        this.format = schema.getFormat();
+    }
 
-  @Override
-  public String toString() {
-    return new StringJoiner(", ", TypeFormat.class.getSimpleName() + "[", "]")
-      .add("type='" + type + "'")
-      .add("format='" + format + "'")
-      .toString();
-  }
+    @Override
+    public boolean equals(Object o) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String getType() {
-    return type;
-  }
+    @Override
+    public int hashCode() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String getFormat() {
-    return format;
-  }
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public String getType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public String getFormat() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

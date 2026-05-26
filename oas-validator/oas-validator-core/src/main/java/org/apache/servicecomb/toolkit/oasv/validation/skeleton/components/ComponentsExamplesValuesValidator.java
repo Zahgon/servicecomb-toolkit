@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.components;
 
 import org.apache.servicecomb.toolkit.oasv.validation.api.ComponentsValidator;
@@ -23,35 +22,33 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import org.apache.servicecomb.toolkit.oasv.validation.api.ExampleValidator;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.examples.Example;
-
 import java.util.List;
 import java.util.Map;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.EXAMPLE;
 
-public class ComponentsExamplesValuesValidator extends MapPropertyValuesValidator<Components, Example>
-  implements ComponentsValidator {
+public class ComponentsExamplesValuesValidator extends MapPropertyValuesValidator<Components, Example> implements ComponentsValidator {
 
-  public ComponentsExamplesValuesValidator(List<ExampleValidator> valueValidators) {
-    super(valueValidators);
-  }
-  @Override
-  protected String get$ref(Components oasObject) {
-    return null;
-  }
-  @Override
-  protected Map<String, Example> getMapProperty(Components components) {
-    return components.getExamples();
-  }
+    public ComponentsExamplesValuesValidator(List<ExampleValidator> valueValidators) {
+        super(valueValidators);
+    }
 
-  @Override
-  protected String getMapPropertyName() {
-    return "examples";
-  }
+    @Override
+    protected String get$ref(Components oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getValueType() {
-    return EXAMPLE;
-  }
+    @Override
+    protected Map<String, Example> getMapProperty(Components components) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
+    @Override
+    protected String getMapPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    protected OasObjectType getValueType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

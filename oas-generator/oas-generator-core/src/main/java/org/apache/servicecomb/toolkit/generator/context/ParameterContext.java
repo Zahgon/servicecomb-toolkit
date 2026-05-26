@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.context;
 
 import java.lang.annotation.Annotation;
@@ -23,13 +22,11 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.servicecomb.toolkit.generator.parser.api.OpenApiAnnotationParser;
 import org.apache.servicecomb.toolkit.generator.util.ModelConverter;
 import org.apache.servicecomb.toolkit.generator.util.ParamUtils;
 import org.apache.servicecomb.toolkit.generator.util.RequestResponse;
-
 import io.swagger.v3.core.util.ParameterProcessor;
 import io.swagger.v3.core.util.ReflectionUtils;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -42,339 +39,269 @@ import io.swagger.v3.oas.models.parameters.RequestBody;
 
 public class ParameterContext implements ISchemaContext, IExtensionsContext {
 
-  private final static Schema nullSchema = new Schema();
+    private final static Schema nullSchema = new Schema();
 
-  private OperationContext parentContext;
+    private OperationContext parentContext;
 
-  private Parameter parameter;
+    private Parameter parameter;
 
-  private Object defaultValue;
+    private Object defaultValue;
 
-  private io.swagger.v3.oas.models.parameters.Parameter oasParameter = new io.swagger.v3.oas.models.parameters.Parameter();
+    private io.swagger.v3.oas.models.parameters.Parameter oasParameter = new io.swagger.v3.oas.models.parameters.Parameter();
 
-  private String name = null;
+    private String name = null;
 
-  private InType in = null;
+    private InType in = null;
 
-  private String description = null;
+    private String description = null;
 
-  private Boolean required = null;
+    private Boolean required = null;
 
-  private Boolean deprecated = null;
+    private Boolean deprecated = null;
 
-  private Boolean allowEmptyValue = null;
+    private Boolean allowEmptyValue = null;
 
-  private ParameterStyle style;
+    private ParameterStyle style;
 
-  private Boolean explode = null;
+    private Boolean explode = null;
 
-  private Boolean allowReserved = null;
+    private Boolean allowReserved = null;
 
-  private Schema schema;
+    private Schema schema;
 
-  private Object example = null;
+    private Object example = null;
 
-  private Map<String, Example> examples = null;
+    private Map<String, Example> examples = null;
 
-  private Content content = null;
+    private Content content = null;
 
-  private String ref = null;
+    private String ref = null;
 
-  private RequestBody requestBody;
+    private RequestBody requestBody;
 
-  private List<String> consumes;
+    private List<String> consumes;
 
-  public ParameterContext(OperationContext parentContext, Parameter parameter) {
-    this.parentContext = parentContext;
-    this.parameter = parameter;
-    parentContext.addParamCtx(this);
-  }
-
-  public io.swagger.v3.oas.models.parameters.Parameter toParameter() {
-
-    if (parameter == null) {
-      return null;
-    }
-    ensureName();
-    if (schema == null || nullSchema.equals(schema)) {
-      schema = ModelConverter.getSchema(parameter.getType(), getComponents(), RequestResponse.REQUEST);
-      oasParameter.schema(schema);
+    public ParameterContext(OperationContext parentContext, Parameter parameter) {
+        this.parentContext = parentContext;
+        this.parameter = parameter;
+        parentContext.addParamCtx(this);
     }
 
-    if (in == null) {
-      oasParameter.setIn(ParameterIn.QUERY.toString());
-    } else {
-      switch (in) {
-        case PATH: {
-          oasParameter.setIn(ParameterIn.PATH.toString());
-          break;
+    public io.swagger.v3.oas.models.parameters.Parameter toParameter() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public boolean isRequestBody() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void applyAnnotations(List<Annotation> annotations) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    private void ensureName() {
+        if (StringUtils.isEmpty(name)) {
+            // try get real type
+            name = ParamUtils.getParameterName(parentContext.getMethod(), parameter);
         }
-        case QUERY: {
-          oasParameter.setIn(ParameterIn.QUERY.toString());
-          break;
+        if (StringUtils.isEmpty(name)) {
+            name = parameter.getName();
         }
-        case COOKIE: {
-          oasParameter.setIn(ParameterIn.COOKIE.toString());
-          break;
-        }
-        case HEADER: {
-          oasParameter.setIn(ParameterIn.HEADER.toString());
-          break;
-        }
-        default:
-          oasParameter.setIn(ParameterIn.QUERY.toString());
-      }
+        oasParameter.setName(name);
     }
 
-    if (defaultValue != null) {
-      required = false;
-      oasParameter.getSchema().setDefault(defaultValue);
+    public OperationContext getOperationContext() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    oasParameter.setRequired(required);
-    return oasParameter;
-  }
-
-  public boolean isRequestBody() {
-    if (in != null && (in.equals(InType.BODY) || in.equals(InType.FORM))) {
-      return true;
-    }
-    return false;
-  }
-
-  public void applyAnnotations(List<Annotation> annotations) {
-    ParameterProcessor
-        .applyAnnotations(oasParameter, getType(), annotations,
-            getComponents(),
-            null, null, null);
-  }
-
-  private void ensureName() {
-    if (StringUtils.isEmpty(name)) {
-      // try get real type
-      name = ParamUtils.getParameterName(parentContext.getMethod(), parameter);
+    public Object getDefaultValue() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    if (StringUtils.isEmpty(name)) {
-      name = parameter.getName();
+    public void setDefaultValue(Object defaultValue) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    oasParameter.setName(name);
-  }
-
-  public OperationContext getOperationContext() {
-    return parentContext;
-  }
-
-  public Object getDefaultValue() {
-    return defaultValue;
-  }
-
-  public void setDefaultValue(Object defaultValue) {
-    this.defaultValue = defaultValue;
-  }
-
-  public Components getComponents() {
-    return parentContext.getComponents();
-  }
-
-  public io.swagger.v3.oas.models.parameters.Parameter getOasParameter() {
-    return oasParameter;
-  }
-
-  public Parameter getParameter() {
-    return parameter;
-  }
-
-  public void setParameter(Parameter parameter) {
-    this.parameter = parameter;
-  }
-
-  public boolean isRequired() {
-    return required;
-  }
-
-  public Type getType() {
-
-    if (getRealType() != null) {
-      return getRealType();
+    public Components getComponents() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    if (StringUtils.isNotEmpty(oasParameter.getIn())) {
-      return ReflectionUtils.typeFromString(oasParameter.getIn());
+    public io.swagger.v3.oas.models.parameters.Parameter getOasParameter() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    return null;
-  }
-
-  public void addConsume(String consume) {
-    if (consumes == null) {
-      consumes = new ArrayList<>();
-    }
-    consumes.add(consume);
-  }
-
-  public List<String> getConsumers() {
-    return consumes;
-  }
-
-  public Type getRealType() {
-    return parameter.getParameterizedType();
-  }
-
-  public void setRequestBody(RequestBody requestBody) {
-    required = requestBody.getRequired();
-    description = requestBody.getDescription();
-    this.requestBody = requestBody;
-  }
-
-  public RequestBody getRequestBody() {
-    return requestBody;
-  }
-
-  @Override
-  public Schema getSchema() {
-
-    Schema refSchema = oasParameter.getSchema();
-    if (refSchema == null || nullSchema.equals(refSchema)) {
-      refSchema = ModelConverter.getSchema(parameter.getType(), getComponents(), RequestResponse.REQUEST);
-      oasParameter.schema(refSchema);
+    public Parameter getParameter() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    return refSchema;
-  }
+    public void setParameter(Parameter parameter) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void setSchema(Schema schema) {
-    this.schema = schema;
-  }
+    public boolean isRequired() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public void addExtension(String name, Object value) {
-    oasParameter.addExtension(name, value);
-  }
+    public Type getType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public Map<String, Object> getExtensions() {
-    return oasParameter.getExtensions();
-  }
+    public void addConsume(String consume) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public OpenApiAnnotationParser getParser() {
-    return parentContext.getParser();
-  }
+    public List<String> getConsumers() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String getName() {
-    ensureName();
-    return name;
-  }
+    public Type getRealType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setRequestBody(RequestBody requestBody) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public InType getIn() {
-    return in;
-  }
+    public RequestBody getRequestBody() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setIn(InType in) {
-    this.in = in;
-  }
+    @Override
+    public Schema getSchema() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String getDescription() {
-    return description;
-  }
+    @Override
+    public void setSchema(Schema schema) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    @Override
+    public void addExtension(String name, Object value) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public Boolean getRequired() {
-    return required;
-  }
+    @Override
+    public Map<String, Object> getExtensions() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setRequired(Boolean required) {
-    this.required = required;
-  }
+    @Override
+    public OpenApiAnnotationParser getParser() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public Boolean getDeprecated() {
-    return deprecated;
-  }
+    public String getName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setDeprecated(Boolean deprecated) {
-    this.deprecated = deprecated;
-  }
+    public void setName(String name) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public Boolean getAllowEmptyValue() {
-    return allowEmptyValue;
-  }
+    public InType getIn() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setAllowEmptyValue(Boolean allowEmptyValue) {
-    this.allowEmptyValue = allowEmptyValue;
-  }
+    public void setIn(InType in) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public ParameterStyle getStyle() {
-    return style;
-  }
+    public String getDescription() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setStyle(ParameterStyle style) {
-    this.style = style;
-  }
+    public void setDescription(String description) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public Boolean getExplode() {
-    return explode;
-  }
+    public Boolean getRequired() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setExplode(Boolean explode) {
-    this.explode = explode;
-  }
+    public void setRequired(Boolean required) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public Boolean getAllowReserved() {
-    return allowReserved;
-  }
+    public Boolean getDeprecated() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setAllowReserved(Boolean allowReserved) {
-    this.allowReserved = allowReserved;
-  }
+    public void setDeprecated(Boolean deprecated) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public Object getExample() {
-    return example;
-  }
+    public Boolean getAllowEmptyValue() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setExample(Object example) {
-    this.example = example;
-  }
+    public void setAllowEmptyValue(Boolean allowEmptyValue) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public Map<String, Example> getExamples() {
-    return examples;
-  }
+    public ParameterStyle getStyle() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setExamples(Map<String, Example> examples) {
-    this.examples = examples;
-  }
+    public void setStyle(ParameterStyle style) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public Content getContent() {
-    return content;
-  }
+    public Boolean getExplode() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setContent(Content content) {
-    this.content = content;
-  }
+    public void setExplode(Boolean explode) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String getRef() {
-    return ref;
-  }
+    public Boolean getAllowReserved() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setRef(String ref) {
-    this.ref = ref;
-  }
+    public void setAllowReserved(Boolean allowReserved) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public enum InType {
-    QUERY,
-    PATH,
-    HEADER,
-    COOKIE,
-    FORM,
-    BODY
-  }
+    public Object getExample() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setExample(Object example) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public Map<String, Example> getExamples() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setExamples(Map<String, Example> examples) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public Content getContent() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setContent(Content content) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public String getRef() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setRef(String ref) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public enum InType {
+
+        QUERY,
+        PATH,
+        HEADER,
+        COOKIE,
+        FORM,
+        BODY
+    }
 }

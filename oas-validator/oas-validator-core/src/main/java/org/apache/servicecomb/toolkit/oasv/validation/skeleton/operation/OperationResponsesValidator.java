@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.operation;
 
 import org.apache.servicecomb.toolkit.oasv.validation.api.OperationValidator;
@@ -23,40 +22,36 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import org.apache.servicecomb.toolkit.oasv.validation.api.ObjectPropertyValidator;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.responses.ApiResponses;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.RESPONSES;
 
 /**
  * <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#operationObject">Operation Object</a>
  * .responses property validator
  */
-public class OperationResponsesValidator extends ObjectPropertyValidator<Operation, ApiResponses>
-  implements OperationValidator {
+public class OperationResponsesValidator extends ObjectPropertyValidator<Operation, ApiResponses> implements OperationValidator {
 
-  public OperationResponsesValidator(List<ResponsesValidator> responseValidators) {
-    super(responseValidators);
-  }
+    public OperationResponsesValidator(List<ResponsesValidator> responseValidators) {
+        super(responseValidators);
+    }
 
-  @Override
-  protected String get$ref(Operation oasObject) {
-    return null;
-  }
+    @Override
+    protected String get$ref(Operation oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected ApiResponses getPropertyObject(Operation oasObject) {
-    return oasObject.getResponses();
-  }
+    @Override
+    protected ApiResponses getPropertyObject(Operation oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "responses";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getPropertyType() {
-    return RESPONSES;
-  }
-
+    @Override
+    protected OasObjectType getPropertyType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,28 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.common;
 
 import java.util.Objects;
 
 public enum ContractFileType {
 
-  YAML(".yaml");
+    YAML(".yaml");
 
-  private String suffix;
+    private String suffix;
 
-  ContractFileType(String suffix) {
-    this.suffix = suffix;
-  }
+    ContractFileType(String suffix) {
+        this.suffix = suffix;
+    }
 
-  public String getFileSuffix() {
-    return this.suffix;
-  }
+    public String getFileSuffix() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public static ContractFileType getValue(String name) {
-
-    name = Objects.requireNonNull(name).toUpperCase();
-    return valueOf(name);
-  }
+    public static ContractFileType getValue(String name) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

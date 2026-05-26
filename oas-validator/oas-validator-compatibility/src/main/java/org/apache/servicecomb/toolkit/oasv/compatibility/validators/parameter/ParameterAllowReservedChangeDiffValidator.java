@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.validators.parameter;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
@@ -26,9 +25,7 @@ import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.ParameterDiffValid
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.util.ChangeRangeCheckUtils;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.util.ParameterUtils;
 import io.swagger.v3.oas.models.parameters.Parameter;
-
 import java.util.List;
-
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
@@ -36,34 +33,10 @@ import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
 /**
  * Parameter.allowReserved only allow change false to true
  */
-public class ParameterAllowReservedChangeDiffValidator
-  extends OasObjectDiffValidatorTemplate<Parameter>
-  implements ParameterDiffValidator {
+public class ParameterAllowReservedChangeDiffValidator extends OasObjectDiffValidatorTemplate<Parameter> implements ParameterDiffValidator {
 
-  @Override
-  protected List<OasDiffViolation> validateCompare(OasDiffValidationContext context,
-    OasObjectPropertyLocation leftLocation, Parameter leftOasObject, OasObjectPropertyLocation rightLocation,
-    Parameter rightOasObject) {
-
-    if (ChangeRangeCheckUtils.isNotViolated(
-      defaultIfNull(leftOasObject.getAllowReserved(), Boolean.FALSE),
-      defaultIfNull(rightOasObject.getAllowReserved(), Boolean.FALSE),
-      singletonList(new Object[] { false, true }))) {
-      return emptyList();
+    @Override
+    protected List<OasDiffViolation> validateCompare(OasDiffValidationContext context, OasObjectPropertyLocation leftLocation, Parameter leftOasObject, OasObjectPropertyLocation rightLocation, Parameter rightOasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-
-    String message = new StringBuilder()
-      .append(ParameterUtils.getKeyString(rightOasObject))
-      .append(':')
-      .append(DiffViolationMessages.FALSE_TO_TRUE)
-      .toString();
-
-    return singletonList(new OasDiffViolation(
-      leftLocation.property("allowReserved"),
-      rightLocation.property("allowReserved"),
-      message
-    ));
-
-  }
-
 }

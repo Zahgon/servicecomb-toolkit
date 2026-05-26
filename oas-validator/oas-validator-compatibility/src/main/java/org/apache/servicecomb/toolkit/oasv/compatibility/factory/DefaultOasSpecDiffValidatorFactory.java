@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.DefaultOasSpecDiffValidator;
@@ -26,15 +25,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultOasSpecDiffValidatorFactory implements OasSpecDiffValidatorFactory {
 
-  private final OpenApiDiffValidatorFactory openApiDiffValidatorFactory;
+    private final OpenApiDiffValidatorFactory openApiDiffValidatorFactory;
 
-  public DefaultOasSpecDiffValidatorFactory(
-      OpenApiDiffValidatorFactory openApiDiffValidatorFactory) {
-    this.openApiDiffValidatorFactory = openApiDiffValidatorFactory;
-  }
+    public DefaultOasSpecDiffValidatorFactory(OpenApiDiffValidatorFactory openApiDiffValidatorFactory) {
+        this.openApiDiffValidatorFactory = openApiDiffValidatorFactory;
+    }
 
-  @Override
-  public OasSpecDiffValidator create() {
-    return new DefaultOasSpecDiffValidator(openApiDiffValidatorFactory.create());
-  }
+    @Override
+    public OasSpecDiffValidator create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

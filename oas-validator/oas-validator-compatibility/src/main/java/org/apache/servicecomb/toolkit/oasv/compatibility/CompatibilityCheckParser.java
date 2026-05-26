@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility;
 
 import io.swagger.v3.parser.OpenAPIV3Parser;
@@ -23,22 +22,20 @@ import io.swagger.v3.parser.core.models.SwaggerParseResult;
 
 public abstract class CompatibilityCheckParser {
 
-  private CompatibilityCheckParser() {
-    // singleton
-  }
+    private CompatibilityCheckParser() {
+        // singleton
+    }
 
-  public static SwaggerParseResult parseYaml(String yaml) {
-    OpenAPIV3Parser parser = new OpenAPIV3Parser();
-    return parser.readContents(yaml, null, createParseOptions());
-  }
+    public static SwaggerParseResult parseYaml(String yaml) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  private static ParseOptions createParseOptions() {
-
-    ParseOptions parseOptions = new ParseOptions();
-    parseOptions.setResolve(true);
-    parseOptions.setResolveCombinators(true);
-    parseOptions.setResolveFully(true);
-    parseOptions.setFlatten(false);
-    return parseOptions;
-  }
+    private static ParseOptions createParseOptions() {
+        ParseOptions parseOptions = new ParseOptions();
+        parseOptions.setResolve(true);
+        parseOptions.setResolveCombinators(true);
+        parseOptions.setResolveFully(true);
+        parseOptions.setFlatten(false);
+        return parseOptions;
+    }
 }

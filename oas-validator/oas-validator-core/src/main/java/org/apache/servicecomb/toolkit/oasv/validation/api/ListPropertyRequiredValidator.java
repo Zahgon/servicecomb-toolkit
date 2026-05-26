@@ -14,43 +14,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.api;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-
 import java.util.List;
-
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
 public abstract class ListPropertyRequiredValidator<T, P> implements OasObjectValidator<T> {
 
-  @Override
-  final public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location,
-    T oasObject) {
-
-    if (StringUtils.isNotBlank(get$ref(oasObject))) {
-      return emptyList();
+    @Override
+    final public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, T oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    List<P> listProperty = getListProperty(oasObject);
-    if (CollectionUtils.isEmpty(listProperty)) {
-      OasObjectPropertyLocation propertyLoc = location.property(getListPropertyName(), getElementType());
-      return singletonList(new OasViolation(propertyLoc, ViolationMessages.REQUIRED));
-    }
-    return emptyList();
+    protected abstract String get$ref(T oasObject);
 
-  }
+    protected abstract List<P> getListProperty(T oasObject);
 
-  protected abstract String get$ref(T oasObject);
+    protected abstract String getListPropertyName();
 
-  protected abstract List<P> getListProperty(T oasObject);
-
-  protected abstract String getListPropertyName();
-
-  protected abstract OasObjectType getElementType();
+    protected abstract OasObjectType getElementType();
 }

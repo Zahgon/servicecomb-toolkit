@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.factory;
 
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
@@ -25,7 +24,6 @@ import org.apache.servicecomb.toolkit.oasv.validation.factory.SchemaValidatorFac
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.mediatype.MediaTypeEncodingValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.mediatype.MediaTypeSchemaValidator;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,26 +31,17 @@ import java.util.List;
 @Component
 public class DefaultMediaTypeValidatorFactory implements MediaTypeValidatorFactory {
 
-  private final SchemaValidatorFactory schemaValidatorFactory;
+    private final SchemaValidatorFactory schemaValidatorFactory;
 
-  private final EncodingValidatorFactory encodingValidatorFactory;
+    private final EncodingValidatorFactory encodingValidatorFactory;
 
-  public DefaultMediaTypeValidatorFactory(
-      SchemaValidatorFactory schemaValidatorFactory,
-      EncodingValidatorFactory encodingValidatorFactory) {
-    this.schemaValidatorFactory = schemaValidatorFactory;
-    this.encodingValidatorFactory = encodingValidatorFactory;
-  }
+    public DefaultMediaTypeValidatorFactory(SchemaValidatorFactory schemaValidatorFactory, EncodingValidatorFactory encodingValidatorFactory) {
+        this.schemaValidatorFactory = schemaValidatorFactory;
+        this.encodingValidatorFactory = encodingValidatorFactory;
+    }
 
-  @Override
-  public List<MediaTypeValidator> create(FactoryOptions options) {
-
-    List<MediaTypeValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new MediaTypeSchemaValidator(schemaValidatorFactory.create(options)));
-    validators.add(new MediaTypeEncodingValidator(encodingValidatorFactory.create(options)));
-
-    return Collections.unmodifiableList(validators);
-  }
+    @Override
+    public List<MediaTypeValidator> create(FactoryOptions options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.parameter.ParameterAddDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.parameter.ParameterAllowEmptyValueChangeDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.parameter.ParameterAllowReservedChangeDiffValidator;
@@ -38,35 +36,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultParameterDiffValidatorFactory implements ParameterDiffValidatorFactory {
 
+    private final MediaTypeDiffValidatorFactory mediaTypeDiffValidatorFactory;
 
-  private final MediaTypeDiffValidatorFactory mediaTypeDiffValidatorFactory;
+    private final SchemaDiffValidatorFactory schemaDiffValidatorFactory;
 
-  private final SchemaDiffValidatorFactory schemaDiffValidatorFactory;
+    public DefaultParameterDiffValidatorFactory(MediaTypeDiffValidatorFactory mediaTypeDiffValidatorFactory, SchemaDiffValidatorFactory schemaDiffValidatorFactory) {
+        this.mediaTypeDiffValidatorFactory = mediaTypeDiffValidatorFactory;
+        this.schemaDiffValidatorFactory = schemaDiffValidatorFactory;
+    }
 
-  public DefaultParameterDiffValidatorFactory(
-      MediaTypeDiffValidatorFactory mediaTypeDiffValidatorFactory,
-      SchemaDiffValidatorFactory schemaDiffValidatorFactory) {
-    this.mediaTypeDiffValidatorFactory = mediaTypeDiffValidatorFactory;
-    this.schemaDiffValidatorFactory = schemaDiffValidatorFactory;
-  }
-
-  @Override
-  public List<ParameterDiffValidator> create() {
-
-    List<ParameterDiffValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new ParameterContentDiffValidator(mediaTypeDiffValidatorFactory.create()));
-    validators.add(new ParameterSchemaDiffValidator(schemaDiffValidatorFactory.create()));
-
-    // concretes
-    validators.add(new ParameterAddDiffValidator());
-    validators.add(new ParameterRequiredChangeDiffValidator());
-    validators.add(new ParameterAllowEmptyValueChangeDiffValidator());
-    validators.add(new ParameterStyleNotSameDiffValidator());
-    validators.add(new ParameterExplodeNotSameDiffValidator());
-    validators.add(new ParameterAllowReservedChangeDiffValidator());
-
-    return Collections.unmodifiableList(validators);
-  }
+    @Override
+    public List<ParameterDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

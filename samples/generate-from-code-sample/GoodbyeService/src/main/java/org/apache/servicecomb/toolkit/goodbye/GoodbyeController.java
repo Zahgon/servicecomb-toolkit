@@ -14,11 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.goodbye;
 
 import javax.servlet.http.Part;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -28,8 +26,8 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class GoodbyeController {
 
-  @GetMapping("/goodbye/{name}")
-  public String sayGoodbye(@PathVariable("name") String name, @RequestPart MultipartFile file, @RequestPart Part part) {
-    return "Goodbye," + name;
-  }
+    @GetMapping("/goodbye/{name}")
+    public String sayGoodbye(@PathVariable("name") String name, @RequestPart MultipartFile file, @RequestPart Part part) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

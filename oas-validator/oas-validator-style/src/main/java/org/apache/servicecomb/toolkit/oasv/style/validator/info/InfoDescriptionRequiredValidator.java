@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.validator.info;
 
 import io.swagger.v3.oas.models.info.Info;
@@ -30,30 +29,27 @@ import org.apache.servicecomb.toolkit.oasv.validation.api.ObjectPropertyRequired
  *   <li>description must not be null</li>
  * </ul>
  */
-public class InfoDescriptionRequiredValidator
-  extends ObjectPropertyRequiredValidator<Info, String>
-  implements InfoValidator {
+public class InfoDescriptionRequiredValidator extends ObjectPropertyRequiredValidator<Info, String> implements InfoValidator {
 
-  public static final String CONFIG_KEY = "info.description.required";
+    public static final String CONFIG_KEY = "info.description.required";
 
-  @Override
-  protected String get$ref(Info oasObject) {
-    return null;
-  }
+    @Override
+    protected String get$ref(Info oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyObject(Info oasObject) {
-    return oasObject.getDescription();
-  }
+    @Override
+    protected String getPropertyObject(Info oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "description";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getPropertyType() {
-    return null;
-  }
-
+    @Override
+    protected OasObjectType getPropertyType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

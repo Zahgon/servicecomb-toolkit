@@ -14,69 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import org.apache.servicecomb.toolkit.generator.context.OasContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-public class RequestMappingClassAnnotationProcessor implements
-    ClassAnnotationProcessor<RequestMapping, OasContext> {
+public class RequestMappingClassAnnotationProcessor implements ClassAnnotationProcessor<RequestMapping, OasContext> {
 
-  @Override
-  public void process(RequestMapping requestMapping, OasContext oasContext) {
-
-    String[] paths = requestMapping.value();
-    if (null == paths || paths.length == 0) {
-      return;
+    @Override
+    public void process(RequestMapping requestMapping, OasContext oasContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    // swagger only support one basePath
-    if (paths.length > 1) {
-      throw new Error("not support multi path for " + oasContext.getCls().getName());
+    protected void processMethod(RequestMethod[] requestMethods, OasContext oasContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    oasContext.setBasePath(paths[0]);
-
-    processMethod(requestMapping.method(), oasContext);
-    processConsumes(requestMapping.consumes(), oasContext);
-    processProduces(requestMapping.produces(), oasContext);
-    processHeaders(requestMapping.headers(), oasContext);
-  }
-
-  protected void processMethod(RequestMethod[] requestMethods, OasContext oasContext) {
-    if (null == requestMethods || requestMethods.length == 0) {
-      return;
+    protected void processConsumes(String[] consumes, OasContext oasContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    if (requestMethods.length > 1) {
-      throw new Error(
-          "not allowed multi http method for " + oasContext.getCls().getName());
+    protected void processProduces(String[] produces, OasContext oasContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    oasContext.setHttpMethod(requestMethods[0].name());
-  }
-
-  protected void processConsumes(String[] consumes, OasContext oasContext) {
-    if (null == consumes || consumes.length == 0) {
-      return;
+    protected void processHeaders(String[] headers, OasContext oasContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    oasContext.setConsumers(consumes);
-  }
-
-  protected void processProduces(String[] produces, OasContext oasContext) {
-    if (null == produces || produces.length == 0) {
-      return;
-    }
-    oasContext.setProduces(produces);
-  }
-
-  protected void processHeaders(String[] headers, OasContext oasContext) {
-    if (null == headers || headers.length == 0) {
-      return;
-    }
-    oasContext.setHeaders(headers);
-  }
 }
-

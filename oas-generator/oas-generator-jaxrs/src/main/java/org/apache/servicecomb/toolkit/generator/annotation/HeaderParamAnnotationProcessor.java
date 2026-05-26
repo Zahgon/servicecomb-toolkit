@@ -1,4 +1,3 @@
-
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -15,18 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import javax.ws.rs.HeaderParam;
-
 import org.apache.servicecomb.toolkit.generator.context.ParameterContext;
 import org.apache.servicecomb.toolkit.generator.context.ParameterContext.InType;
 
 public class HeaderParamAnnotationProcessor implements ParamAnnotationProcessor<HeaderParam, ParameterContext> {
-  @Override
-  public void process(HeaderParam headerParam, ParameterContext parameterContext) {
-    parameterContext.setIn(InType.HEADER);
-    parameterContext.setName(headerParam.value());
-  }
+
+    @Override
+    public void process(HeaderParam headerParam, ParameterContext parameterContext) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

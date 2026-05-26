@@ -14,77 +14,64 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.api;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
-
 import java.util.Objects;
 import java.util.StringJoiner;
 
 public class OasDiffViolation {
 
-  /**
-   * left OAS object location
-   */
-  private final OasObjectPropertyLocation leftLocation;
+    /**
+     * left OAS object location
+     */
+    private final OasObjectPropertyLocation leftLocation;
 
-  /**
-   * right OAS object location
-   */
-  private final OasObjectPropertyLocation rightLocation;
+    /**
+     * right OAS object location
+     */
+    private final OasObjectPropertyLocation rightLocation;
 
-  private final String error;
+    private final String error;
 
-  public static OasDiffViolation onlyLeft(OasObjectPropertyLocation location, String error) {
-    return new OasDiffViolation(location, null, error);
-  }
+    public static OasDiffViolation onlyLeft(OasObjectPropertyLocation location, String error) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public static OasDiffViolation onlyRight(OasObjectPropertyLocation location, String error) {
-    return new OasDiffViolation(null, location, error);
-  }
+    public static OasDiffViolation onlyRight(OasObjectPropertyLocation location, String error) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public OasDiffViolation(OasObjectPropertyLocation leftLocation,
-    OasObjectPropertyLocation rightLocation, String error) {
-    this.leftLocation = leftLocation;
-    this.rightLocation = rightLocation;
-    this.error = error;
-  }
+    public OasDiffViolation(OasObjectPropertyLocation leftLocation, OasObjectPropertyLocation rightLocation, String error) {
+        this.leftLocation = leftLocation;
+        this.rightLocation = rightLocation;
+        this.error = error;
+    }
 
-  public OasObjectPropertyLocation getLeftLocation() {
-    return leftLocation;
-  }
+    public OasObjectPropertyLocation getLeftLocation() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public OasObjectPropertyLocation getRightLocation() {
-    return rightLocation;
-  }
+    public OasObjectPropertyLocation getRightLocation() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public String getError() {
-    return error;
-  }
+    public String getError() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public String toString() {
-    return new StringJoiner(", ", OasDiffViolation.class.getSimpleName() + "[", "]")
-      .add("leftLocation=" + leftLocation)
-      .add("rightLocation=" + rightLocation)
-      .add("error='" + error + "'")
-      .toString();
-  }
+    @Override
+    public String toString() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    OasDiffViolation that = (OasDiffViolation) o;
-    return Objects.equals(leftLocation, that.leftLocation) &&
-      Objects.equals(rightLocation, that.rightLocation) &&
-      Objects.equals(error, that.error);
-  }
+    @Override
+    public boolean equals(Object o) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(leftLocation, rightLocation, error);
-  }
-
+    @Override
+    public int hashCode() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.operation.OperationDeleteNotAllowedDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.operation.OperationIdNotSameDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.OperationDiffValidator;
@@ -36,35 +34,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultOperationDiffValidatorFactory implements OperationDiffValidatorFactory {
 
-  private final ParameterDiffValidatorFactory parameterDiffValidatorFactory;
+    private final ParameterDiffValidatorFactory parameterDiffValidatorFactory;
 
-  private final RequestBodyDiffValidatorFactory requestBodyDiffValidatorFactory;
+    private final RequestBodyDiffValidatorFactory requestBodyDiffValidatorFactory;
 
-  private final ResponsesDiffValidatorFactory responsesDiffValidatorFactory;
+    private final ResponsesDiffValidatorFactory responsesDiffValidatorFactory;
 
-  public DefaultOperationDiffValidatorFactory(
-      ParameterDiffValidatorFactory parameterDiffValidatorFactory,
-      RequestBodyDiffValidatorFactory requestBodyDiffValidatorFactory,
-      ResponsesDiffValidatorFactory responsesDiffValidatorFactory) {
-    this.parameterDiffValidatorFactory = parameterDiffValidatorFactory;
-    this.requestBodyDiffValidatorFactory = requestBodyDiffValidatorFactory;
-    this.responsesDiffValidatorFactory = responsesDiffValidatorFactory;
-  }
+    public DefaultOperationDiffValidatorFactory(ParameterDiffValidatorFactory parameterDiffValidatorFactory, RequestBodyDiffValidatorFactory requestBodyDiffValidatorFactory, ResponsesDiffValidatorFactory responsesDiffValidatorFactory) {
+        this.parameterDiffValidatorFactory = parameterDiffValidatorFactory;
+        this.requestBodyDiffValidatorFactory = requestBodyDiffValidatorFactory;
+        this.responsesDiffValidatorFactory = responsesDiffValidatorFactory;
+    }
 
-  @Override
-  public List<OperationDiffValidator> create() {
-
-    List<OperationDiffValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new OperationParametersDiffValidator(parameterDiffValidatorFactory.create()));
-    validators.add(new OperationRequestBodyDiffValidator(requestBodyDiffValidatorFactory.create()));
-    validators.add(new OperationResponsesDiffValidator(responsesDiffValidatorFactory.create()));
-
-    // concretes
-    validators.add(new OperationDeleteNotAllowedDiffValidator());
-    validators.add(new OperationIdNotSameDiffValidator());
-
-    return Collections.unmodifiableList(validators);
-  }
+    @Override
+    public List<OperationDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

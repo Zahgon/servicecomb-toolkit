@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.factory;
 
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
@@ -26,7 +25,6 @@ import org.apache.servicecomb.toolkit.oasv.validation.factory.ResponseValidatorF
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.response.ResponseContentValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.response.ResponseHeadersValuesValidator;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,36 +32,24 @@ import java.util.List;
 @Component
 public class DefaultResponseValidatorFactory implements ResponseValidatorFactory {
 
-  private final MediaTypeValidatorFactory mediaTypeValidatorFactory;
+    private final MediaTypeValidatorFactory mediaTypeValidatorFactory;
 
-  private final HeaderValidatorFactory headerValidatorFactory;
+    private final HeaderValidatorFactory headerValidatorFactory;
 
-  public DefaultResponseValidatorFactory(
-      MediaTypeValidatorFactory mediaTypeValidatorFactory,
-      HeaderValidatorFactory headerValidatorFactory) {
-    this.mediaTypeValidatorFactory = mediaTypeValidatorFactory;
-    this.headerValidatorFactory = headerValidatorFactory;
-  }
-
-  @Override
-  public List<ResponseValidator> create(FactoryOptions options) {
-
-    List<ResponseValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new ResponseContentValidator(mediaTypeValidatorFactory.create(options)));
-    validators.add(new ResponseHeadersValuesValidator(headerValidatorFactory.create(options)));
-
-    // concretes
-    addResponseHeadersKeysCaseValidator(validators, options);
-    return Collections.unmodifiableList(validators);
-  }
-
-  private void addResponseHeadersKeysCaseValidator(List<ResponseValidator> validators, FactoryOptions options) {
-    String expectedCase = options.getString(ResponseHeadersKeysCaseValidator.CONFIG_KEY);
-    if (expectedCase != null) {
-      validators.add(new ResponseHeadersKeysCaseValidator(expectedCase));
+    public DefaultResponseValidatorFactory(MediaTypeValidatorFactory mediaTypeValidatorFactory, HeaderValidatorFactory headerValidatorFactory) {
+        this.mediaTypeValidatorFactory = mediaTypeValidatorFactory;
+        this.headerValidatorFactory = headerValidatorFactory;
     }
-  }
 
+    @Override
+    public List<ResponseValidator> create(FactoryOptions options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    private void addResponseHeadersKeysCaseValidator(List<ResponseValidator> validators, FactoryOptions options) {
+        String expectedCase = options.getString(ResponseHeadersKeysCaseValidator.CONFIG_KEY);
+        if (expectedCase != null) {
+            validators.add(new ResponseHeadersKeysCaseValidator(expectedCase));
+        }
+    }
 }

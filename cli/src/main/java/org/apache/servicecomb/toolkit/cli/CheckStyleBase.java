@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.cli;
 
 import com.google.common.base.Charsets;
@@ -42,92 +41,48 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-
 public class CheckStyleBase implements Runnable {
 
-  private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+    private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
-  @Option(name = { "-r", "--rules-file" }, title = "rules properties file", required = true,
-      description = "rules properties file")
-  private String rulesFile;
+    @Option(name = { "-r", "--rules-file" }, title = "rules properties file", required = true, description = "rules properties file")
+    private String rulesFile;
 
-  @Option(name = { "-f", "--file" }, title = "OpenAPI v3 spec yaml", required = true,
-      description = "OpenAPI v3 spec yaml")
-  private String filePath;
+    @Option(name = { "-f", "--file" }, title = "OpenAPI v3 spec yaml", required = true, description = "OpenAPI v3 spec yaml")
+    private String filePath;
 
-  @Override
-  public void run() {
-
-    FactoryOptions factoryOptions;
-    try {
-      factoryOptions = loadFactoryOptions();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    String yaml = null;
-    try {
-      yaml = loadFileContent(filePath);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-
-    SwaggerParseResult parseResult = StyleCheckParser.parseYaml(yaml);
-    OpenAPI openAPI = parseResult.getOpenAPI();
-    if (openAPI == null) {
-      StringJoiner sj = new StringJoiner("\n");
-      if (CollectionUtils.isNotEmpty(parseResult.getMessages())) {
-        for (String message : parseResult.getMessages()) {
-          sj.add(message);
+    private OasSpecValidator createOasSpecValidator(FactoryOptions factoryOptions) {
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(ValidatorFactoryComponents.class);
+        try {
+            OasSpecValidatorFactory oasSpecValidatorFactory = ctx.getBean(OasSpecValidatorFactory.class);
+            return oasSpecValidatorFactory.create(factoryOptions);
+        } finally {
+            ctx.close();
         }
-      }
-      throw new RuntimeException(sj.toString());
     }
 
-    OasSpecValidator oasSpecValidator = createOasSpecValidator(factoryOptions);
-
-    List<OasViolation> violations = oasSpecValidator.validate(createContext(openAPI), openAPI);
-    if (CollectionUtils.isNotEmpty(violations)) {
-      for (OasViolation violation : violations) {
-        LOGGER.info("path  : {}\nerror : {}\n------",
-            OasObjectPropertyLocation.toPathString(violation.getLocation()), violation.getError());
-      }
-      throw new ValidationFailedException("check not passed");
+    private String loadFileContent(String filePath) throws IOException {
+        Path specPath = Paths.get(filePath);
+        return FileUtils.readFileToString(specPath.toFile(), Charsets.UTF_8);
     }
-    LOGGER.info("Everything is good");
-  }
 
-  private OasSpecValidator createOasSpecValidator(FactoryOptions factoryOptions) {
-
-    AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(
-        ValidatorFactoryComponents.class);
-    try {
-      OasSpecValidatorFactory oasSpecValidatorFactory = ctx.getBean(OasSpecValidatorFactory.class);
-      return oasSpecValidatorFactory.create(factoryOptions);
-    } finally {
-      ctx.close();
+    private OasValidationContext createContext(OpenAPI openAPI) {
+        OasValidationContext oasValidationContext = new OasValidationContext(openAPI);
+        return oasValidationContext;
     }
-  }
 
-
-  private String loadFileContent(String filePath) throws IOException {
-    Path specPath = Paths.get(filePath);
-    return FileUtils.readFileToString(specPath.toFile(), Charsets.UTF_8);
-  }
-
-  private OasValidationContext createContext(OpenAPI openAPI) {
-
-    OasValidationContext oasValidationContext = new OasValidationContext(openAPI);
-    return oasValidationContext;
-  }
-
-  private FactoryOptions loadFactoryOptions() throws IOException {
-    Path specPath = Paths.get(rulesFile);
-    specPath.toAbsolutePath().toString();
-    Properties properties = new Properties();
-    try (FileInputStream fis = new FileInputStream(specPath.toFile())) {
-      properties.load(fis);
+    private FactoryOptions loadFactoryOptions() throws IOException {
+        Path specPath = Paths.get(rulesFile);
+        specPath.toAbsolutePath().toString();
+        Properties properties = new Properties();
+        try (FileInputStream fis = new FileInputStream(specPath.toFile())) {
+            properties.load(fis);
+        }
+        return new FactoryOptions(properties);
     }
-    return new FactoryOptions(properties);
-  }
 }

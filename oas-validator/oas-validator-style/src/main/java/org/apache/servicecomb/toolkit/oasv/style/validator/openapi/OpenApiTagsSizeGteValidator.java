@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.validator.openapi;
 
 import io.swagger.v3.oas.models.OpenAPI;
@@ -24,9 +23,7 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasValidationContext;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasViolation;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OpenApiValidator;
-
 import java.util.List;
-
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
@@ -41,23 +38,18 @@ import static java.util.Collections.singletonList;
  */
 public class OpenApiTagsSizeGteValidator implements OpenApiValidator {
 
-  public static final String CONFIG_KEY = "openAPI.tags.size.gte";
-  public static final String ERROR = "size must be >= ";
+    public static final String CONFIG_KEY = "openAPI.tags.size.gte";
 
-  private final int expectedSize;
+    public static final String ERROR = "size must be >= ";
 
-  public OpenApiTagsSizeGteValidator(int expectedSize) {
-    this.expectedSize = expectedSize;
-  }
+    private final int expectedSize;
 
-  @Override
-  public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, OpenAPI openAPI) {
-
-    if (CollectionUtils.size(openAPI.getTags()) < expectedSize) {
-      return singletonList(new OasViolation(location.property("tags", OasObjectType.TAG), ERROR + expectedSize));
+    public OpenApiTagsSizeGteValidator(int expectedSize) {
+        this.expectedSize = expectedSize;
     }
-    return emptyList();
 
-  }
-
+    @Override
+    public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, OpenAPI openAPI) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

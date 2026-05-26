@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.ComponentsDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.factory.CallbackDiffValidatorFactory;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.factory.ComponentsDiffValidatorFactory;
@@ -40,48 +38,29 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultComponentsDiffValidatorFactory implements ComponentsDiffValidatorFactory {
 
-  private final CallbackDiffValidatorFactory callbackDiffValidatorFactory;
+    private final CallbackDiffValidatorFactory callbackDiffValidatorFactory;
 
-  private final HeaderDiffValidatorFactory headerDiffValidatorFactory;
+    private final HeaderDiffValidatorFactory headerDiffValidatorFactory;
 
-  private final LinkDiffValidatorFactory linkDiffValidatorFactory;
+    private final LinkDiffValidatorFactory linkDiffValidatorFactory;
 
-  private final ParameterDiffValidatorFactory parameterDiffValidatorFactory;
+    private final ParameterDiffValidatorFactory parameterDiffValidatorFactory;
 
-  private final RequestBodyDiffValidatorFactory requestBodyDiffValidatorFactory;
+    private final RequestBodyDiffValidatorFactory requestBodyDiffValidatorFactory;
 
-  private final ResponseDiffValidatorFactory responseDiffValidatorFactory;
+    private final ResponseDiffValidatorFactory responseDiffValidatorFactory;
 
-  public DefaultComponentsDiffValidatorFactory(
-      CallbackDiffValidatorFactory callbackDiffValidatorFactory,
-      HeaderDiffValidatorFactory headerDiffValidatorFactory,
-      LinkDiffValidatorFactory linkDiffValidatorFactory,
-      ParameterDiffValidatorFactory parameterDiffValidatorFactory,
-      RequestBodyDiffValidatorFactory requestBodyDiffValidatorFactory,
-      ResponseDiffValidatorFactory responseDiffValidatorFactory) {
-    this.callbackDiffValidatorFactory = callbackDiffValidatorFactory;
-    this.headerDiffValidatorFactory = headerDiffValidatorFactory;
-    this.linkDiffValidatorFactory = linkDiffValidatorFactory;
-    this.parameterDiffValidatorFactory = parameterDiffValidatorFactory;
-    this.requestBodyDiffValidatorFactory = requestBodyDiffValidatorFactory;
-    this.responseDiffValidatorFactory = responseDiffValidatorFactory;
-  }
+    public DefaultComponentsDiffValidatorFactory(CallbackDiffValidatorFactory callbackDiffValidatorFactory, HeaderDiffValidatorFactory headerDiffValidatorFactory, LinkDiffValidatorFactory linkDiffValidatorFactory, ParameterDiffValidatorFactory parameterDiffValidatorFactory, RequestBodyDiffValidatorFactory requestBodyDiffValidatorFactory, ResponseDiffValidatorFactory responseDiffValidatorFactory) {
+        this.callbackDiffValidatorFactory = callbackDiffValidatorFactory;
+        this.headerDiffValidatorFactory = headerDiffValidatorFactory;
+        this.linkDiffValidatorFactory = linkDiffValidatorFactory;
+        this.parameterDiffValidatorFactory = parameterDiffValidatorFactory;
+        this.requestBodyDiffValidatorFactory = requestBodyDiffValidatorFactory;
+        this.responseDiffValidatorFactory = responseDiffValidatorFactory;
+    }
 
-  @Override
-  public List<ComponentsDiffValidator> create() {
-
-    List<ComponentsDiffValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new ComponentsCallbacksDiffValidator(callbackDiffValidatorFactory.create()));
-    validators.add(new ComponentsHeadersDiffValidator(headerDiffValidatorFactory.create()));
-    validators.add(new ComponentsLinksDiffValidator(linkDiffValidatorFactory.create()));
-    validators.add(new ComponentsParametersDiffValidator(parameterDiffValidatorFactory.create()));
-    validators.add(new ComponentsRequestBodiesDiffValidator(requestBodyDiffValidatorFactory.create()));
-    validators.add(new ComponentsResponsesDiffValidator(responseDiffValidatorFactory.create()));
-
-    // concretes
-
-    return Collections.unmodifiableList(validators);
-  }
+    @Override
+    public List<ComponentsDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.skeleton.openapi;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
@@ -23,9 +22,7 @@ import org.apache.servicecomb.toolkit.oasv.validation.api.PathsValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.api.ObjectPropertyValidator;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Paths;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.PATHS;
 
 /**
@@ -33,32 +30,29 @@ import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.PATHS;
  * .paths(<a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#pathsObject">Paths Object</a>)
  * validator
  */
-public class OpenApiPathsValidator extends ObjectPropertyValidator<OpenAPI, Paths>
-  implements OpenApiValidator {
+public class OpenApiPathsValidator extends ObjectPropertyValidator<OpenAPI, Paths> implements OpenApiValidator {
 
-  public OpenApiPathsValidator(List<PathsValidator> pathsValidators) {
+    public OpenApiPathsValidator(List<PathsValidator> pathsValidators) {
+        super(pathsValidators);
+    }
 
-    super(pathsValidators);
-  }
+    @Override
+    protected String get$ref(OpenAPI oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String get$ref(OpenAPI oasObject) {
-    return null;
-  }
+    @Override
+    protected Paths getPropertyObject(OpenAPI oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected Paths getPropertyObject(OpenAPI oasObject) {
-    return oasObject.getPaths();
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "paths";
-  }
-
-  @Override
-  protected OasObjectType getPropertyType() {
-    return PATHS;
-  }
-
+    @Override
+    protected OasObjectType getPropertyType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

@@ -14,12 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.SecuritySchemeDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.factory.SecuritySchemeDiffValidatorFactory;
 import org.springframework.stereotype.Component;
@@ -27,9 +25,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultSecuritySchemeDiffValidatorFactory implements SecuritySchemeDiffValidatorFactory {
 
-
-  @Override
-  public List<SecuritySchemeDiffValidator> create() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<SecuritySchemeDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

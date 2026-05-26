@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.util;
 
 import org.objectweb.asm.Label;
@@ -23,46 +22,29 @@ import org.objectweb.asm.Type;
 
 public class LocalVariableVisitor extends MethodVisitor {
 
-  private String[] parameterNames;
+    private String[] parameterNames;
 
-  private final int[] lvtSlotIndex;
+    private final int[] lvtSlotIndex;
 
-  private final Type[] args;
+    private final Type[] args;
 
-  public LocalVariableVisitor(int api, String desc, boolean isStatic, String[] parameterNames) {
-    super(api);
-    this.parameterNames = parameterNames;
-    this.args = Type.getArgumentTypes(desc);
-    this.lvtSlotIndex = computeLvtSlotIndices(isStatic, this.args);
-  }
-
-  @Override
-  public void visitLocalVariable(String name, String descriptor, String signature, Label start, Label end,
-      int index) {
-
-    for (int i = 0; i < this.lvtSlotIndex.length; i++) {
-      if (this.lvtSlotIndex[i] == index) {
-        this.parameterNames[i] = name;
-      }
+    public LocalVariableVisitor(int api, String desc, boolean isStatic, String[] parameterNames) {
+        super(api);
+        this.parameterNames = parameterNames;
+        this.args = Type.getArgumentTypes(desc);
+        this.lvtSlotIndex = computeLvtSlotIndices(isStatic, this.args);
     }
-    super.visitLocalVariable(name, descriptor, signature, start, end, index);
-  }
 
-  int[] computeLvtSlotIndices(boolean isStatic, Type[] paramTypes) {
-    int[] lvtIndex = new int[paramTypes.length];
-    int nextIndex = (isStatic ? 0 : 1);
-    for (int i = 0; i < paramTypes.length; i++) {
-      lvtIndex[i] = nextIndex;
-      if (isWideType(paramTypes[i])) {
-        nextIndex += 2;
-      } else {
-        nextIndex++;
-      }
+    @Override
+    public void visitLocalVariable(String name, String descriptor, String signature, Label start, Label end, int index) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    return lvtIndex;
-  }
 
-  private boolean isWideType(Type aType) {
-    return (aType == Type.LONG_TYPE || aType == Type.DOUBLE_TYPE);
-  }
+    int[] computeLvtSlotIndices(boolean isStatic, Type[] paramTypes) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    private boolean isWideType(Type aType) {
+        return (aType == Type.LONG_TYPE || aType == Type.DOUBLE_TYPE);
+    }
 }

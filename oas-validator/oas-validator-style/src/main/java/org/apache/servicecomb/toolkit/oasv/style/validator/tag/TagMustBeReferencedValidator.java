@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.validator.tag;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
@@ -27,9 +26,7 @@ import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.Paths;
 import io.swagger.v3.oas.models.tags.Tag;
 import org.apache.commons.collections4.CollectionUtils;
-
 import java.util.*;
-
 import static java.util.Collections.emptySet;
 
 /**
@@ -44,53 +41,40 @@ import static java.util.Collections.emptySet;
  */
 public class TagMustBeReferencedValidator implements TagValidator {
 
-  public static final String CONFIG_KEY = "tag.name.must_be_referenced";
-  public static final String ERROR = "Must be referenced by at least one Operation object";
+    public static final String CONFIG_KEY = "tag.name.must_be_referenced";
 
-  private static final String CACHE_KEY = TagMustBeReferencedValidator.class.getName() + ".allOperationsTags";
+    public static final String ERROR = "Must be referenced by at least one Operation object";
 
-  @Override
-  public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, Tag tag) {
-    Set<String> allOperationsTags = getAllOperationsTags(context);
+    private static final String CACHE_KEY = TagMustBeReferencedValidator.class.getName() + ".allOperationsTags";
 
-    List<OasViolation> violations = new ArrayList<>();
-
-    if (!allOperationsTags.contains(tag.getName())) {
-      violations.add(new OasViolation(location, ERROR));
+    @Override
+    public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, Tag tag) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    return violations;
-
-  }
-
-  private Set<String> getAllOperationsTags(OasValidationContext context) {
-
-    Set<String> allTags = context.getAttribute(CACHE_KEY);
-    if (allTags != null) {
-      return allTags;
-    }
-
-    allTags = new HashSet<>();
-
-    OpenAPI openAPI = context.getOpenAPI();
-    Paths paths = openAPI.getPaths();
-    if (paths == null) {
-      return emptySet();
-    }
-
-    for (Map.Entry<String, PathItem> entry : paths.entrySet()) {
-      PathItem pathItem = entry.getValue();
-      List<Operation> operations = pathItem.readOperations();
-      for (Operation operation : operations) {
-        List<String> tags = operation.getTags();
-        if (CollectionUtils.isEmpty(tags)) {
-          continue;
+    private Set<String> getAllOperationsTags(OasValidationContext context) {
+        Set<String> allTags = context.getAttribute(CACHE_KEY);
+        if (allTags != null) {
+            return allTags;
         }
-        allTags.addAll(tags);
-      }
+        allTags = new HashSet<>();
+        OpenAPI openAPI = context.getOpenAPI();
+        Paths paths = openAPI.getPaths();
+        if (paths == null) {
+            return emptySet();
+        }
+        for (Map.Entry<String, PathItem> entry : paths.entrySet()) {
+            PathItem pathItem = entry.getValue();
+            List<Operation> operations = pathItem.readOperations();
+            for (Operation operation : operations) {
+                List<String> tags = operation.getTags();
+                if (CollectionUtils.isEmpty(tags)) {
+                    continue;
+                }
+                allTags.addAll(tags);
+            }
+        }
+        context.setAttribute(CACHE_KEY, allTags);
+        return allTags;
     }
-
-    context.setAttribute(CACHE_KEY, allTags);
-    return allTags;
-  }
 }

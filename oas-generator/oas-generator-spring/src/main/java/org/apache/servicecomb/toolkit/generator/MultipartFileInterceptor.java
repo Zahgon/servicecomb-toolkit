@@ -14,33 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator;
 
 import java.lang.reflect.Type;
-
 import org.apache.servicecomb.toolkit.generator.annotation.ModelInterceptor;
 import org.apache.servicecomb.toolkit.generator.util.ModelConverter;
 import org.springframework.web.multipart.MultipartFile;
-
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.media.FileSchema;
 import io.swagger.v3.oas.models.media.Schema;
 
 public class MultipartFileInterceptor implements ModelInterceptor {
 
-  @Override
-  public int order() {
-    return 100;
-  }
-
-  @Override
-  public Schema process(Type cls, Components components) {
-
-    if (!MultipartFile.class.equals(cls)) {
-      return null;
+    @Override
+    public int order() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    return new FileSchema();
-  }
+    @Override
+    public Schema process(Type cls, Components components) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

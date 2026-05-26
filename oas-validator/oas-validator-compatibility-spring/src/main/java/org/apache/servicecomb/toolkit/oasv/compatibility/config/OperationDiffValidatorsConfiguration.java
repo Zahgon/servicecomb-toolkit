@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.config;
 
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.operation.OperationDeleteNotAllowedDiffValidator;
@@ -26,14 +25,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OperationDiffValidatorsConfiguration {
 
-  @Bean
-  public OperationDiffValidator operationDeleteNotAllowedDiffValidator() {
-    return new OperationDeleteNotAllowedDiffValidator();
-  }
+    @Bean
+    public OperationDiffValidator operationDeleteNotAllowedDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public OperationDiffValidator operationIdNotSameDiffValidator() {
-    return new OperationIdNotSameDiffValidator();
-  }
-
+    @Bean
+    public OperationDiffValidator operationIdNotSameDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

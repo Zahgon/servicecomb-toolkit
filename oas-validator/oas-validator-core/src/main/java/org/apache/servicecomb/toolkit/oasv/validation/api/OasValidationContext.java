@@ -14,11 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.api;
 
 import io.swagger.v3.oas.models.OpenAPI;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,24 +25,23 @@ import java.util.Map;
  */
 public class OasValidationContext {
 
-  private final OpenAPI openAPI;
+    private final OpenAPI openAPI;
 
-  private final Map<String, Object> attributes = new HashMap<>();
+    private final Map<String, Object> attributes = new HashMap<>();
 
-  public OasValidationContext(OpenAPI openAPI) {
-    this.openAPI = openAPI;
-  }
+    public OasValidationContext(OpenAPI openAPI) {
+        this.openAPI = openAPI;
+    }
 
-  public OpenAPI getOpenAPI() {
-    return openAPI;
-  }
+    public OpenAPI getOpenAPI() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public <T> T getAttribute(String name) {
-    return (T) attributes.get(name);
-  }
+    public <T> T getAttribute(String name) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public <T> void setAttribute(String name, T attr) {
-    this.attributes.put(name, attr);
-  }
-
+    public <T> void setAttribute(String name, T attr) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

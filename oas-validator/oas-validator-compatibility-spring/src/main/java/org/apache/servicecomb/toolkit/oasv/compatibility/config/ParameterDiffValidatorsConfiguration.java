@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.config;
 
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.parameter.*;
@@ -25,35 +24,33 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ParameterDiffValidatorsConfiguration {
 
-  @Bean
-  public ParameterDiffValidator parameterAddDiffValidator() {
-    return new ParameterAddDiffValidator();
-  }
+    @Bean
+    public ParameterDiffValidator parameterAddDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ParameterDiffValidator parameterRequiredChangeDiffValidator() {
-    return new ParameterRequiredChangeDiffValidator();
-  }
+    @Bean
+    public ParameterDiffValidator parameterRequiredChangeDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ParameterDiffValidator parameterAllowEmptyValueChangeDiffValidator() {
-    return new ParameterAllowEmptyValueChangeDiffValidator();
-  }
+    @Bean
+    public ParameterDiffValidator parameterAllowEmptyValueChangeDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ParameterDiffValidator parameterStyleNotSameDiffValidator() {
-    return new ParameterStyleNotSameDiffValidator();
-  }
+    @Bean
+    public ParameterDiffValidator parameterStyleNotSameDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ParameterDiffValidator parameterExplodeNotSameDiffValidator() {
-    return new ParameterExplodeNotSameDiffValidator();
-  }
+    @Bean
+    public ParameterDiffValidator parameterExplodeNotSameDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Bean
-  public ParameterDiffValidator parameterAllowReservedChangeDiffValidator() {
-    return new ParameterAllowReservedChangeDiffValidator();
-  }
-
+    @Bean
+    public ParameterDiffValidator parameterAllowReservedChangeDiffValidator() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }
-

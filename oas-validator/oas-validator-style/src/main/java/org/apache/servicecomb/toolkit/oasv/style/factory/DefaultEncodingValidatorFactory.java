@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.factory;
 
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
@@ -24,7 +23,6 @@ import org.apache.servicecomb.toolkit.oasv.validation.factory.EncodingValidatorF
 import org.apache.servicecomb.toolkit.oasv.validation.factory.HeaderValidatorFactory;
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.encoding.EncodingHeadersValuesValidator;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,31 +30,21 @@ import java.util.List;
 @Component
 public class DefaultEncodingValidatorFactory implements EncodingValidatorFactory {
 
-  private final HeaderValidatorFactory headerValidatorFactory;
+    private final HeaderValidatorFactory headerValidatorFactory;
 
-  public DefaultEncodingValidatorFactory(
-      HeaderValidatorFactory headerValidatorFactory) {
-    this.headerValidatorFactory = headerValidatorFactory;
-  }
-
-  @Override
-  public List<EncodingValidator> create(FactoryOptions options) {
-
-    List<EncodingValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new EncodingHeadersValuesValidator(headerValidatorFactory.create(options)));
-
-    // concrete
-    addEncodingHeadersKeysCaseValidator(validators, options);
-    return Collections.unmodifiableList(validators);
-  }
-
-  private void addEncodingHeadersKeysCaseValidator(List<EncodingValidator> validators, FactoryOptions options) {
-    String expectedCase = options.getString(EncodingHeadersKeysCaseValidator.CONFIG_KEY);
-    if (expectedCase != null) {
-      validators.add(new EncodingHeadersKeysCaseValidator(expectedCase));
+    public DefaultEncodingValidatorFactory(HeaderValidatorFactory headerValidatorFactory) {
+        this.headerValidatorFactory = headerValidatorFactory;
     }
-  }
 
+    @Override
+    public List<EncodingValidator> create(FactoryOptions options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    private void addEncodingHeadersKeysCaseValidator(List<EncodingValidator> validators, FactoryOptions options) {
+        String expectedCase = options.getString(EncodingHeadersKeysCaseValidator.CONFIG_KEY);
+        if (expectedCase != null) {
+            validators.add(new EncodingHeadersKeysCaseValidator(expectedCase));
+        }
+    }
 }

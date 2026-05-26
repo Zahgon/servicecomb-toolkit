@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.encoding.EncodingAddNotAllowedDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.encoding.EncodingAllowedReservedChangeDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.encoding.EncodingContentTypeNotSameDiffValidator;
@@ -36,29 +34,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultEncodingDiffValidatorFactory implements EncodingDiffValidatorFactory {
 
-  private final HeaderDiffValidatorFactory headerDiffValidatorFactory;
+    private final HeaderDiffValidatorFactory headerDiffValidatorFactory;
 
-  public DefaultEncodingDiffValidatorFactory(
-      HeaderDiffValidatorFactory headerDiffValidatorFactory) {
-    this.headerDiffValidatorFactory = headerDiffValidatorFactory;
-  }
+    public DefaultEncodingDiffValidatorFactory(HeaderDiffValidatorFactory headerDiffValidatorFactory) {
+        this.headerDiffValidatorFactory = headerDiffValidatorFactory;
+    }
 
-  @Override
-  public List<EncodingDiffValidator> create() {
-
-    List<EncodingDiffValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new EncodingHeadersDiffValidator(headerDiffValidatorFactory.create()));
-
-    // concretes
-    validators.add(new EncodingAddNotAllowedDiffValidator());
-    validators.add(new EncodingDelNotAllowedDiffValidator());
-    validators.add(new EncodingAllowedReservedChangeDiffValidator());
-    validators.add(new EncodingContentTypeNotSameDiffValidator());
-    validators.add(new EncodingExplodeNotSameDiffValidator());
-    validators.add(new EncodingStyleNotSameDiffValidator());
-
-    return Collections.unmodifiableList(validators);
-  }
+    @Override
+    public List<EncodingDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

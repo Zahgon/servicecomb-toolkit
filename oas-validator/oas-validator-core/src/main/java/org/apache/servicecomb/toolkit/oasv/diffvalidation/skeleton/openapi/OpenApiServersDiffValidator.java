@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.skeleton.openapi;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.ListPropertyDiffValidator;
@@ -23,31 +22,27 @@ import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.ServerDiffValidato
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.servers.Server;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.SERVER;
 
-public class OpenApiServersDiffValidator
-  extends ListPropertyDiffValidator<OpenAPI, Server>
-  implements OpenApiDiffValidator {
+public class OpenApiServersDiffValidator extends ListPropertyDiffValidator<OpenAPI, Server> implements OpenApiDiffValidator {
 
-  public OpenApiServersDiffValidator(List<ServerDiffValidator> diffValidators) {
-    super(diffValidators, server -> server.getUrl());
-  }
+    public OpenApiServersDiffValidator(List<ServerDiffValidator> diffValidators) {
+        super(diffValidators, server -> server.getUrl());
+    }
 
-  @Override
-  protected List<Server> getListProperty(OpenAPI oasObject) {
-    return oasObject.getServers();
-  }
+    @Override
+    protected List<Server> getListProperty(OpenAPI oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getListPropertyName() {
-    return "servers";
-  }
+    @Override
+    protected String getListPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getElementType() {
-    return SERVER;
-  }
+    @Override
+    protected OasObjectType getElementType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

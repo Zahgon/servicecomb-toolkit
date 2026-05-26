@@ -14,64 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.codegen;
 
 import java.util.List;
-
 import org.openapitools.codegen.SupportingFile;
 
 public class ProviderDirectoryStrategy extends AbstractProviderDirectoryStrategy {
 
-  protected String providerTemplateFolder = "provider";
+    protected String providerTemplateFolder = "provider";
 
-  @Override
-  public String modelDirectory() {
-    return providerDirectory();
-  }
-
-  @Override
-  public String providerDirectory() {
-    return (String) propertiesMap.get("artifactId");
-  }
-
-  @Override
-  public String consumerDirectory() {
-    throw new UnsupportedOperationException();
-  }
-
-  @Override
-  public void processSupportingFile(List<SupportingFile> supportingFiles) {
-    super.processSupportingFile(supportingFiles);
-    supportingFiles.add(new SupportingFile("pom.mustache",
-        providerDirectory(),
-        "pom.xml")
-    );
-
-    supportingFiles.add(new SupportingFile("Application.mustache",
-        mainClassFolder(providerDirectory()),
-        "Application.java")
-    );
-
-    supportingFiles.add(new SupportingFile("log4j2.mustache",
-        resourcesFolder(providerDirectory()),
-        "log4j2.xml")
-    );
-
-    supportingFiles.add(new SupportingFile(providerTemplateFolder + "/microservice.mustache",
-        resourcesFolder(providerDirectory()),
-        "microservice.yaml")
-    );
-
-    propertiesMap
-        .computeIfAbsent(GeneratorExternalConfigConstant.PROVIDER_ARTIFACT_ID, k -> propertiesMap.get("artifactId"));
-    propertiesMap
-        .put(GeneratorExternalConfigConstant.PROVIDER_PROJECT_NAME, providerDirectory());
-
-    if (ServiceCombCodegen.POJO_LIBRARY.equals(propertiesMap.get("library"))) {
-//      ((Map<String, String>) propertiesMap.get("apiTemplateFiles")).put(pojoApiImplTemplate, ".java");
-      propertiesMap.put("isPOJO", true);
+    @Override
+    public String modelDirectory() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    propertiesMap.put("isMultipleModule", false);
-  }
+
+    @Override
+    public String providerDirectory() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public String consumerDirectory() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public void processSupportingFile(List<SupportingFile> supportingFiles) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

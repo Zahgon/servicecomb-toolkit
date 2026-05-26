@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.skeleton.components;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.ComponentsDiffValidator;
@@ -23,32 +22,28 @@ import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.MapPropertyDiffVal
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.headers.Header;
-
 import java.util.List;
 import java.util.Map;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.HEADER;
 
-public class ComponentsHeadersDiffValidator
-  extends MapPropertyDiffValidator<Components, Header>
-  implements ComponentsDiffValidator {
+public class ComponentsHeadersDiffValidator extends MapPropertyDiffValidator<Components, Header> implements ComponentsDiffValidator {
 
-  public ComponentsHeadersDiffValidator(List<HeaderDiffValidator> diffValidators) {
-    super(diffValidators);
-  }
+    public ComponentsHeadersDiffValidator(List<HeaderDiffValidator> diffValidators) {
+        super(diffValidators);
+    }
 
-  @Override
-  protected Map<String, Header> getMapProperty(Components oasObject) {
-    return oasObject.getHeaders();
-  }
+    @Override
+    protected Map<String, Header> getMapProperty(Components oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getMapPropertyName() {
-    return "headers";
-  }
+    @Override
+    protected String getMapPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getValueType() {
-    return HEADER;
-  }
+    @Override
+    protected OasObjectType getValueType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

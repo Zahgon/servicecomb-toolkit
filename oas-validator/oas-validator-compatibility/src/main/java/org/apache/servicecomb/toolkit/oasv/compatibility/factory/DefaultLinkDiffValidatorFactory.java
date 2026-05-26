@@ -14,12 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.LinkDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.factory.LinkDiffValidatorFactory;
 import org.springframework.stereotype.Component;
@@ -27,9 +25,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultLinkDiffValidatorFactory implements LinkDiffValidatorFactory {
 
-  @Override
-  public List<LinkDiffValidator> create() {
-    return Collections.emptyList();
-  }
-
+    @Override
+    public List<LinkDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

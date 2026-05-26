@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.factory;
 
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
@@ -22,7 +21,6 @@ import org.apache.servicecomb.toolkit.oasv.style.validator.info.InfoDescriptionR
 import org.apache.servicecomb.toolkit.oasv.validation.api.InfoValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.factory.InfoValidatorFactory;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,19 +28,15 @@ import java.util.List;
 @Component
 public class DefaultInfoValidatorFactory implements InfoValidatorFactory {
 
-  @Override
-  public List<InfoValidator> create(FactoryOptions options) {
-    List<InfoValidator> validators = new ArrayList<>();
-
-    // concretes
-    addInfoDescriptionRequiredValidator(validators, options);
-    return Collections.unmodifiableList(validators);
-  }
-
-  private void addInfoDescriptionRequiredValidator(List<InfoValidator> validators, FactoryOptions options) {
-    Boolean required = options.getBoolean(InfoDescriptionRequiredValidator.CONFIG_KEY);
-    if (Boolean.TRUE.equals(required)) {
-      validators.add(new InfoDescriptionRequiredValidator());
+    @Override
+    public List<InfoValidator> create(FactoryOptions options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-  }
+
+    private void addInfoDescriptionRequiredValidator(List<InfoValidator> validators, FactoryOptions options) {
+        Boolean required = options.getBoolean(InfoDescriptionRequiredValidator.CONFIG_KEY);
+        if (Boolean.TRUE.equals(required)) {
+            validators.add(new InfoDescriptionRequiredValidator());
+        }
+    }
 }

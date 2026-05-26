@@ -14,31 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 package org.apache.servicecomb.toolkit.codegen;
 
 import java.io.IOException;
 import java.io.Writer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import com.samskivert.mustache.Mustache;
 import com.samskivert.mustache.Template.Fragment;
 
 public class ShowBasePathLambda implements Mustache.Lambda {
-  
-  private Pattern pattern = Pattern.compile("\"[ ]*[/]*[ ]*\"");
 
-  @Override
-  public void execute(Fragment fragment, Writer writer) throws IOException {
+    private Pattern pattern = Pattern.compile("\"[ ]*[/]*[ ]*\"");
 
-    String text = fragment.execute();
-    Matcher matcher = pattern.matcher(text);
-
-    if (matcher.find()) {
-      return;
+    @Override
+    public void execute(Fragment fragment, Writer writer) throws IOException {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    writer.write(text);
-  }
 }

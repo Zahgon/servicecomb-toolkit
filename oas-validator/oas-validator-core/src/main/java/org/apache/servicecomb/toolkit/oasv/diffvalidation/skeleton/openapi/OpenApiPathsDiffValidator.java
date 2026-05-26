@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.diffvalidation.skeleton.openapi;
 
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.ObjectPropertyDiffValidator;
@@ -23,32 +22,27 @@ import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.PathsDiffValidator
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Paths;
-
 import java.util.List;
-
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.PATHS;
 
-public class OpenApiPathsDiffValidator
-  extends ObjectPropertyDiffValidator<OpenAPI, Paths>
-  implements OpenApiDiffValidator {
+public class OpenApiPathsDiffValidator extends ObjectPropertyDiffValidator<OpenAPI, Paths> implements OpenApiDiffValidator {
 
-  public OpenApiPathsDiffValidator(List<PathsDiffValidator> pathsDiffValidators) {
-    super(pathsDiffValidators);
-  }
+    public OpenApiPathsDiffValidator(List<PathsDiffValidator> pathsDiffValidators) {
+        super(pathsDiffValidators);
+    }
 
-  @Override
-  protected Paths getPropertyObject(OpenAPI oasObject) {
-    return oasObject.getPaths();
-  }
+    @Override
+    protected Paths getPropertyObject(OpenAPI oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected String getPropertyName() {
-    return "paths";
-  }
+    @Override
+    protected String getPropertyName() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  protected OasObjectType getPropertyType() {
-    return PATHS;
-  }
-
+    @Override
+    protected OasObjectType getPropertyType() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

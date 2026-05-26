@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.factory;
 
 import org.apache.servicecomb.toolkit.oasv.FactoryOptions;
@@ -25,7 +24,6 @@ import org.apache.servicecomb.toolkit.oasv.validation.factory.PathItemValidatorF
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.pathitem.PathItemOperationsValidator;
 import org.apache.servicecomb.toolkit.oasv.validation.skeleton.pathitem.PathItemParametersValidator;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,26 +31,17 @@ import java.util.List;
 @Component
 public class DefaultPathItemValidatorFactory implements PathItemValidatorFactory {
 
-  private final OperationValidatorFactory operationValidatorFactory;
+    private final OperationValidatorFactory operationValidatorFactory;
 
-  private final ParameterValidatorFactory parameterValidatorFactory;
+    private final ParameterValidatorFactory parameterValidatorFactory;
 
-  public DefaultPathItemValidatorFactory(
-      OperationValidatorFactory operationValidatorFactory,
-      ParameterValidatorFactory parameterValidatorFactory) {
-    this.operationValidatorFactory = operationValidatorFactory;
-    this.parameterValidatorFactory = parameterValidatorFactory;
-  }
+    public DefaultPathItemValidatorFactory(OperationValidatorFactory operationValidatorFactory, ParameterValidatorFactory parameterValidatorFactory) {
+        this.operationValidatorFactory = operationValidatorFactory;
+        this.parameterValidatorFactory = parameterValidatorFactory;
+    }
 
-  @Override
-  public List<PathItemValidator> create(FactoryOptions options) {
-    ArrayList<PathItemValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new PathItemOperationsValidator(operationValidatorFactory.create(options)));
-    validators.add(new PathItemParametersValidator(parameterValidatorFactory.create(options)));
-
-    return Collections.unmodifiableList(validators);
-  }
-
+    @Override
+    public List<PathItemValidator> create(FactoryOptions options) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

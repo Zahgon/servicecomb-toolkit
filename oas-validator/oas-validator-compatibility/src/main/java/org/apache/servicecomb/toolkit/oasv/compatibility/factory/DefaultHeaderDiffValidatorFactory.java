@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.header.HeaderAddInRequestBodyNotAllowedDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.header.HeaderDelInResponseNotAllowedDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.HeaderDiffValidator;
@@ -32,25 +30,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultHeaderDiffValidatorFactory implements HeaderDiffValidatorFactory {
 
-  private final SchemaDiffValidatorFactory schemaDiffValidatorFactory;
+    private final SchemaDiffValidatorFactory schemaDiffValidatorFactory;
 
-  public DefaultHeaderDiffValidatorFactory(
-      SchemaDiffValidatorFactory schemaDiffValidatorFactory) {
-    this.schemaDiffValidatorFactory = schemaDiffValidatorFactory;
-  }
+    public DefaultHeaderDiffValidatorFactory(SchemaDiffValidatorFactory schemaDiffValidatorFactory) {
+        this.schemaDiffValidatorFactory = schemaDiffValidatorFactory;
+    }
 
-  @Override
-  public List<HeaderDiffValidator> create() {
-
-    List<HeaderDiffValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new HeaderSchemaDiffValidator(schemaDiffValidatorFactory.create()));
-
-    // concretes
-    validators.add(new HeaderAddInRequestBodyNotAllowedDiffValidator());
-    validators.add(new HeaderDelInResponseNotAllowedDiffValidator());
-
-    return Collections.unmodifiableList(validators);
-  }
+    @Override
+    public List<HeaderDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

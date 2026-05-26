@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.mediatype.MediaTypeAddInParameterNotAllowedDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.mediatype.MediaTypeDelInParameterNotAllowedDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.mediatype.MediaTypeDelInRequestBodyNotAllowedDiffValidator;
@@ -36,32 +34,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultMediaTypeDiffValidatorFactory implements MediaTypeDiffValidatorFactory {
 
-  private final EncodingDiffValidatorFactory encodingDiffValidatorFactory;
+    private final EncodingDiffValidatorFactory encodingDiffValidatorFactory;
 
-  private final SchemaDiffValidatorFactory schemaDiffValidatorFactory;
+    private final SchemaDiffValidatorFactory schemaDiffValidatorFactory;
 
-  public DefaultMediaTypeDiffValidatorFactory(
-      EncodingDiffValidatorFactory encodingDiffValidatorFactory,
-      SchemaDiffValidatorFactory schemaDiffValidatorFactory) {
-    this.encodingDiffValidatorFactory = encodingDiffValidatorFactory;
-    this.schemaDiffValidatorFactory = schemaDiffValidatorFactory;
-  }
+    public DefaultMediaTypeDiffValidatorFactory(EncodingDiffValidatorFactory encodingDiffValidatorFactory, SchemaDiffValidatorFactory schemaDiffValidatorFactory) {
+        this.encodingDiffValidatorFactory = encodingDiffValidatorFactory;
+        this.schemaDiffValidatorFactory = schemaDiffValidatorFactory;
+    }
 
-  @Override
-  public List<MediaTypeDiffValidator> create() {
-
-    List<MediaTypeDiffValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new MediaTypeEncodingDiffValidator(encodingDiffValidatorFactory.create()));
-    validators.add(new MediaTypeSchemaDiffValidator(schemaDiffValidatorFactory.create()));
-
-    // concretes
-    validators.add(new MediaTypeAddInParameterNotAllowedDiffValidator());
-    validators.add(new MediaTypeDelInParameterNotAllowedDiffValidator());
-    validators.add(new MediaTypeDelInRequestBodyNotAllowedDiffValidator());
-    validators.add(new MediaTypeDelInResponseNotAllowedDiffValidator());
-
-    return Collections.unmodifiableList(validators);
-  }
+    @Override
+    public List<MediaTypeDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

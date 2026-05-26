@@ -14,26 +14,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.annotation;
 
 import java.util.Arrays;
-
 import org.apache.servicecomb.toolkit.generator.context.OperationContext;
-
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
-public class ApiResponsesMethodAnnotationProcessor implements
-    MethodAnnotationProcessor<ApiResponses, OperationContext> {
-  @Override
-  public void process(ApiResponses responses, OperationContext context) {
+public class ApiResponsesMethodAnnotationProcessor implements MethodAnnotationProcessor<ApiResponses, OperationContext> {
 
-    MethodAnnotationProcessor apiResponseAnnotationProcessor = context.getParser()
-        .findMethodAnnotationProcessor(ApiResponse.class);
-
-    if (apiResponseAnnotationProcessor != null) {
-      Arrays.stream(responses.value()).forEach(response -> apiResponseAnnotationProcessor.process(response, context));
+    @Override
+    public void process(ApiResponses responses, OperationContext context) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-  }
 }

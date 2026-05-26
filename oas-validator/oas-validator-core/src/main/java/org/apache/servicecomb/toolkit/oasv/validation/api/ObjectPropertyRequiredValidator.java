@@ -14,15 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.validation.api;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectType;
-
 import java.util.List;
-
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
@@ -34,31 +31,16 @@ import static java.util.Collections.singletonList;
  */
 public abstract class ObjectPropertyRequiredValidator<T, P> implements OasObjectValidator<T> {
 
-  @Override
-  final public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location,
-      T oasObject) {
-    if (StringUtils.isNotBlank(get$ref(oasObject))) {
-      return emptyList();
+    @Override
+    final public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, T oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
-    P propertyObject = getPropertyObject(oasObject);
-    if (propertyObject == null) {
-      OasObjectPropertyLocation propertyLoc = location.property(getPropertyName(), getPropertyType());
-      return singletonList(new OasViolation(propertyLoc, ViolationMessages.REQUIRED));
-    }
-    if (propertyObject != null && String.class.equals(propertyObject.getClass())
-        && StringUtils.isBlank((CharSequence) propertyObject)) {
-      OasObjectPropertyLocation propertyLoc = location.property(getPropertyName(), getPropertyType());
-      return singletonList(new OasViolation(propertyLoc, ViolationMessages.REQUIRED));
-    }
-    return emptyList();
-  }
 
-  protected abstract String get$ref(T oasObject);
+    protected abstract String get$ref(T oasObject);
 
-  protected abstract P getPropertyObject(T oasObject);
+    protected abstract P getPropertyObject(T oasObject);
 
-  protected abstract String getPropertyName();
+    protected abstract String getPropertyName();
 
-  protected abstract OasObjectType getPropertyType();
-
+    protected abstract OasObjectType getPropertyType();
 }

@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.style.validator.operation;
 
 import io.swagger.v3.oas.models.Operation;
@@ -23,9 +22,7 @@ import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasValidationContext;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OasViolation;
 import org.apache.servicecomb.toolkit.oasv.validation.api.OperationValidator;
-
 import java.util.List;
-
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.SERVER;
@@ -40,23 +37,18 @@ import static org.apache.servicecomb.toolkit.oasv.common.OasObjectType.SERVER;
  */
 public class OperationServersSizeEqValidator implements OperationValidator {
 
-  public static final String CONFIG_KEY = "operations.servers.size.eq";
-  public static final String ERROR = "size must be == ";
+    public static final String CONFIG_KEY = "operations.servers.size.eq";
 
-  private final int expectedSize;
+    public static final String ERROR = "size must be == ";
 
-  public OperationServersSizeEqValidator(int expectedSize) {
-    this.expectedSize = expectedSize;
-  }
+    private final int expectedSize;
 
-  @Override
-  public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location,
-    Operation oasObject) {
-
-    if (CollectionUtils.size(oasObject.getServers()) != expectedSize) {
-      return singletonList(new OasViolation(location.property("servers", SERVER), ERROR + expectedSize));
+    public OperationServersSizeEqValidator(int expectedSize) {
+        this.expectedSize = expectedSize;
     }
-    return emptyList();
-  }
 
+    @Override
+    public List<OasViolation> validate(OasValidationContext context, OasObjectPropertyLocation location, Operation oasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

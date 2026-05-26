@@ -14,12 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.ServerDiffValidator;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.factory.ServerDiffValidatorFactory;
 import org.springframework.stereotype.Component;
@@ -27,8 +25,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultServerDiffValidatorFactory implements ServerDiffValidatorFactory {
 
-  @Override
-  public List<ServerDiffValidator> create() {
-    return Collections.emptyList();
-  }
+    @Override
+    public List<ServerDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

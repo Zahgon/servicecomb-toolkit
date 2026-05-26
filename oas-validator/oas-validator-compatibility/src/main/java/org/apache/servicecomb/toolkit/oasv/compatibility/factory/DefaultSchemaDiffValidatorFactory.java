@@ -14,13 +14,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.factory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema.SchemaDiscriminatorChangeValidator;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema.SchemaReadOnlyChangeValidator;
 import org.apache.servicecomb.toolkit.oasv.compatibility.validators.schema.SchemaWriteOnlyChangeValidator;
@@ -66,70 +64,52 @@ import org.springframework.stereotype.Component;
 @Component
 public class DefaultSchemaDiffValidatorFactory implements SchemaDiffValidatorFactory {
 
+    @Override
+    public List<SchemaDiffValidator> create() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  @Override
-  public List<SchemaDiffValidator> create() {
-
-    List<SchemaDiffValidator> validators = new ArrayList<>();
-
-    // skeletons
-    validators.add(new SchemaDiffValidatorEngine(
-        Collections.emptyList(),
-        Collections.emptyList(),
-        compareValidators()
-    ));
-
-    // concretes
-
-    return Collections.unmodifiableList(validators);
-  }
-
-  private List<SchemaCompareValidator> compareValidators() {
-
-    List<SchemaCompareValidator> compareValidators = new ArrayList<>();
-
-    // in common conntext
-    compareValidators.add(new SchemaReadOnlyChangeValidator());
-    compareValidators.add(new SchemaWriteOnlyChangeValidator());
-    compareValidators.add(new SchemaXmlChangeValidator());
-    compareValidators.add(new SchemaDiscriminatorChangeValidator());
-
-    // for request context
-    compareValidators.add(new SchemaTypeFormatChangeInRequestValidator());
-    compareValidators.add(new SchemaMaximumChangeInRequestValidator());
-    compareValidators.add(new SchemaExclusiveMinimumChangeInRequestValidator());
-    compareValidators.add(new SchemaExclusiveMaximumChangeInRequestValidator());
-    compareValidators.add(new SchemaMultipleOfChangeInRequestValidator());
-    compareValidators.add(new SchemaMaxItemsChangeInRequestValidator());
-    compareValidators.add(new SchemaMaxLengthChangeInRequestValidator());
-    compareValidators.add(new SchemaMaxPropertiesChangeInRequestValidator());
-    compareValidators.add(new SchemaMinimumChangeInRequestValidator());
-    compareValidators.add(new SchemaMinItemsChangeInRequestValidator());
-    compareValidators.add(new SchemaMinLengthChangeInRequestValidator());
-    compareValidators.add(new SchemaMinPropertiesChangeInRequestValidator());
-    compareValidators.add(new SchemaUniqueItemsChangeInRequestValidator());
-    compareValidators.add(new SchemaRequiredChangeInRequestValidator());
-    compareValidators.add(new SchemaEnumChangeInRequestValidator());
-    compareValidators.add(new SchemaNullableChangeInRequestValidator());
-
-    // for response context
-    compareValidators.add(new SchemaTypeFormatChangeInResponseValidator());
-    compareValidators.add(new SchemaMaximumChangeInResponseValidator());
-    compareValidators.add(new SchemaExclusiveMinimumChangeInResponseValidator());
-    compareValidators.add(new SchemaExclusiveMaximumChangeInResponseValidator());
-    compareValidators.add(new SchemaMultipleOfChangeInResponseValidator());
-    compareValidators.add(new SchemaMaxItemsChangeInResponseValidator());
-    compareValidators.add(new SchemaMaxLengthChangeInResponseValidator());
-    compareValidators.add(new SchemaMaxPropertiesChangeInResponseValidator());
-    compareValidators.add(new SchemaMinimumChangeInResponseValidator());
-    compareValidators.add(new SchemaMinItemsChangeInResponseValidator());
-    compareValidators.add(new SchemaMinLengthChangeInResponseValidator());
-    compareValidators.add(new SchemaMinPropertiesChangeInResponseValidator());
-    compareValidators.add(new SchemaUniqueItemsChangeInResponseValidator());
-    compareValidators.add(new SchemaRequiredChangeInResponseValidator());
-    compareValidators.add(new SchemaEnumChangeInResponseValidator());
-    compareValidators.add(new SchemaNullableChangeInResponseValidator());
-
-    return Collections.unmodifiableList(compareValidators);
-  }
+    private List<SchemaCompareValidator> compareValidators() {
+        List<SchemaCompareValidator> compareValidators = new ArrayList<>();
+        // in common conntext
+        compareValidators.add(new SchemaReadOnlyChangeValidator());
+        compareValidators.add(new SchemaWriteOnlyChangeValidator());
+        compareValidators.add(new SchemaXmlChangeValidator());
+        compareValidators.add(new SchemaDiscriminatorChangeValidator());
+        // for request context
+        compareValidators.add(new SchemaTypeFormatChangeInRequestValidator());
+        compareValidators.add(new SchemaMaximumChangeInRequestValidator());
+        compareValidators.add(new SchemaExclusiveMinimumChangeInRequestValidator());
+        compareValidators.add(new SchemaExclusiveMaximumChangeInRequestValidator());
+        compareValidators.add(new SchemaMultipleOfChangeInRequestValidator());
+        compareValidators.add(new SchemaMaxItemsChangeInRequestValidator());
+        compareValidators.add(new SchemaMaxLengthChangeInRequestValidator());
+        compareValidators.add(new SchemaMaxPropertiesChangeInRequestValidator());
+        compareValidators.add(new SchemaMinimumChangeInRequestValidator());
+        compareValidators.add(new SchemaMinItemsChangeInRequestValidator());
+        compareValidators.add(new SchemaMinLengthChangeInRequestValidator());
+        compareValidators.add(new SchemaMinPropertiesChangeInRequestValidator());
+        compareValidators.add(new SchemaUniqueItemsChangeInRequestValidator());
+        compareValidators.add(new SchemaRequiredChangeInRequestValidator());
+        compareValidators.add(new SchemaEnumChangeInRequestValidator());
+        compareValidators.add(new SchemaNullableChangeInRequestValidator());
+        // for response context
+        compareValidators.add(new SchemaTypeFormatChangeInResponseValidator());
+        compareValidators.add(new SchemaMaximumChangeInResponseValidator());
+        compareValidators.add(new SchemaExclusiveMinimumChangeInResponseValidator());
+        compareValidators.add(new SchemaExclusiveMaximumChangeInResponseValidator());
+        compareValidators.add(new SchemaMultipleOfChangeInResponseValidator());
+        compareValidators.add(new SchemaMaxItemsChangeInResponseValidator());
+        compareValidators.add(new SchemaMaxLengthChangeInResponseValidator());
+        compareValidators.add(new SchemaMaxPropertiesChangeInResponseValidator());
+        compareValidators.add(new SchemaMinimumChangeInResponseValidator());
+        compareValidators.add(new SchemaMinItemsChangeInResponseValidator());
+        compareValidators.add(new SchemaMinLengthChangeInResponseValidator());
+        compareValidators.add(new SchemaMinPropertiesChangeInResponseValidator());
+        compareValidators.add(new SchemaUniqueItemsChangeInResponseValidator());
+        compareValidators.add(new SchemaRequiredChangeInResponseValidator());
+        compareValidators.add(new SchemaEnumChangeInResponseValidator());
+        compareValidators.add(new SchemaNullableChangeInResponseValidator());
+        return Collections.unmodifiableList(compareValidators);
+    }
 }

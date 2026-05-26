@@ -14,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.generator.context;
 
 import java.lang.reflect.Method;
@@ -24,14 +23,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.servicecomb.toolkit.generator.HttpStatuses;
 import org.apache.servicecomb.toolkit.generator.MediaTypes;
 import org.apache.servicecomb.toolkit.generator.parser.api.OpenApiAnnotationParser;
 import org.apache.servicecomb.toolkit.generator.util.ModelConverter;
 import org.apache.servicecomb.toolkit.generator.util.RequestResponse;
-
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
@@ -48,344 +45,232 @@ import io.swagger.v3.oas.models.responses.ApiResponses;
 
 public class OperationContext implements IExtensionsContext {
 
-  private static final RequestBody nullRequestBody = new RequestBody();
+    private static final RequestBody nullRequestBody = new RequestBody();
 
-  private OasContext parentContext;
+    private OasContext parentContext;
 
-  private Method method;
+    private Method method;
 
-  private Operation operation = new Operation();
+    private Operation operation = new Operation();
 
-  private String operationId;
+    private String operationId;
 
-  private String path;
+    private String path;
 
-  private String httpMethod;
+    private String httpMethod;
 
-  private ApiResponses apiResponses = new ApiResponses();
+    private ApiResponses apiResponses = new ApiResponses();
 
-  private List<ParameterContext> parameterContexts = new ArrayList<>();
+    private List<ParameterContext> parameterContexts = new ArrayList<>();
 
-  private OpenApiAnnotationParser parser;
+    private OpenApiAnnotationParser parser;
 
-  private Boolean deprecated = false;
+    private Boolean deprecated = false;
 
-  private String description = null;
+    private String description = null;
 
-  private String summary;
+    private String summary;
 
-  private List<String> tags;
+    private List<String> tags;
 
-  private String[] consumes;
+    private String[] consumes;
 
-  private String[] produces;
+    private String[] produces;
 
-  private String[] headers;
+    private String[] headers;
 
-  public OperationContext(Method method, OasContext parentContext) {
-    this.parentContext = parentContext;
-    this.method = method;
-    this.parser = parentContext.getParser();
-    this.parentContext.addOperation(this);
-  }
-
-  @Override
-  public OpenApiAnnotationParser getParser() {
-    return parser;
-  }
-
-  public boolean hasOperation() {
-    return getHttpMethod() != null && method != null;
-  }
-
-  public Operation toOperation() {
-
-    if (!hasOperation()) {
-      return null;
+    public OperationContext(Method method, OasContext parentContext) {
+        this.parentContext = parentContext;
+        this.method = method;
+        this.parser = parentContext.getParser();
+        this.parentContext.addOperation(this);
     }
 
-    if (StringUtils.isEmpty(operationId)) {
-      operationId = method.getName();
+    @Override
+    public OpenApiAnnotationParser getParser() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    operation.operationId(operationId);
-    processHeaders();
-    processProduces();
-    correctResponse(apiResponses);
-    operation.setResponses(apiResponses);
+    public boolean hasOperation() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-    RequestBody requestBody = new RequestBody();
-    Content content = new Content();
-    MediaType mediaType = new MediaType();
+    public Operation toOperation() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-    // process parameter
-    List<Parameter> parameterList = parameterContexts.stream()
-        .map(parameterContext ->
-        {
-          // requestBody
-          if (parameterContext.isRequestBody()) {
-
-            Schema schema = mediaType.getSchema();
-            if (schema == null) {
-              schema = new ObjectSchema();
-              mediaType.schema(schema);
+    private void processHeaders() {
+        if (getHeaders() == null) {
+            return;
+        }
+        Arrays.stream(headers).forEach(header -> {
+            String[] headMap = header.split("=");
+            if (headMap.length == 2) {
+                HeaderParameter headerParameter = new HeaderParameter();
+                headerParameter.setName(headMap[0]);
+                StringSchema value = new StringSchema();
+                value.setDefault(headMap[1]);
+                headerParameter.setSchema(value);
+                operation.addParametersItem(headerParameter);
             }
-            schema.addProperties(parameterContext.getName(), parameterContext.getSchema());
-            if (consumes != null) {
-              for (String consume : getConsumers()) {
-                content.addMediaType(consume, mediaType);
-              }
-            } else {
-              if (parameterContext.getConsumers() != null && parameterContext.getConsumers().size() > 0) {
-                for (String consume : parameterContext.getConsumers()) {
-                  content.addMediaType(consume, mediaType);
-                }
-              } else {
-                content.addMediaType(MediaTypes.APPLICATION_JSON, mediaType);
-              }
+        });
+    }
+
+    private void processProduces() {
+        if (getProduces() == null) {
+            return;
+        }
+        List<String> produceList = Arrays.stream(produces).filter(s -> !StringUtils.isEmpty(s)).collect(Collectors.toList());
+        if (!produceList.isEmpty()) {
+            ApiResponse apiResponse = new ApiResponse();
+            Content content = new Content();
+            MediaType mediaType = new MediaType();
+            Schema schema = ModelConverter.getSchema(getMethod().getReturnType(), getComponents(), RequestResponse.RESPONSE);
+            mediaType.schema(schema);
+            for (String produce : produceList) {
+                content.addMediaType(produce, mediaType);
             }
-
-            requestBody.setContent(content);
-            requestBody.setRequired(parameterContext.getRequired());
-            return null;
-          }
-
-          // parameter
-          return parameterContext.toParameter();
-        })
-        .filter(parameter -> parameter != null)
-        .collect(Collectors.toList());
-
-    if (parameterList.size() > 0) {
-      operation.parameters(parameterList);
+            apiResponse.description("OK");
+            apiResponse.setContent(content);
+            addResponse(HttpStatuses.OK, apiResponse);
+        }
     }
 
-    if (!nullRequestBody.equals(requestBody)) {
-      operation.setRequestBody(requestBody);
-    }
-    return operation;
-  }
-
-  private void processHeaders() {
-
-    if (getHeaders() == null) {
-      return;
+    public void setRequestBody(RequestBody requestBody) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    Arrays.stream(headers).forEach(header -> {
-      String[] headMap = header.split("=");
-      if (headMap.length == 2) {
-        HeaderParameter headerParameter = new HeaderParameter();
-        headerParameter.setName(headMap[0]);
-        StringSchema value = new StringSchema();
-        value.setDefault(headMap[1]);
-        headerParameter.setSchema(value);
-        operation.addParametersItem(headerParameter);
-      }
-    });
-  }
-
-  private void processProduces() {
-
-    if (getProduces() == null) {
-      return;
+    public void correctResponse(ApiResponses apiResponses) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    List<String> produceList = Arrays.stream(produces).filter(s -> !StringUtils.isEmpty(s))
-        .collect(Collectors.toList());
-
-    if (!produceList.isEmpty()) {
-      ApiResponse apiResponse = new ApiResponse();
-      Content content = new Content();
-      MediaType mediaType = new MediaType();
-      Schema schema = ModelConverter
-          .getSchema(getMethod().getReturnType(), getComponents(), RequestResponse.RESPONSE);
-      mediaType.schema(schema);
-      for (String produce : produceList) {
-        content.addMediaType(produce, mediaType);
-      }
-      apiResponse.description("OK");
-      apiResponse.setContent(content);
-      addResponse(HttpStatuses.OK, apiResponse);
-    }
-  }
-
-  public void setRequestBody(RequestBody requestBody) {
-    operation.requestBody(requestBody);
-  }
-
-  public void correctResponse(ApiResponses apiResponses) {
-
-    if (apiResponses == null) {
-      return;
+    public Components getComponents() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    // no annotations are processed
-    // generate a default response based on the method return value
-    if (apiResponses.get(HttpStatuses.OK) == null) {
-      ApiResponse apiResponse = new ApiResponse();
-
-      Class<?> returnType = method.getReturnType();
-      if (returnType == Void.TYPE || returnType == Void.class) {
-        return;
-      }
-
-      MediaType mediaType = new MediaType();
-
-      Schema refSchema = ModelConverter.getSchema(returnType, getComponents(), RequestResponse.RESPONSE);
-      mediaType.schema(refSchema);
-
-      Content content = new Content();
-      content.addMediaType(MediaTypes.APPLICATION_JSON, mediaType);
-      apiResponse.description("OK");
-      apiResponse.setContent(content);
-      apiResponses.addApiResponse(HttpStatuses.OK, apiResponse);
-    }
-  }
-
-  public Components getComponents() {
-    return parentContext.getComponents();
-  }
-
-  public void addResponse(String key, ApiResponse response) {
-    apiResponses.addApiResponse(key, response);
-  }
-
-  public ApiResponses getApiResponses() {
-    return apiResponses;
-  }
-
-  public void setApiResponses(ApiResponses apiResponses) {
-    this.apiResponses = apiResponses;
-  }
-
-  public String getOperationId() {
-    return operationId;
-  }
-
-  public void setOperationId(String operationId) {
-    this.operationId = operationId;
-  }
-
-  public String getPath() {
-    return path;
-  }
-
-  public void setPath(String path) {
-    this.path = path;
-  }
-
-  public Operation getOperation() {
-    return operation;
-  }
-
-  public OpenAPI getOpenAPI() {
-    return parentContext.getOpenAPI();
-  }
-
-  public Method getMethod() {
-    return method;
-  }
-
-  public OasContext getOpenApiContext() {
-    return parentContext;
-  }
-
-  public String getHttpMethod() {
-    return Optional.ofNullable(httpMethod).orElse(parentContext.getHttpMethod());
-  }
-
-  public void setHttpMethod(String httpMethod) {
-    if (this.httpMethod != null) {
-      throw new IllegalArgumentException(String.format("too many http method in the method %s", method.getName()));
-    }
-    this.httpMethod = httpMethod.toUpperCase();
-  }
-
-  public Boolean getDeprecated() {
-    return deprecated;
-  }
-
-  public void setDeprecated(Boolean deprecated) {
-    this.deprecated = deprecated;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public String getSummary() {
-    return summary;
-  }
-
-  public void setSummary(String summary) {
-    this.summary = summary;
-  }
-
-  public List<String> getTags() {
-    return tags;
-  }
-
-  public void setTags(List<String> tags) {
-    this.tags = tags;
-  }
-
-  public void addTag(String tag) {
-    if (tags == null) {
-      tags = new ArrayList<>();
-    }
-    tags.add(tag);
-  }
-
-  @Override
-  public void addExtension(String name, Object value) {
-    operation.addExtension(name, value);
-  }
-
-  @Override
-  public Map<String, Object> getExtensions() {
-    return operation.getExtensions();
-  }
-
-  public String[] getConsumers() {
-    return consumes;
-  }
-
-  public void setConsumers(String[] consumes) {
-    this.consumes = consumes;
-  }
-
-  public void addParamCtx(ParameterContext ctx) {
-    this.parameterContexts.add(ctx);
-  }
-
-  public String[] getProduces() {
-
-    if (produces == null) {
-      produces = parentContext.getProduces();
+    public void addResponse(String key, ApiResponse response) {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    return produces;
-  }
-
-  public void setProduces(String[] produces) {
-    this.produces = produces;
-  }
-
-  public String[] getHeaders() {
-
-    if (headers == null) {
-      headers = parentContext.getHeaders();
+    public ApiResponses getApiResponses() {
+        throw new UnsupportedOperationException("STUB: not implemented");
     }
 
-    return headers;
-  }
+    public void setApiResponses(ApiResponses apiResponses) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 
-  public void setHeaders(String[] headers) {
-    this.headers = headers;
-  }
+    public String getOperationId() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setOperationId(String operationId) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public String getPath() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setPath(String path) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public Operation getOperation() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public OpenAPI getOpenAPI() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public Method getMethod() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public OasContext getOpenApiContext() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public String getHttpMethod() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setHttpMethod(String httpMethod) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public Boolean getDeprecated() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setDeprecated(Boolean deprecated) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public String getDescription() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setDescription(String description) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public String getSummary() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setSummary(String summary) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public List<String> getTags() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setTags(List<String> tags) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void addTag(String tag) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public void addExtension(String name, Object value) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    @Override
+    public Map<String, Object> getExtensions() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public String[] getConsumers() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setConsumers(String[] consumes) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void addParamCtx(ParameterContext ctx) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public String[] getProduces() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setProduces(String[] produces) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public String[] getHeaders() {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
+
+    public void setHeaders(String[] headers) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }

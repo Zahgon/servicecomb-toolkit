@@ -14,25 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.apache.servicecomb.toolkit.oasv.compatibility.validators.encoding;
 
 import org.apache.servicecomb.toolkit.oasv.common.OasObjectPropertyLocation;
 import org.apache.servicecomb.toolkit.oasv.diffvalidation.api.*;
 import io.swagger.v3.oas.models.media.Encoding;
-
 import java.util.List;
-
 import static java.util.Collections.singletonList;
 
-public class EncodingDelNotAllowedDiffValidator
-  extends OasObjectDiffValidatorTemplate<Encoding>
-  implements EncodingDiffValidator {
+public class EncodingDelNotAllowedDiffValidator extends OasObjectDiffValidatorTemplate<Encoding> implements EncodingDiffValidator {
 
-  @Override
-  protected List<OasDiffViolation> validateDel(OasDiffValidationContext context, OasObjectPropertyLocation leftLocation,
-    Encoding leftOasObject) {
-    return singletonList(OasDiffViolation.onlyLeft(leftLocation, DiffViolationMessages.OP_DEL_FORBIDDEN));
-  }
-
+    @Override
+    protected List<OasDiffViolation> validateDel(OasDiffValidationContext context, OasObjectPropertyLocation leftLocation, Encoding leftOasObject) {
+        throw new UnsupportedOperationException("STUB: not implemented");
+    }
 }
